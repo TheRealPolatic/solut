@@ -1,5 +1,8 @@
 <template>
-  <impactgoal></impactgoal>
+  <div>
+    <impactgoal></impactgoal>
+    <solutioncard></solutioncard>
+  </div>
 </template>
 
 <script>
