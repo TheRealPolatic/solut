@@ -14,24 +14,141 @@
         <div class="w-6 h-6 rounded-full bg-transparant text-dark flex items-center justify-center mr-3 border-2 border-dark font-bold">3</div>
       </div>
     </div>
-    <p>Title</p>
-    <input v-model="basicInfo.title" />
+    <div class="mt-6">
+      <label class="font-semibold text-sm">Title</label>
+      <input
+        class="border rounded-2xl w-full py-2 px-3 text-gray-700 leading-loose focus:outline-none focus:bg-white focus:border-gray-600"
+        type="text"
+        placeholder="Title"
+        v-model="form.title"
+      />
+    </div>
+    <div class="mt-6">
+      <div class="input-top flex justify-between">
+        <label class="font-semibold text-sm">Description</label>
+        <p class="text-xs text-grey">100/250</p>
+      </div>
+
+      <textarea
+        class="border rounded-2xl w-full py-2 px-3 text-gray-700 leading-loose h-56 focus:outline-none focus:bg-white focus:border-gray-600"
+        type="text"
+        placeholder="Type a quick introduction about the solution"
+        v-model="form.description"
+      />
+    </div>
+
+    <div class="category-slider mt-6">
+      <CreateCategorySlider />
+    </div>
+
+    <!-- <div class="my-6">
+      <label class="font-semibold text-sm">Cover image</label>
+      <input class="hidden" ref="file" type="file" />
+      <div
+        type="file"
+        accept="image/*"
+        @click="selectFile"
+        @change="onChange"
+        v-if="!image"
+        class="rounded-xl bg-light-grey h-16 flex justify-center items-center"
+      >
+        <img class="opacity-50 mr-4" src="@/assets/icons/upload-dark.svg" />
+        <p class="opacity-50">Upload image</p>
+      </div>
+      https://images.unsplash.com/photo-1527690499469-ef2eff9c6735?auto=format&fit=crop&w=1050&q=80
+      <img :src="image" /> -->
+
+    <!-- <div v-if="image" class="preview wrapper h-40 w-screen rounded-xl overflow-hidden" :style="{ 'background-image': `url(${image})` }"></div> -->
+
+    <div class="my-6">
+      <label class="font-semibold text-sm">Cover image</label>
+      <div class="flex justify-center items-center">
+        <file-upload
+          ref="upload"
+          v-model="images"
+          v-if="images.length == 0"
+          post-action="/post.method"
+          @input-file="inputFile"
+          @input-filter="inputFilter"
+          accept="image/*"
+          :size="1024 * 1024"
+          class="rounded-xl bg-light-grey h-16 w-screen flex justify-center items-center"
+        >
+          <img class="opacity-50 mr-4" src="@/assets/icons/upload-dark.svg" />
+          <p class="opacity-50">Upload image</p>
+        </file-upload>
+      </div>
+
+      <div class="w-full" v-for="image in images" :key="image.blob">
+        <div v-if="image.blob" class="preview h-40 rounded-xl overflow-hidden" :style="{ 'background-image': `url(${image.blob})` }"></div>
+      </div>
+    </div>
+
+    <!-- <button v-show="!$refs.upload || !$refs.upload.active" @click.prevent="$refs.upload.active = true" type="button">Start upload</button> -->
   </div>
 </template>
 
 <script>
 export default {
   data() {
+    const defaultForm = Object.freeze({
+      title: '',
+      description: '',
+      categories: [],
+      coverImg: '',
+    })
     return {
-      basicinfo: {
-        title: String,
-        description: String,
-        categories: Array,
-        coverImg: String,
+      form: Object.assign({}, defaultForm),
+      images: [],
+      item: {
+        image: null,
+        imageUrl: null,
       },
     }
+  },
+  methods: {
+    onChange(e) {
+      const file = e.target.files[0]
+      //   this.image = file
+      this.image = URL.createObjectURL(file)
+    },
+    selectFile() {
+      let fileInputElement = this.$refs.file
+      fileInputElement.click()
+    },
+    inputFile(newFile, oldFile) {
+      if (newFile && oldFile && !newFile.active && oldFile.active) {
+        // Get response data
+        console.log('response', newFile.response)
+        if (newFile.xhr) {
+          //  Get the response status code
+          console.log('status', newFile.xhr.status)
+        }
+      }
+    },
+    inputFilter(newFile, oldFile, prevent) {
+      if (newFile && !oldFile) {
+        // Filter non-image file
+        if (!/\.(jpeg|jpe|jpg|gif|png|webp)$/i.test(newFile.name)) {
+          return prevent()
+        }
+      }
+
+      // Create a blob field
+      newFile.blob = ''
+      let URL = window.URL || window.webkitURL
+      if (URL && URL.createObjectURL) {
+        newFile.blob = URL.createObjectURL(newFile.file)
+      }
+    },
   },
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.preview {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+</style>

@@ -17,7 +17,7 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['@/assets/main.css'],
 
-  plugins: [],
+  plugins: ['~/plugins/vue-upload-component.js'],
 
   components: true,
 

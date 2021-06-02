@@ -13,6 +13,17 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warning' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'prettier/prettier': ['error', { printWidth: 160 }],
+    'prettier/prettier': [
+      'error',
+      {
+        'endOfLine': 'auto',
+        'printWidth': 160,
+        'semi': false,
+        'jsxSingleQuote': true,
+        'singleQuote': false,
+        'useTabs': false,
+        'tabWidth': 4,
+      },
+    ],
   },
 }
