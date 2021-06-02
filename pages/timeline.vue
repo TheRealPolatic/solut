@@ -2,7 +2,7 @@
   <div>
     <impactgoal></impactgoal>
     <div class="flex m-4">
-      <pill></pill>
+      <pill v-for="pill in pills" :key="pill.text" :pill="pill" />
     </div>
     <solutioncard></solutioncard>
   </div>
@@ -10,7 +10,19 @@
 
 <script>
 export default {
-  // page properties go here
+  data() {
+    return {
+      pills: [
+        {
+          label: 'Trending',
+          state: 'active',
+        },
+        {
+          label: 'Top',
+        },
+      ],
+    }
+  },
 }
 </script>
 
