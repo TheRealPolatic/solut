@@ -7,13 +7,26 @@
       </div>
       <input
         id="search"
-        type="text"
+        v-model="searchValue"
+        type="search"
         name="search"
         class="outline-none block w-full pl-10 sm:text-sm border-gray-300 rounded-md"
         placeholder="Solutions or weather extremes"
       />
     </div>
-    <SearchSolutionCard v-for="solution in solutions" :key="solution.title" :solution="solution" />
+
+    <SearchSolutionCard v-for="solution in filteredRecipes" :key="solution.title" :solution="solution" />
+
+    <div class="my-12">
+      <div class="flex justify-between">
+        <h2 class="text-xl font-bold">Extreme Heat</h2>
+        <p class="text-sm font-medium mt-1">View all</p>
+      </div>
+      <div class="flex overflow-x-auto whitespace-nowrap">
+        <img class="w-full h-full rounded-2xl my-4 mr-3" src="@/assets/images/sustainable.jpg" />
+        <img class="w-full h-full rounded-2xl my-4" src="@/assets/images/sustainable.jpg" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -21,6 +34,7 @@
 export default {
   data() {
     return {
+      searchValue: '',
       solutions: [
         {
           title: 'Sustainable beach',
@@ -34,6 +48,18 @@ export default {
         },
       ],
     }
+  },
+  computed: {
+    filteredRecipes() {
+      let tempSolutions = this.solutions
+
+      if (this.searchValue !== '' && this.searchValue) {
+        tempSolutions = tempSolutions.filter((item) => {
+          return item.title.toUpperCase().includes(this.searchValue.toUpperCase())
+        })
+      }
+      return tempSolutions
+    },
   },
 }
 </script>
