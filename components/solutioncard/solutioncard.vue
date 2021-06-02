@@ -27,7 +27,7 @@
       <img
         src="https://images.pexels.com/photos/33041/antelope-canyon-lower-canyon-arizona.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
         alt=""
-        class="absolute top-0 left-0 w-full h-full"
+        class="absolute top-0 left-0 w-full h-full object-cover"
       />
       <div
         class="
@@ -43,7 +43,7 @@
           opacity-50
         "
       ></div>
-      <div class="self-end mt-auto z-10 p-4 flex item-end">
+      <div class="self-end mt-auto z-10 p-4 flex item-end w-full">
         <div class="flex-column w-3/4 pr-1">
           <h1 class="text-white text-lg leading-5 font-semibold">
             How to construct your own green roof
