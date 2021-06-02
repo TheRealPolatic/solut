@@ -23,7 +23,7 @@ export default {
 
   buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/tailwindcss'],
 
-  modules: ['@nuxtjs/pwa', '@nuxtjs/firebase'],
+  // modules: ['@nuxtjs/pwa', '@nuxtjs/firebase'],
 
   pwa: {
     manifest: {
@@ -31,26 +31,26 @@ export default {
     },
   },
 
-  firebase: {
-    config: {
-      apiKey: 'AIzaSyB1Jb16EPfOSwI6txAr0bnC6OP4xjqMZC0',
-      authDomain: 'solut-3961b.firebaseapp.com',
-      projectId: 'solut-3961b',
-      storageBucket: 'solut-3961b.appspot.com',
-      messagingSenderId: '1023760805376',
-      appId: '1:1023760805376:web:8bac431fb45dfc7a6c32e5',
-      measurementId: 'G-0RTQKB8693',
-    },
-    services: {
-      auth: {
-        emulatorPort: isDev && useEmulators ? 9099 : undefined,
-        disableEmulatorWarnings: true,
-      },
-      firestore: {
-        emulatorPort: isDev && useEmulators ? 8080 : undefined,
-      },
-    },
-  },
+  // firebase: {
+  //   config: {
+  //     apiKey: 'AIzaSyB1Jb16EPfOSwI6txAr0bnC6OP4xjqMZC0',
+  //     authDomain: 'solut-3961b.firebaseapp.com',
+  //     projectId: 'solut-3961b',
+  //     storageBucket: 'solut-3961b.appspot.com',
+  //     messagingSenderId: '1023760805376',
+  //     appId: '1:1023760805376:web:8bac431fb45dfc7a6c32e5',
+  //     measurementId: 'G-0RTQKB8693',
+  //   },
+  //   services: {
+  //     auth: {
+  //       emulatorPort: isDev && useEmulators ? 9099 : undefined,
+  //       disableEmulatorWarnings: true,
+  //     },
+  //     firestore: {
+  //       emulatorPort: isDev && useEmulators ? 8080 : undefined,
+  //     },
+  //   },
+  // },
 
   build: {},
 }
