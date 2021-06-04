@@ -16,12 +16,7 @@
     </div>
     <div class="mt-6">
       <label class="font-semibold text-sm">Title</label>
-      <input
-        class="border rounded-2xl w-full py-2 px-3 text-gray-700 leading-loose focus:outline-none focus:bg-white focus:border-gray-600"
-        type="text"
-        placeholder="Title"
-        v-model="form.title"
-      />
+      <input class="border rounded-2xl w-full py-2 px-3 text-gray-700 leading-loose focus:outline-none" type="text" placeholder="Title" v-model="form.title" />
     </div>
     <div class="mt-6">
       <div class="input-top flex justify-between">
@@ -30,7 +25,7 @@
       </div>
 
       <textarea
-        class="border rounded-2xl w-full py-2 px-3 text-gray-700 leading-loose h-56 focus:outline-none focus:bg-white focus:border-gray-600"
+        class="border rounded-2xl w-full py-2 px-3 text-gray-700 leading-loose h-56 focus:outline-none"
         type="text"
         placeholder="Type a quick introduction about the solution"
         v-model="form.description"
@@ -41,28 +36,12 @@
       <CreateCategorySlider />
     </div>
 
-    <!-- <div class="my-6">
+    <div class="my-4">
       <label class="font-semibold text-sm">Cover image</label>
-      <input class="hidden" ref="file" type="file" />
-      <div
-        type="file"
-        accept="image/*"
-        @click="selectFile"
-        @change="onChange"
-        v-if="!image"
-        class="rounded-xl bg-light-grey h-16 flex justify-center items-center"
-      >
-        <img class="opacity-50 mr-4" src="@/assets/icons/upload-dark.svg" />
-        <p class="opacity-50">Upload image</p>
-      </div>
-      https://images.unsplash.com/photo-1527690499469-ef2eff9c6735?auto=format&fit=crop&w=1050&q=80
-      <img :src="image" /> -->
-
-    <!-- <div v-if="image" class="preview wrapper h-40 w-screen rounded-xl overflow-hidden" :style="{ 'background-image': `url(${image})` }"></div> -->
-
-    <div class="my-6">
-      <label class="font-semibold text-sm">Cover image</label>
-      <div class="flex justify-center items-center">
+      <div class="flex justify-center items-center relative">
+        <div @click="resetImg" class="delete h-6 w-6 rounded-full absolute right-2 top-2 bg-white flex justify-center items-center">
+          <img src="@/assets/icons/x.svg" />
+        </div>
         <file-upload
           ref="upload"
           v-model="images"
@@ -72,10 +51,12 @@
           @input-filter="inputFilter"
           accept="image/*"
           :size="1024 * 1024"
-          class="rounded-xl bg-light-grey h-16 w-screen flex justify-center items-center"
+          class="rounded-xl bg-light-grey h-16 w-screen"
         >
-          <img class="opacity-50 mr-4" src="@/assets/icons/upload-dark.svg" />
-          <p class="opacity-50">Upload image</p>
+          <div class="flex my-5 justify-center">
+            <img class="opacity-50 mr-4" src="@/assets/icons/upload-dark.svg" />
+            <p class="opacity-50">Upload image</p>
+          </div>
         </file-upload>
       </div>
 
@@ -85,6 +66,10 @@
     </div>
 
     <!-- <button v-show="!$refs.upload || !$refs.upload.active" @click.prevent="$refs.upload.active = true" type="button">Start upload</button> -->
+
+    <div class="rounded-lg bg-primary text-white w-full h-14 flex items-center justify-center mb-8">
+      <p>Next step</p>
+    </div>
   </div>
 </template>
 
@@ -140,6 +125,9 @@ export default {
       if (URL && URL.createObjectURL) {
         newFile.blob = URL.createObjectURL(newFile.file)
       }
+    },
+    resetImg() {
+      this.images = []
     },
   },
 }

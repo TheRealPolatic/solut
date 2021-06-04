@@ -4,6 +4,10 @@ const useEmulators = true
 export default {
   ssr: false,
 
+  server: {
+    host: '0.0.0.0',
+  },
+
   head: {
     title: 'solut',
     meta: [
@@ -17,11 +21,11 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['@/assets/main.css'],
 
-  plugins: ['~/plugins/vue-upload-component.js'],
+  plugins: ['~/plugins/vue-upload-component.js', '~/plugins/vue-form-wizard.js'],
 
   components: true,
 
-  buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/tailwindcss'],
+  buildModules: ['@nuxtjs/tailwindcss'],
 
   modules: ['@nuxtjs/pwa', '@nuxtjs/firebase'],
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CreateBasicInfo />
+    <CreateMaterials />
   </div>
 </template>
 
