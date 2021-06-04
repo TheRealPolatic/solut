@@ -15,16 +15,20 @@
       />
     </div>
 
-    <SearchSolutionCard v-for="solution in filteredRecipes" :key="solution.title" :solution="solution" />
+    <div v-if="searchValue == ''">
+      <SearchSolutionCard v-for="solution in filteredName" :key="solution.title" :solution="solution" />
+    </div>
 
-    <div class="my-12">
-      <div class="flex justify-between">
-        <h2 class="text-xl font-bold">Extreme Heat</h2>
-        <p class="text-sm font-medium mt-1">View all</p>
-      </div>
-      <div class="flex overflow-x-auto whitespace-nowrap">
-        <img class="w-full h-full rounded-2xl my-4 mr-3" src="@/assets/images/sustainable.jpg" />
-        <img class="w-full h-full rounded-2xl my-4" src="@/assets/images/sustainable.jpg" />
+    <div v-else-if="searchValue !== ''">
+      <div class="my-12">
+        <div class="flex justify-between">
+          <h2 class="text-xl font-bold">Extreme Heat</h2>
+          <p class="text-sm font-medium mt-1">View all</p>
+        </div>
+        <div class="flex overflow-x-auto whitespace-nowrap">
+          <img class="w-full h-full rounded-2xl my-4 mr-3" src="@/assets/images/sustainable.jpg" />
+          <img class="w-full h-full rounded-2xl my-4" src="@/assets/images/sustainable.jpg" />
+        </div>
       </div>
     </div>
   </div>
@@ -50,7 +54,7 @@ export default {
     }
   },
   computed: {
-    filteredRecipes() {
+    filteredName() {
       let tempSolutions = this.solutions
 
       if (this.searchValue !== '' && this.searchValue) {
@@ -63,3 +67,20 @@ export default {
   },
 }
 </script>
+
+<style>
+input[type='search']::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  height: 1.7em;
+  width: 1.7em;
+  background: url('@/assets/icons/x.svg') no-repeat 50% 50%;
+  background-size: contain;
+  pointer-events: none;
+  margin-right: 12px;
+}
+
+input[type='search']:focus::-webkit-search-cancel-button {
+  opacity: 0.3;
+  pointer-events: all;
+}
+</style>
