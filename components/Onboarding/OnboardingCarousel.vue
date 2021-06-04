@@ -13,13 +13,13 @@
       <!-- slide 2 -->
       <div class="flex flex-col justify-evenly h-full">
         <h1 class="text-dark text-center font-bold text-3xl">Solutions</h1>
-        <img class="w-7/8 mx-auto mb-14 mt-8" src="@/assets/illustrations/solution-illustration.svg" />
+        <img class="w-7/8 mx-auto mb-14 mt-14" src="@/assets/illustrations/solution-illustration.svg" />
         <p class="text-center mt-24">Becoming more resilient to <br />climate change as a community <br />by sharing solutions.</p>
       </div>
       <!-- slide 3 -->
       <div class="flex flex-col justify-evenly h-full">
         <h1 class="text-dark text-center font-bold text-3xl">Track impact</h1>
-        <img class="w-7/8 mx-auto mb-14 mt-8" src="@/assets/illustrations/impact-illustration.svg" />
+        <img class="w-7/8 mx-auto mb-14 mt-16" src="@/assets/illustrations/impact-illustration.svg" />
         <p class="text-center mt-24">Track the impact of all solutions. <br />We strive to impact 100.000 people <br />all around the world.</p>
       </div>
     </VueSlickCarousel>
