@@ -15,12 +15,10 @@
       />
     </div>
 
-    <div v-if="searchValue == ''">
-      <SearchSolutionCard v-for="solution in filteredName" :key="solution.title" :solution="solution" />
-    </div>
+    <SearchCategorySlider />
 
-    <div v-else-if="searchValue !== ''">
-      <div class="my-12">
+    <div v-if="searchValue == ''">
+      <div class="my-6">
         <div class="flex justify-between">
           <h2 class="text-xl font-bold">Extreme Heat</h2>
           <p class="text-sm font-medium mt-1">View all</p>
@@ -28,6 +26,23 @@
         <div class="flex overflow-x-auto whitespace-nowrap">
           <img class="w-full h-full rounded-2xl my-4 mr-3" src="@/assets/images/sustainable.jpg" />
           <img class="w-full h-full rounded-2xl my-4" src="@/assets/images/sustainable.jpg" />
+        </div>
+      </div>
+    </div>
+
+    <div v-else-if="searchValue !== ''">
+      <SearchSolutionCard v-for="solution in filteredName" :key="solution.title" :solution="solution" />
+    </div>
+
+    <div class="my-6">
+      <div class="flex justify-between">
+        <h2 class="text-xl font-bold">Extreme Heat</h2>
+        <p class="text-sm font-medium mt-1">View all</p>
+      </div>
+      <div class="flex overflow-x-auto whitespace-nowrap">
+        <div class="">
+          <img class="w-full h-full relative rounded-2xl my-4 mr-3" src="@/assets/images/sustainable.jpg" />
+          <div class="absolute bottom-10">Sustainable beach</div>
         </div>
       </div>
     </div>
