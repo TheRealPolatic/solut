@@ -15,45 +15,29 @@
     </div>
 
     <!-- User your solutions -->
-    <div class="mt-8">
-      <p class="text-sm">
-        <span class="font-bold">56 people</span> have used your solution
-      </p>
-
-      <div class="w-full h-2 bg-primary bg-opacity-20 rounded-full mt-2"></div>
-      <div class="w-1/3 h-2 bg-primary rounded-full -mt-2"></div>
-
-      <div class="flex justify-between mt-2 h-6 align-middle">
-        <p class="text-xs text-darker-grey font-medium align-middle mt-1">
-          119 people till the next milestone
-        </p>
-        <div class="bg-primary text-white text-xs font-bold p-1 rounded-md">
-          175
-        </div>
-      </div>
-    </div>
+    <StatisticsProgress
+      :usedSolution="usedSolution"
+      :nextMilestone="nextMilestone"
+      :milestone="milestone"
+    ></StatisticsProgress>
 
     <!-- Had impact on -->
-    <div class="mt-8">
-      <p class="text-sm">
-        You made impact on
-        <span class="font-bold">210 people</span>
-        so far
-      </p>
-
-      <div class="w-full h-2 bg-primary bg-opacity-20 rounded-full mt-2"></div>
-      <div class="w-2/5 h-2 bg-primary rounded-full -mt-2"></div>
-
-      <div class="flex justify-between mt-2 h-6 align-middle">
-        <p class="text-xs text-darker-grey font-medium align-middle mt-1">
-          290 people till the next milestone
-        </p>
-        <div class="bg-primary text-white text-xs font-bold p-1 rounded-md">
-          500
-        </div>
-      </div>
-    </div>
+    <StatisticsProgress
+      :usedSolution="usedSolution"
+      :nextMilestone="nextMilestone"
+      :milestone="milestone"
+    ></StatisticsProgress>
   </div>
 </template>
 
-<script></script>
+<script>
+export default {
+  data() {
+    return {
+      usedSolution: 27,
+      nextMilestone: 34,
+      milestone: 61,
+    }
+  },
+}
+</script>

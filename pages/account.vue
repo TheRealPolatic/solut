@@ -1,7 +1,7 @@
 <template>
   <div class="m-6">
-    <userProfile></userProfile>
-    <statistics class="mt-8"></statistics>
+    <UserProfile></UserProfile>
+    <Statistics class="mt-8"></Statistics>
     <p class="text-sm mt-8">Log out</p>
   </div>
 </template>

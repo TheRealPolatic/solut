@@ -14,7 +14,7 @@
     <!-- Name & Change profile -->
     <div class="flex justify-between mt-8">
       <div class="text-xl font-bold">John Doe</div>
-      <div class="text-sm">Change Profile</div>
+      <div class="text-sm pt-1">Change Profile</div>
     </div>
 
     <!-- Info list -->
