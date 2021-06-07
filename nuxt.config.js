@@ -1,5 +1,5 @@
-const isDev = process.env.NODE_ENV === 'development'
-const useEmulators = true
+// const isDev = process.env.NODE_ENV === 'development'
+// const useEmulators = true
 
 export default {
   ssr: false,
