@@ -1,5 +1,5 @@
-const isDev = process.env.NODE_ENV === 'development'
-const useEmulators = true
+// const isDev = process.env.NODE_ENV === 'development'
+// const useEmulators = true
 
 export default {
   ssr: false,
@@ -15,7 +15,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['@/assets/main.css'],
+  css: ['@/assets/main.css', '@/assets/iconfont/icon-dist/icons.css'],
 
   plugins: [],
 
