@@ -31,4 +31,7 @@ export const actions = {
         console.error(error)
       })
   },
+  createSolution(context, solution) {
+    return SolutionService.createSolution(solution).catch((error) => console.error(error))
+  },
 }

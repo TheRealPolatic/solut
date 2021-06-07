@@ -10,6 +10,9 @@ export default {
           return { ...{ id: doc.id }, ...doc.data() }
         })
       })
+      .catch((error) => {
+        console.error(error)
+      })
   },
   getSolution(solutionId) {
     return firestore
@@ -20,8 +23,14 @@ export default {
         if (doc.exists) {
           return { ...{ id: doc.id }, ...doc.data() }
         } else {
-          console.error('Requested solution does not exist.')
+          throw new Error('Solution not found.')
         }
       })
+      .catch((error) => {
+        console.error(error)
+      })
+  },
+  createSolution(solution) {
+    return firestore.collection('solutions').add(solution)
   },
 }
