@@ -7,13 +7,49 @@
       <h1 class="my-6 text-dark text-center font-bold text-xl">Register</h1>
       <div class="w-10 h-10"></div>
     </div>
+
 <!-- 
-    <div class="max-h-screen flex flex-col justify-center py-12">
-      <div class="sm:mx-auto sm:w-full sm:max-w-md">
-        <img class="mx-auto h-1/3 w-auto" src="@/assets/illustrations/logo.svg" />
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Register to Solut</h2>
-        <p class="mt-2 text-center text-gray-600">Creating a resilient world.</p>
-      </div> -->
+  <div class="card vue-avatar-cropper-demo text-center">
+    <div class="card-body">
+      <div class="w-full"><img :src="user.avatar" class="w-24 mx-auto rounded-full" /></div>
+
+<button class="btn btn-primary btn-sm" id="pick-avatar">Select an new image</button>
+    </div>
+    <div class="card-footer text-muted" v-html="message"></div>
+    <avatar-cropper
+        @uploading="handleUploading"
+        @uploaded="handleUploaded"
+        @completed="handleCompleted"
+        @error="handlerError"
+        trigger="#pick-avatar"
+        upload-url="https://demo.overtrue.me/upload.php" />
+  </div> -->
+
+
+
+
+<div class="card vue-avatar-cropper-demo text-center">
+    <div class="card-body">
+      <img :src="user.avatar" class="card-img avatar" />
+      <div class="card-img-overlay">
+        <button class="btn btn-primary btn-sm" id="pick-avatar">Select an new image</button>
+      </div>
+      <h5 class="card-title mb-0">{{ user.nickname }}</h5>
+      <div class="text-muted">{{ user.username }}</div>
+    </div>
+    <div class="card-footer text-muted" v-html="message"></div>
+    <avatar-cropper
+      @uploading="handleUploading"
+      @uploaded="handleUploaded"
+      @completed="handleCompleted"
+      @error="handlerError"
+      trigger="#pick-avatar"
+      upload-url="https://demo.overtrue.me/upload.php"
+    />
+  </div>
+
+
+
 
       <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-md">
         <div class="py-8 px-6 sm:rounded-lg sm:px-10">
@@ -82,15 +118,61 @@
   </div>
 </template>
 
-<script>
+<<script>
+import AvatarCropper from 'vue-avatar-cropper'
+
 export default {
+  components: { AvatarCropper },
   data() {
     return {
-      showPassword: false,
+      message: 'ready',
+      user: {
+        id: 1,
+        nickname: '安正超',
+        username: 'overtrue',
+        avatar: 'https://avatars0.githubusercontent.com/u/1472352?s=460&v=4',
+      },
     }
+  },
+  methods: {
+    handleUploading(form, xhr) {
+      this.message = 'uploading...'
+    },
+    handleUploaded(response) {
+      if (response.status == 'success') {
+        this.user.avatar = response.url
+        // Maybe you need call vuex action to
+        // update user avatar, for example:
+        // this.$dispatch('updateUser', {avatar: response.url})
+        this.message = 'user avatar updated.'
+      }
+    },
+    handleCompleted(response, form, xhr) {
+      this.message = 'upload completed.'
+    },
+    handlerError(message, type, xhr) {
+      this.message = 'Oops! Something went wrong...'
+    },
   },
 }
 </script>
 
-<style lang="scss" scoped>
+<style  scoped>
+.vue-avatar-cropper-demo {
+  max-width: 18em;
+  margin: 0 auto;
+}
+.avatar {
+  width: 160px;
+  border-radius: 6px;
+  display: block;
+  margin: 20px auto;
+}
+.card-img-overlay {
+  display: none;
+  transition: all 0.5s;
+}
+.card-img-overlay button {
+  margin-top: 20vh;
+}
 </style>
