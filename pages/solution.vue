@@ -20,15 +20,19 @@
         </ul>
       </ShowSolutionTab>
       <ShowSolutionTab title="Instructions">
-        <ul class="border-primary border-dotted border-l-4 pl-6">
-          <li v-for="step in steps" :key="step.rank" class="mb-6">
-            <span class="absolute -ml-9 rounded-full h-4 w-4 border-2 border-primary mr-3 bg-grey"></span>
+        <ul class="border-dark-grey border-l pl-6">
+          <li v-for="step in sortOnRank(steps)" :key="step.rank" class="mb-6">
+            <span class="absolute flex items-center -ml-8 -mt-1 rounded-full h-8 w-8 mr-3 bg-grey">
+              <span class="flex rounded-full h-4 w-4 border-2 border-primary"></span>
+            </span>
             <h2 class="text-lg font-semibold mb-2">Step {{ step.rank }}</h2>
             <p>{{ step.description }}</p>
             <img v-if="step.image" :src="step.image" :alt="'image step ' + step.rank" class="rounded-16 mt-6 mb-3" />
           </li>
           <li class="mb-6">
-            <span class="absolute -ml-9 rounded-full h-4 w-4 border-2 border-primary mr-3 bg-grey"></span>
+            <span class="absolute flex items-center -ml-8 -mt-1 rounded-full h-8 w-8 mr-3 bg-grey">
+              <span class="flex rounded-full h-4 w-4 border-2 border-primary"></span>
+            </span>
             <h2 class="text-lg font-semibold mb-2">Done</h2>
             <p>Thank you for doing your part! Let us know how many people you’ve impacted.</p>
           </li>
@@ -67,6 +71,11 @@ export default {
         },
       ],
     }
+  },
+  methods: {
+    sortOnRank(arr) {
+      return arr.slice(0, arr.length).sort((a, b) => (a.rank > b.rank ? 1 : -1))
+    },
   },
 }
 </script>
