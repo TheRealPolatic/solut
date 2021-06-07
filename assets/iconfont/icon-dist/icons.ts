@@ -5,9 +5,11 @@ export type IconsId =
   | "dotted"
   | "drought"
   | "dust"
+  | "envelope"
   | "flood"
   | "hail"
   | "heat"
+  | "location"
   | "plus"
   | "rainfall"
   | "smog"
@@ -23,9 +25,11 @@ export type IconsKey =
   | "Dotted"
   | "Drought"
   | "Dust"
+  | "Envelope"
   | "Flood"
   | "Hail"
   | "Heat"
+  | "Location"
   | "Plus"
   | "Rainfall"
   | "Smog"
@@ -41,9 +45,11 @@ export enum Icons {
   Dotted = "dotted",
   Drought = "drought",
   Dust = "dust",
+  Envelope = "envelope",
   Flood = "flood",
   Hail = "hail",
   Heat = "heat",
+  Location = "location",
   Plus = "plus",
   Rainfall = "rainfall",
   Smog = "smog",
@@ -60,14 +66,16 @@ export const ICONS_CODEPOINTS: { [key in Icons]: string } = {
   [Icons.Dotted]: "61700",
   [Icons.Drought]: "61701",
   [Icons.Dust]: "61702",
-  [Icons.Flood]: "61703",
-  [Icons.Hail]: "61704",
-  [Icons.Heat]: "61705",
-  [Icons.Plus]: "61706",
-  [Icons.Rainfall]: "61707",
-  [Icons.Smog]: "61708",
-  [Icons.Tornado]: "61709",
-  [Icons.Upload]: "61710",
-  [Icons.Wildfire]: "61711",
-  [Icons.X]: "61712",
+  [Icons.Envelope]: "61703",
+  [Icons.Flood]: "61704",
+  [Icons.Hail]: "61705",
+  [Icons.Heat]: "61706",
+  [Icons.Location]: "61707",
+  [Icons.Plus]: "61708",
+  [Icons.Rainfall]: "61709",
+  [Icons.Smog]: "61710",
+  [Icons.Tornado]: "61711",
+  [Icons.Upload]: "61712",
+  [Icons.Wildfire]: "61713",
+  [Icons.X]: "61714",
 };

@@ -20,10 +20,12 @@
     </div>
 
     <!-- Info list -->
-
     <ul class="list-reset text-black text-sm pt-4">
-      <ListItem :content="'Ecodorp Boekel'"></ListItem>
-      <ListItem :content="'johndoe@gmail.com'"></ListItem>
+      <ListItem :content="'Ecodorp Boekel'" :icon="'icon-location'"></ListItem>
+      <ListItem
+        :content="'johndoe@gmail.com'"
+        :icon="'icon-envelope'"
+      ></ListItem>
     </ul>
   </div>
 </template>

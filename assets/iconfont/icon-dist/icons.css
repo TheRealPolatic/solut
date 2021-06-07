@@ -1,8 +1,8 @@
 @font-face {
     font-family: "icons";
-    src: url("./icons.eot?ef09c261e2efc7476cd292f627836524#iefix") format("embedded-opentype"),
-url("./icons.woff2?ef09c261e2efc7476cd292f627836524") format("woff2"),
-url("./icons.woff?ef09c261e2efc7476cd292f627836524") format("woff");
+    src: url("./icons.eot?cc21600a4b16bd84148a152696b8121a#iefix") format("embedded-opentype"),
+url("./icons.woff2?cc21600a4b16bd84148a152696b8121a") format("woff2"),
+url("./icons.woff?cc21600a4b16bd84148a152696b8121a") format("woff");
 }
 
 i[class^="icon-"]:before, i[class*=" icon-"]:before {
@@ -34,33 +34,39 @@ i[class^="icon-"]:before, i[class*=" icon-"]:before {
 .icon-dust:before {
     content: "\f106";
 }
-.icon-flood:before {
+.icon-envelope:before {
     content: "\f107";
 }
-.icon-hail:before {
+.icon-flood:before {
     content: "\f108";
 }
-.icon-heat:before {
+.icon-hail:before {
     content: "\f109";
 }
-.icon-plus:before {
+.icon-heat:before {
     content: "\f10a";
 }
-.icon-rainfall:before {
+.icon-location:before {
     content: "\f10b";
 }
-.icon-smog:before {
+.icon-plus:before {
     content: "\f10c";
 }
-.icon-tornado:before {
+.icon-rainfall:before {
     content: "\f10d";
 }
-.icon-upload:before {
+.icon-smog:before {
     content: "\f10e";
 }
-.icon-wildfire:before {
+.icon-tornado:before {
     content: "\f10f";
 }
-.icon-x:before {
+.icon-upload:before {
     content: "\f110";
+}
+.icon-wildfire:before {
+    content: "\f111";
+}
+.icon-x:before {
+    content: "\f112";
 }
