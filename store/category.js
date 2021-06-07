@@ -22,4 +22,13 @@ export const actions = {
         console.error(error)
       })
   },
+  fetchCategory(context, categoryId) {
+    return CategoryService.getCategory(categoryId)
+      .then((category) => {
+        return category
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  },
 }

@@ -14,4 +14,20 @@ export default {
         console.error(error)
       })
   },
+  getCategory(categoryId) {
+    return firestore
+      .collection('categories')
+      .doc(categoryId)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          return { ...{ id: doc.id }, ...doc.data() }
+        } else {
+          throw new Error('Category not found.')
+        }
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  },
 }
