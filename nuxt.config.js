@@ -15,8 +15,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['@/assets/main.css'],
-  css: ['@/assets/iconfont/icon-dist/icons.css'],
+  css: ['@/assets/main.css', '@/assets/iconfont/icon-dist/icons.css'],
 
   plugins: [],
 
