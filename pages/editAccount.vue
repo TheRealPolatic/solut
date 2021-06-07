@@ -2,7 +2,9 @@
   <div class="m-6">
     <!-- Top bar -->
     <div class="flex justify-between">
-      <ButtonBackButton class="w-1/6"></ButtonBackButton>
+      <NuxtLink to="/account"
+        ><ButtonBackButton class="w-1/6"></ButtonBackButton
+      ></NuxtLink>
       <h1 class="text-center text-xl font-bold mt-2">Edit account</h1>
       <div class="w-1/6"></div>
     </div>
@@ -27,8 +29,11 @@
             right-0
             rounded-full
             border-2 border-white
+            text-center
           "
-        ></div>
+        >
+          <i class="icon icon-upload text-white text-lg"></i>
+        </div>
       </div>
     </div>
 
