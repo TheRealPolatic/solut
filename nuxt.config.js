@@ -2,6 +2,9 @@ const isDev = process.env.NODE_ENV === 'development'
 const useEmulators = true
 
 export default {
+  server: {
+    host: '0.0.0.0',
+  },
   ssr: false,
 
   head: {
