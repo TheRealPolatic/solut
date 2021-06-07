@@ -1,3 +1,5 @@
+import SolutionService from '~/services/SolutionService'
+
 export const state = () => ({
   solutions: [],
 })
@@ -12,13 +14,8 @@ export const mutations = {
 
 export const actions = {
   fetchSolutions({ commit }) {
-    return this.$fire.firestore
-      .collection('solutions')
-      .get()
-      .then((querySnapshot) => {
-        const solutions = querySnapshot.docs.map((doc) => {
-          return { ...{ id: doc.id }, ...doc.data() }
-        })
+    return SolutionService.getSolutions()
+      .then((solutions) => {
         commit('SET_SOLUTIONS', solutions)
       })
       .catch((error) => {
@@ -26,16 +23,12 @@ export const actions = {
       })
   },
   fetchSolution(context, solutionId) {
-    return this.$fire.firestore
-      .collection('solutions')
-      .doc(solutionId)
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          return { ...{ id: doc.id }, ...doc.data() }
-        } else {
-          console.error('Requested solution does not exist.')
-        }
+    return SolutionService.getSolution(solutionId)
+      .then((pill) => {
+        return pill
+      })
+      .catch((error) => {
+        console.error(error)
       })
   },
 }
