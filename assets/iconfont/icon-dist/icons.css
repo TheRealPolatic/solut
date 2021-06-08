@@ -1,7 +1,7 @@
 @font-face {
     font-family: "icons";
-    src: url("./icons.ttf?ef09c261e2efc7476cd292f627836524") format("truetype"),
-url("./icons.svg?ef09c261e2efc7476cd292f627836524#icons") format("svg");
+    src: url("./icons.ttf?1808ef0b27687210037da88f07c5d029") format("truetype"),
+url("./icons.woff?1808ef0b27687210037da88f07c5d029") format("woff");
 }
 
 i[class^="icon-"]:before, i[class*=" icon-"]:before {
@@ -15,51 +15,63 @@ i[class^="icon-"]:before, i[class*=" icon-"]:before {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-blizzard:before {
+.icon-add:before {
     content: "\f101";
 }
-.icon-chevron:before {
+.icon-blizzard:before {
     content: "\f102";
 }
-.icon-close:before {
+.icon-bookmark:before {
     content: "\f103";
 }
-.icon-dotted:before {
+.icon-chevron:before {
     content: "\f104";
 }
-.icon-drought:before {
+.icon-close:before {
     content: "\f105";
 }
-.icon-dust:before {
+.icon-drought:before {
     content: "\f106";
 }
-.icon-flood:before {
+.icon-dust:before {
     content: "\f107";
 }
-.icon-hail:before {
+.icon-flood:before {
     content: "\f108";
 }
-.icon-heat:before {
+.icon-hail:before {
     content: "\f109";
 }
-.icon-plus:before {
+.icon-heat:before {
     content: "\f10a";
 }
-.icon-rainfall:before {
+.icon-home:before {
     content: "\f10b";
 }
-.icon-smog:before {
+.icon-info:before {
     content: "\f10c";
 }
-.icon-tornado:before {
+.icon-plus:before {
     content: "\f10d";
 }
-.icon-upload:before {
+.icon-rainfall:before {
     content: "\f10e";
 }
-.icon-wildfire:before {
+.icon-search:before {
     content: "\f10f";
 }
-.icon-x:before {
+.icon-smog:before {
     content: "\f110";
+}
+.icon-tornado:before {
+    content: "\f111";
+}
+.icon-upload:before {
+    content: "\f112";
+}
+.icon-user:before {
+    content: "\f113";
+}
+.icon-wildfire:before {
+    content: "\f114";
 }

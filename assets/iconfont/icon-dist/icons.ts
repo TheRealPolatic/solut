@@ -1,73 +1,89 @@
 export type IconsId =
+  | "add"
   | "blizzard"
+  | "bookmark"
   | "chevron"
   | "close"
-  | "dotted"
   | "drought"
   | "dust"
   | "flood"
   | "hail"
   | "heat"
+  | "home"
+  | "info"
   | "plus"
   | "rainfall"
+  | "search"
   | "smog"
   | "tornado"
   | "upload"
-  | "wildfire"
-  | "x";
+  | "user"
+  | "wildfire";
 
 export type IconsKey =
+  | "Add"
   | "Blizzard"
+  | "Bookmark"
   | "Chevron"
   | "Close"
-  | "Dotted"
   | "Drought"
   | "Dust"
   | "Flood"
   | "Hail"
   | "Heat"
+  | "Home"
+  | "Info"
   | "Plus"
   | "Rainfall"
+  | "Search"
   | "Smog"
   | "Tornado"
   | "Upload"
-  | "Wildfire"
-  | "X";
+  | "User"
+  | "Wildfire";
 
 export enum Icons {
+  Add = "add",
   Blizzard = "blizzard",
+  Bookmark = "bookmark",
   Chevron = "chevron",
   Close = "close",
-  Dotted = "dotted",
   Drought = "drought",
   Dust = "dust",
   Flood = "flood",
   Hail = "hail",
   Heat = "heat",
+  Home = "home",
+  Info = "info",
   Plus = "plus",
   Rainfall = "rainfall",
+  Search = "search",
   Smog = "smog",
   Tornado = "tornado",
   Upload = "upload",
+  User = "user",
   Wildfire = "wildfire",
-  X = "x",
 }
 
 export const ICONS_CODEPOINTS: { [key in Icons]: string } = {
-  [Icons.Blizzard]: "61697",
-  [Icons.Chevron]: "61698",
-  [Icons.Close]: "61699",
-  [Icons.Dotted]: "61700",
-  [Icons.Drought]: "61701",
-  [Icons.Dust]: "61702",
-  [Icons.Flood]: "61703",
-  [Icons.Hail]: "61704",
-  [Icons.Heat]: "61705",
-  [Icons.Plus]: "61706",
-  [Icons.Rainfall]: "61707",
-  [Icons.Smog]: "61708",
-  [Icons.Tornado]: "61709",
-  [Icons.Upload]: "61710",
-  [Icons.Wildfire]: "61711",
-  [Icons.X]: "61712",
+  [Icons.Add]: "61697",
+  [Icons.Blizzard]: "61698",
+  [Icons.Bookmark]: "61699",
+  [Icons.Chevron]: "61700",
+  [Icons.Close]: "61701",
+  [Icons.Drought]: "61702",
+  [Icons.Dust]: "61703",
+  [Icons.Flood]: "61704",
+  [Icons.Hail]: "61705",
+  [Icons.Heat]: "61706",
+  [Icons.Home]: "61707",
+  [Icons.Info]: "61708",
+  [Icons.Plus]: "61709",
+  [Icons.Rainfall]: "61710",
+  [Icons.Search]: "61711",
+  [Icons.Smog]: "61712",
+  [Icons.Tornado]: "61713",
+  [Icons.Upload]: "61714",
+  [Icons.User]: "61715",
+  [Icons.Wildfire]: "61716",
 };
