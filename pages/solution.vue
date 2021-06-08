@@ -1,5 +1,6 @@
 <template>
   <div>
+    <GeneralHeader background="primary" title="Solution" :backbutton="true" :buttonright="headerButtonRight"></GeneralHeader>
     <ShowSolutionTop :solution="solution"></ShowSolutionTop>
     <ShowSolutionInfo :solution="solution"></ShowSolutionInfo>
     <ShowSolutionTabWrapper>
@@ -46,6 +47,7 @@
 export default {
   data() {
     return {
+      headerButtonRight: 'bookmark',
       solution: {
         solutionId: 'iu4Da8',
         userId: 'k90AN3di',
