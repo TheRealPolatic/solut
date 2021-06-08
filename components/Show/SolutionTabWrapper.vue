@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul class="w-full h-12 flex text-darker-grey font-semibold">
+    <ul class="w-full h-12 flex text-darker-grey font-semibold sticky top-0 bg-white">
       <li
         v-for="(tab, index) in tabs"
         :key="tab.title"
@@ -10,8 +10,9 @@
       >
         {{ tab.title }}
       </li>
+      <div class="w-1/2 h-1 bg-primary absolute bottom-0 transition transform translate-x-0" :class="{ 'translate-x-1/1': selectedIndex === 1 }"></div>
     </ul>
-    <div class="w-1/2 h-1 bg-primary absolute transition transform translate-x-0" :class="{ 'translate-x-1/1': selectedIndex === 1 }"></div>
+
     <div class="px-6 py-12 bg-grey">
       <slot />
     </div>
