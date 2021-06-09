@@ -15,20 +15,30 @@
       </div>
     </div>
     <div class="mt-6">
-      <label class="font-semibold text-sm">Title</label>
-      <input class="border rounded-2xl w-full py-2 px-3 text-gray-700 leading-loose focus:outline-none" type="text" placeholder="Title" v-model="form.title" />
+      <div class="flex justify-between">
+        <label class="font-semibold text-sm">Title</label>
+        <p class="text-sm text-dark opacity-40">{{ `${form.title.length} / ${titleMax}` }}</p>
+      </div>
+      <input
+        class="border rounded-2xl w-full py-2 px-3 text-gray-700 leading-loose focus:outline-none"
+        type="text"
+        placeholder="Title"
+        v-model="form.title"
+        :maxlength="titleMax"
+      />
     </div>
     <div class="mt-6">
-      <div class="input-top flex justify-between">
-        <label class="font-semibold text-sm">Description</label>
-        <p class="text-xs text-grey">100/250</p>
+      <div class="flex justify-between">
+        <label class="font-semibold text-sm">Introduction</label>
+        <p class="text-sm text-dark opacity-40">{{ `${form.introduction.length} / ${introductionMax}` }}</p>
       </div>
 
       <textarea
         class="border rounded-2xl w-full py-2 px-3 text-gray-700 leading-loose h-56 focus:outline-none"
         type="text"
         placeholder="Type a quick introduction about the solution"
-        v-model="form.description"
+        v-model="form.introduction"
+        :maxlength="introductionMax"
       />
     </div>
 
@@ -78,7 +88,7 @@ export default {
   data() {
     const defaultForm = Object.freeze({
       title: '',
-      description: '',
+      introduction: '',
       categories: [],
       coverImg: '',
     })
@@ -89,6 +99,8 @@ export default {
         image: null,
         imageUrl: null,
       },
+      introductionMax: 250,
+      titleMax: 40,
     }
   },
   methods: {
