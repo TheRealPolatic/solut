@@ -8,7 +8,11 @@
           </div>
           <div class="flex-1 min-w-0">
             <p class="text-sm font-bold text-gray-900 truncate">{{ solution.title }}</p>
-            <p class="text-sm text-gray-500 truncate">{{ solution.category }}</p>
+            <div class="flex">
+              <p v-for="category in solution.categories" :key="category.id" :category="category" class="text-sm text-gray-500 truncate">
+                {{ category.title }}
+              </p>
+            </div>
           </div>
           <div>
             <a href="#"> <img class="h-5 w-5 text-gray-400" src="@/assets/icons/chevron-right.svg" /> </a>

@@ -18,34 +18,23 @@
     <SearchCategorySlider />
 
     <div v-if="searchValue == ''">
-      <div class="my-6">
-        <div class="flex justify-between">
-          <h2 class="text-xl font-bold">Extreme Heat</h2>
-          <p class="text-sm font-medium mt-1">View all</p>
-        </div>
-        <div class="flex overflow-x-auto whitespace-nowrap">
-          <img class="w-full h-full rounded-2xl my-4 mr-3" src="@/assets/images/sustainable.jpg" />
-          <img class="w-full h-full rounded-2xl my-4" src="@/assets/images/sustainable.jpg" />
-        </div>
-      </div>
+      <SearchWeatherExtremeSlider v-for="solution in solutions" :key="solution.title" :solution="solution" />
     </div>
 
     <div v-else-if="searchValue !== ''">
       <SearchSolutionCard v-for="solution in filteredName" :key="solution.title" :solution="solution" />
     </div>
 
-    <div class="my-6">
+    <!-- <div class="my-6">
       <div class="flex justify-between">
         <h2 class="text-xl font-bold">Extreme Heat</h2>
         <p class="text-sm font-medium mt-1">View all</p>
       </div>
-      <div class="flex overflow-x-auto whitespace-nowrap">
-        <div class="">
-          <img class="w-full h-full relative rounded-2xl my-4 mr-3" src="@/assets/images/sustainable.jpg" />
-          <div class="absolute bottom-10">Sustainable beach</div>
-        </div>
+      <div class="flex overflow-x-auto overflow-y-hidden whitespace-nowrap">
+        <img class="h-full rounded-2xl my-4 mr-3" src="@/assets/images/sustainable.jpg" />
+        <img class="h-full rounded-2xl my-4 mr-3" src="@/assets/images/sustainable.jpg" />
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -57,12 +46,12 @@ export default {
       solutions: [
         {
           title: 'Sustainable beach',
-          category: 'Extreme heat',
+          categories: [{ id: 0, title: 'Extreme Heat', icon: 'heat-dark.svg' }],
           coverImage: 'sustainable.jpg',
         },
         {
           title: 'Avoiding wildfire',
-          category: 'Extreme drought',
+          categories: [{ id: 0, title: 'Blizzard', icon: 'heat-dark.svg' }],
           coverImage: 'drought.jpg',
         },
       ],
