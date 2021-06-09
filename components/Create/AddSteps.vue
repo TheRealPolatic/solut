@@ -96,7 +96,6 @@
               ref="upload"
               v-model="currentStep.images"
               v-if="currentStep.images.length == 0"
-              post-action="/post.method"
               @input-filter="inputFilter"
               accept="image/*"
               :size="1024 * 1024"
