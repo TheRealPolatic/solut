@@ -97,7 +97,6 @@
               v-model="currentStep.images"
               v-if="currentStep.images.length == 0"
               post-action="/post.method"
-              @input-file="inputFile"
               @input-filter="inputFilter"
               accept="image/*"
               :size="1024 * 1024"
@@ -145,16 +144,7 @@ export default {
     close() {
       this.$refs.addstep.close()
     },
-    inputFile(newFile, oldFile) {
-      if (newFile && oldFile && !newFile.active && oldFile.active) {
-        // Get response data
-        console.log('response', newFile.response)
-        if (newFile.xhr) {
-          //  Get the response status code
-          console.log('status', newFile.xhr.status)
-        }
-      }
-    },
+
     inputFilter(newFile, oldFile, prevent) {
       if (newFile && !oldFile) {
         // Filter non-image file
