@@ -22,7 +22,7 @@
     <div class="mt-6">
       <div class="flex justify-between">
         <label class="font-semibold text-sm">Title</label>
-        <p class="text-sm text-dark opacity-40">{{ `${form.title.length} / ${titleMax}` }}</p>
+        <p :class="form.title.length == titleMax ? 'text-red-500' : 'text-dark opacity-40'" class="text-sm mt-2">{{ `${form.title.length} / ${titleMax}` }}</p>
       </div>
       <input
         class="border rounded-2xl w-full py-2 px-3 text-gray-700 leading-loose focus:outline-none"
@@ -36,11 +36,13 @@
     <div class="mt-6">
       <div class="flex justify-between">
         <label class="font-semibold text-sm">Introduction</label>
-        <p class="text-sm text-dark opacity-40">{{ `${form.introduction.length} / ${introductionMax}` }}</p>
+        <p :class="form.introduction.length == introductionMax ? 'text-red-500' : 'text-dark opacity-40'" class="text-sm">
+          {{ `${form.introduction.length} / ${introductionMax}` }}
+        </p>
       </div>
 
       <textarea
-        class="border rounded-2xl w-full py-2 px-3 text-gray-700 leading-loose h-56 focus:outline-none"
+        class="mt-2 border rounded-2xl w-full py-2 px-3 text-gray-700 leading-loose h-56 focus:outline-none"
         type="text"
         placeholder="Type a quick introduction about the solution"
         v-model="form.introduction"
@@ -56,7 +58,7 @@
     <!-- Cover image uploadfield -->
     <div class="my-4">
       <label class="font-semibold text-sm">Cover image</label>
-      <div class="flex justify-center items-center relative">
+      <div class="flex justify-center items-center relative mt-2">
         <div @click="resetImg" class="delete h-6 w-6 rounded-full absolute right-2 top-2 bg-white flex justify-center items-center">
           <img src="@/assets/icons/x.svg" />
         </div>
@@ -64,7 +66,6 @@
           ref="upload"
           v-model="images"
           v-if="images.length == 0"
-          post-action="/post.method"
           @input-filter="inputFilter"
           accept="image/*"
           :size="1024 * 1024"
@@ -77,11 +78,13 @@
         </file-upload>
       </div>
 
+      <!--  Preview uploaded image -->
       <div class="w-full" v-for="image in images" :key="image.blob">
         <div v-if="image.blob" class="preview h-40 rounded-xl overflow-hidden" :style="{ 'background-image': `url(${image.blob})` }"></div>
       </div>
     </div>
 
+    <!-- Next step button -->
     <div
       :class="form.introduction && form.title ? 'bg-primary text-white ' : 'bg-primary text-white opacity-40'"
       class="rounded-lg w-full h-14 flex items-center justify-center mb-8 cursor-pointer"
@@ -94,18 +97,13 @@
 <script>
 export default {
   data() {
-    const defaultForm = Object.freeze({
-      title: '',
-      introduction: '',
-      categories: [],
-    })
     return {
-      form: Object.assign({}, defaultForm),
-      images: [],
-      item: {
-        image: null,
-        imageUrl: null,
+      form: {
+        title: '',
+        introduction: '',
+        categories: [],
       },
+      images: [],
       introductionMax: 250,
       titleMax: 40,
     }

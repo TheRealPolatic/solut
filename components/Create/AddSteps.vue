@@ -78,7 +78,9 @@
         <div class="mt-6">
           <div class="input-top flex justify-between">
             <label class="font-semibold text-sm">Description</label>
-            <p class="text-sm text-dark opacity-40">{{ `${currentStep.description.length} / ${maxLength}` }}</p>
+            <p :class="currentStep.description.length == maxLength ? 'text-red-500' : 'text-dark opacity-40'" class="text-sm">
+              {{ `${currentStep.description.length} / ${maxLength}` }}
+            </p>
           </div>
 
           <textarea
@@ -94,8 +96,8 @@
           <div class="flex justify-center items-center mt-2">
             <file-upload
               ref="upload"
-              v-model="currentStep.images"
-              v-if="currentStep.images.length == 0"
+              v-model="currentStep.stepImage"
+              v-if="currentStep.stepImage.length == 0"
               @input-filter="inputFilter"
               accept="image/*"
               :size="1024 * 1024"
