@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <GeneralHeader background="primary" title="Solution" :backbutton="true" :buttonright="headerButtonRight"></GeneralHeader>
-    <ShowSolutionTop :solution="solution"></ShowSolutionTop>
+  <div class="pt-14">
+    <GeneralHeader :background="headerBackground" title="Solution" :backbutton="true" :buttonright="headerButtonRight"></GeneralHeader>
+    <div ref="solutionTopWrapper">
+      <ShowSolutionTop :solution="solution" @scroll="handleScroll()"></ShowSolutionTop>
+    </div>
     <ShowSolutionInfo :solution="solution"></ShowSolutionInfo>
     <ShowSolutionTabWrapper>
       <ShowSolutionTab title="Materials">
@@ -47,6 +49,7 @@
 export default {
   data() {
     return {
+      headerBackground: 'primary',
       headerButtonRight: 'bookmark',
       solution: {
         solutionId: 'iu4Da8',
@@ -85,17 +88,37 @@ export default {
         ],
         impactUsers: [
           { userId: 'ldka34AH', impacted: 12, createdAt: 1623070756, updatedAt: '' },
-          { userId: 'ldka34AH', impacted: 12, createdAt: 1623070756, updatedAt: '' },
-          { userId: 'ldka34AH', impacted: 12, createdAt: 1623070756, updatedAt: '' },
+          { userId: 'ldka45w', impacted: 12, createdAt: 1623070756, updatedAt: '' },
+          { userId: 'ldka02fd', impacted: 12, createdAt: 1623070756, updatedAt: '' },
+          { userId: 'ldk905f', impacted: 12, createdAt: 1623070756, updatedAt: '' },
+          { userId: 'ld85ceA', impacted: 12, createdAt: 1623070756, updatedAt: '' },
+          { userId: 'ldKio89k', impacted: 12, createdAt: 1623070756, updatedAt: '' },
         ],
         createdAt: 1623070756,
         updatedAt: 1623070756,
       },
     }
   },
+  mounted() {
+    this.handleScroll()
+  },
   methods: {
     sortOnRank(arr) {
       return arr.slice(0, arr.length).sort((a, b) => (a.rank > b.rank ? 1 : -1))
+    },
+    handleScroll() {
+      window.onscroll = () => {
+        const bottomOfElementReached = window.pageYOffset >= this.$refs.solutionTopWrapper.offsetHeight
+
+        if (bottomOfElementReached) {
+          this.headerBackground = 'white'
+        } else {
+          this.headerBackground = 'primary'
+        }
+      }
+      // if (el.target.offsetHeight + el.target.scrollTop >= el.target.scrollHeight) {
+      //   this.headerBackground = 'white'
+      // }
     },
   },
 }

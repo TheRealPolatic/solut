@@ -4,7 +4,9 @@
       <div class="text-dark-grey uppercase mb-2">15 may, 2021</div>
       <h1 class="text-dark font-bold text-xl">How to construct your own green roof</h1>
       <ul class="list-none text-darker-grey my-2">
-        <li v-for="category in solution.categories" :key="category.value"><i class="mr-2 icon" :class="'icon-' + category.value"></i>{{ category.label }}</li>
+        <li v-for="category in solution.categories" :key="category.value">
+          <i class="mr-2 icon inline-flex" :class="'icon-' + category.value"></i>{{ category.label }}
+        </li>
       </ul>
       <p class="my-6">
         {{ solution.introduction }}
@@ -17,7 +19,6 @@
         </div>
       </div>
     </div>
-    <div class="w-full h-px bg-dark-grey"></div>
   </div>
 </template>
 
