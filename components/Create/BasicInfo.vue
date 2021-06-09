@@ -85,7 +85,7 @@
 
     <div
       :class="form.introduction && form.title ? 'bg-primary text-white ' : 'bg-primary text-white opacity-40'"
-      class="rounded-lg w-full h-14 flex items-center justify-center mb-8"
+      class="rounded-lg w-full h-14 flex items-center justify-center mb-8 cursor-pointer"
     >
       <p>Next step</p>
     </div>

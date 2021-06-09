@@ -45,7 +45,7 @@
     </div>
 
     <!-- Add new step btn -->
-    <div @click="open" class="rounded-xl mt-4 bg-light-grey h-14 w-full flex items-center justify-center">
+    <div @click="open" class="rounded-xl mt-4 bg-light-grey h-14 w-full flex items-center justify-center cursor-pointer">
       <div class="content opacity-50 flex">
         <img class="mr-3" src="@/assets/icons/plus-dark.svg" />
         <p>Add step</p>
@@ -54,10 +54,13 @@
 
     <!-- Buttons -->
     <div class="w-full mt-6 flex justify-between">
-      <div class="rounded-xl bg-light-grey text-black w-40 h-14 flex items-center justify-center mb-8">
+      <div class="rounded-xl bg-light-grey text-black w-40 h-14 flex items-center justify-center mb-8 cursor-pointer">
         <p>Previous step</p>
       </div>
-      <div :class="!steps ? 'bg-primary text-white ' : 'bg-primary text-white opacity-40'" class="rounded-xl w-40 h-14 flex items-center justify-center mb-8">
+      <div
+        :class="!steps ? 'bg-primary text-white ' : 'bg-primary text-white opacity-40'"
+        class="rounded-xl w-40 h-14 flex items-center justify-center mb-8 cursor-pointer"
+      >
         <p>Next step</p>
       </div>
     </div>
@@ -68,7 +71,7 @@
         <div class="flex justify-between items-center">
           <div class="w-10 h-10"></div>
           <h2 class="text-dark text-center font-bold text-xl">Add step</h2>
-          <div @click="close" class="back w-10 h-10 border border-gray-200 rounded-xl flex items-center justify-center">
+          <div @click="close" class="back w-10 h-10 border border-gray-200 rounded-xl flex items-center justify-center cursor-pointer">
             <img src="@/assets/icons/x.svg" />
           </div>
         </div>
@@ -109,13 +112,13 @@
         </div>
         <div class="w-full relative" v-for="image in currentStep.images" :key="image.blob">
           <div v-if="image.blob" class="preview h-40 rounded-xl overflow-hidden" :style="{ 'background-image': `url(${image.blob})` }"></div>
-          <div @click="resetImg" class="delete h-6 w-6 rounded-full absolute right-2 top-2 bg-white flex justify-center items-center">
+          <div @click="resetImg" class="delete h-6 w-6 rounded-full absolute right-2 top-2 bg-white flex justify-center items-center cursor-pointer">
             <img src="@/assets/icons/x.svg" />
           </div>
         </div>
         <div
           :class="currentStep.description ? 'bg-primary text-white ' : 'bg-primary text-white opacity-40'"
-          class="rounded-lg w-full h-14 flex items-center justify-center my-8"
+          class="rounded-lg w-full h-14 flex items-center justify-center my-8 cursor-pointer"
           @click="addStep(currentStep, steps)"
         >
           <p>Add step</p>

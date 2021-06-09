@@ -35,7 +35,7 @@
       <form class="">
         <div class="form-group">
           <div v-for="(input, index) in materials" :key="`material-${index}`" class="my-2 relative">
-            <img src="@/assets/icons/x.svg" class="absolute top-4 right-4 cursor-pointe" @click="removeField(index, materials)" />
+            <img src="@/assets/icons/x.svg" class="absolute top-4 right-4 cursor-pointer" @click="removeField(index, materials)" />
             <input
               v-model="input.material"
               class="border rounded-2xl w-full py-2 px-3 text-gray-700 leading-loose focus:outline-none"
@@ -45,7 +45,7 @@
         </div>
       </form>
 
-      <div @click="addField(input, materials)" class="rounded-xl bg-light-grey h-14 w-full flex items-center justify-center">
+      <div @click="addField(input, materials)" class="rounded-xl bg-light-grey h-14 w-full flex items-center justify-center cursor-pointer">
         <div class="content opacity-50 flex">
           <img class="mr-3" src="@/assets/icons/plus-dark.svg" />
           <p>Add material</p>
@@ -62,12 +62,12 @@
       <!-- Tool inputboxes -->
       <div class="form-group">
         <div v-for="(input, index) in tools" :key="`tool-${index}`" class="my-2 relative">
-          <img src="@/assets/icons/x.svg" class="absolute top-4 right-4 cursor-pointe" @click="removeField(index, tools)" />
+          <img src="@/assets/icons/x.svg" class="absolute top-4 right-4 cursor-pointer" @click="removeField(index, tools)" />
           <input v-model="input.tool" class="border rounded-2xl w-full py-2 px-3 text-gray-700 leading-loose focus:outline-none" placeholder="Tool name" />
         </div>
       </div>
 
-      <div @click="addField(input, tools)" class="rounded-xl bg-light-grey h-14 w-full flex items-center justify-center">
+      <div @click="addField(input, tools)" class="rounded-xl bg-light-grey h-14 w-full flex items-center justify-center cursor-pointer">
         <div class="content opacity-50 flex">
           <img class="mr-3" src="@/assets/icons/plus-dark.svg" />
           <p>Add tool</p>
@@ -76,12 +76,12 @@
 
       <!-- Buttons -->
       <div class="w-full mt-6 flex justify-between">
-        <div class="rounded-xl bg-light-grey text-black w-40 h-14 flex items-center justify-center mb-8">
+        <div class="rounded-xl bg-light-grey text-black w-40 h-14 flex items-center justify-center mb-8 cursor-pointer">
           <p>Previous step</p>
         </div>
         <div
           :class="materials[0].material.length >= 1 ? 'bg-primary text-white' : 'bg-primary text-white opacity-40'"
-          class="rounded-xl w-40 h-14 flex items-center justify-center mb-8"
+          class="rounded-xl w-40 h-14 flex items-center justify-center mb-8 cursor-pointer"
         >
           <p>Next step</p>
         </div>
