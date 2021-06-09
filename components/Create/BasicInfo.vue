@@ -2,18 +2,23 @@
   <div class="mx-6">
     <h1 class="my-6 text-dark text-center font-bold text-xl">Add solution</h1>
 
-    <div class="progress-steps flex">
-      <div class="step-one flex">
-        <div class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center mr-3">1</div>
+    <!-- Progress indicator -->
+    <div class="progress-steps flex justify-between items-center">
+      <div class="step-one flex justify-center items-center">
+        <div class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center mr-3 font-bold text-sm">1</div>
         <div class="font-bold mr-3">General</div>
       </div>
-      <div class="step-two flex">
-        <div class="w-6 h-6 rounded-full bg-transparant text-dark flex items-center justify-center mr-3 border-2 border-dark font-bold">2</div>
+      <CreateDottedLine color="#262626" />
+      <div class="step-two flex justify-center items-center">
+        <div class="w-6 h-6 rounded-full flex items-center justify-center border-2 text-dark border-dark font-bold text-sm">2</div>
       </div>
-      <div class="step-three flex">
-        <div class="w-6 h-6 rounded-full bg-transparant text-dark flex items-center justify-center mr-3 border-2 border-dark font-bold">3</div>
+      <CreateDottedLine color="#262626" />
+      <div class="step-three flex justify-center items-center">
+        <div class="w-6 h-6 rounded-full text-dark flex items-center justify-center border-2 border-dark font-bold text-sm">3</div>
       </div>
     </div>
+
+    <!-- Title input -->
     <div class="mt-6">
       <div class="flex justify-between">
         <label class="font-semibold text-sm">Title</label>
@@ -27,6 +32,7 @@
         :maxlength="titleMax"
       />
     </div>
+    <!-- Introduction textarea -->
     <div class="mt-6">
       <div class="flex justify-between">
         <label class="font-semibold text-sm">Introduction</label>
@@ -42,10 +48,12 @@
       />
     </div>
 
+    <!-- Category slider -->
     <div class="category-slider mt-6">
-      <CreateCategorySlider />
+      <CreateCategorySlider @toggle-category="toggleCategory" />
     </div>
 
+    <!-- Cover image uploadfield -->
     <div class="my-4">
       <label class="font-semibold text-sm">Cover image</label>
       <div class="flex justify-center items-center relative">
@@ -75,9 +83,10 @@
       </div>
     </div>
 
-    <!-- <button v-show="!$refs.upload || !$refs.upload.active" @click.prevent="$refs.upload.active = true" type="button">Start upload</button> -->
-
-    <div class="rounded-lg bg-primary text-white w-full h-14 flex items-center justify-center mb-8">
+    <div
+      :class="form.introduction && form.title ? 'bg-primary text-white ' : 'bg-primary text-white opacity-40'"
+      class="rounded-lg w-full h-14 flex items-center justify-center mb-8"
+    >
       <p>Next step</p>
     </div>
   </div>
@@ -90,7 +99,6 @@ export default {
       title: '',
       introduction: '',
       categories: [],
-      coverImg: '',
     })
     return {
       form: Object.assign({}, defaultForm),
@@ -104,14 +112,8 @@ export default {
     }
   },
   methods: {
-    onChange(e) {
-      const file = e.target.files[0]
-      //   this.image = file
-      this.image = URL.createObjectURL(file)
-    },
-    selectFile() {
-      let fileInputElement = this.$refs.file
-      fileInputElement.click()
+    toggleCategory(e) {
+      this.form.categories.push(e)
     },
     inputFile(newFile, oldFile) {
       if (newFile && oldFile && !newFile.active && oldFile.active) {

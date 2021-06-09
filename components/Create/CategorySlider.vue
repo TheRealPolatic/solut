@@ -1,6 +1,6 @@
 <template>
   <div class="category-scrollbar flex w-full overflow-x-scroll overflow-y-hidden">
-    <CreateCategoryTile v-for="category in categories" :key="category.id" :category="category" />
+    <CreateCategoryTile v-for="category in categories" :key="category.id" :category="category" v-on="$listeners" />
   </div>
 </template>
 
@@ -15,14 +15,6 @@ export default {
         { id: 3, title: 'Flood', icon: 'flood-dark.svg' },
         { id: 4, title: 'Tornado', icon: 'tornado-dark.svg' },
         { id: 5, title: 'Drought', icon: 'drought-dark.svg' },
-      ],
-      states: [
-        { id: 0, toggled: false },
-        { id: 1, toggled: false },
-        { id: 2, toggled: false },
-        { id: 3, toggled: false },
-        { id: 4, toggled: false },
-        { id: 5, toggled: false },
       ],
     }
   },

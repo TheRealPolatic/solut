@@ -38,7 +38,6 @@
             <img src="@/assets/icons/x.svg" class="absolute top-4 right-4 cursor-pointe" @click="removeField(index, materials)" />
             <input
               v-model="input.material"
-              type="material"
               class="border rounded-2xl w-full py-2 px-3 text-gray-700 leading-loose focus:outline-none"
               placeholder="Material name"
             />
@@ -61,19 +60,12 @@
       </div>
 
       <!-- Tool inputboxes -->
-      <form class="">
-        <div class="form-group">
-          <div v-for="(input, index) in tools" :key="`tool-${index}`" class="my-2 relative">
-            <img src="@/assets/icons/x.svg" class="absolute top-4 right-4 cursor-pointe" @click="removeField(index, tools)" />
-            <input
-              v-model="input.tool"
-              type="tool"
-              class="border rounded-2xl w-full py-2 px-3 text-gray-700 leading-loose focus:outline-none"
-              placeholder="Tool name"
-            />
-          </div>
+      <div class="form-group">
+        <div v-for="(input, index) in tools" :key="`tool-${index}`" class="my-2 relative">
+          <img src="@/assets/icons/x.svg" class="absolute top-4 right-4 cursor-pointe" @click="removeField(index, tools)" />
+          <input v-model="input.tool" class="border rounded-2xl w-full py-2 px-3 text-gray-700 leading-loose focus:outline-none" placeholder="Tool name" />
         </div>
-      </form>
+      </div>
 
       <div @click="addField(input, tools)" class="rounded-xl bg-light-grey h-14 w-full flex items-center justify-center">
         <div class="content opacity-50 flex">
@@ -87,7 +79,10 @@
         <div class="rounded-xl bg-light-grey text-black w-40 h-14 flex items-center justify-center mb-8">
           <p>Previous step</p>
         </div>
-        <div class="rounded-xl bg-primary text-white w-40 h-14 flex items-center justify-center mb-8">
+        <div
+          :class="materials[0].material.length >= 1 ? 'bg-primary text-white' : 'bg-primary text-white opacity-40'"
+          class="rounded-xl w-40 h-14 flex items-center justify-center mb-8"
+        >
           <p>Next step</p>
         </div>
       </div>
@@ -105,7 +100,7 @@ export default {
   },
   methods: {
     addField(value, fieldType) {
-      fieldType.push({ value: '' })
+      fieldType.push({})
     },
     removeField(index, fieldType) {
       fieldType.splice(index, 1)

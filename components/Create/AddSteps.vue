@@ -129,7 +129,7 @@
 export default {
   data() {
     return {
-      currentStep: { 'description': '', 'images': [] },
+      currentStep: { 'description': '', 'stepImage': [] },
       steps: [],
       images: [],
       maxLength: 250,
