@@ -1,6 +1,7 @@
 <template>
   <div>
-    <CreateMaterials />
+    <CreateBasicInfo />
+    <!-- <CreateAddSteps /> -->
   </div>
 </template>
 

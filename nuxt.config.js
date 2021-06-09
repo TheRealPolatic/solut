@@ -21,7 +21,7 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['@/assets/main.css'],
 
-  plugins: ['~/plugins/vue-upload-component.js', '~/plugins/vue-form-wizard.js'],
+  plugins: ['~/plugins/vue-upload-component.js', '~/plugins/vue-form-wizard.js', '~/plugins/vue-bottom-sheet.js'],
 
   components: true,
 

@@ -53,6 +53,45 @@
         </div>
       </div>
     </div>
+
+    <!-- Tools -->
+    <div class="mt-6">
+      <div class="input-top flex justify-between">
+        <label class="font-semibold text-sm">Tools</label>
+      </div>
+
+      <!-- Tool inputboxes -->
+      <form class="">
+        <div class="form-group">
+          <div v-for="(input, index) in tools" :key="`tool-${index}`" class="my-2 relative">
+            <img src="@/assets/icons/x.svg" class="absolute top-4 right-4 cursor-pointe" @click="removeField(index, tools)" />
+            <input
+              v-model="input.tool"
+              type="tool"
+              class="border rounded-2xl w-full py-2 px-3 text-gray-700 leading-loose focus:outline-none"
+              placeholder="Tool name"
+            />
+          </div>
+        </div>
+      </form>
+
+      <div @click="addField(input, tools)" class="rounded-xl bg-light-grey h-14 w-full flex items-center justify-center">
+        <div class="content opacity-50 flex">
+          <img class="mr-3" src="@/assets/icons/plus-dark.svg" />
+          <p>Add tool</p>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="w-full mt-6 flex justify-between">
+        <div class="rounded-xl bg-light-grey text-black w-40 h-14 flex items-center justify-center mb-8">
+          <p>Previous step</p>
+        </div>
+        <div class="rounded-xl bg-primary text-white w-40 h-14 flex items-center justify-center mb-8">
+          <p>Next step</p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -61,6 +100,7 @@ export default {
   data() {
     return {
       materials: [{ material: '' }],
+      tools: [{ tool: '' }],
     }
   },
   methods: {
