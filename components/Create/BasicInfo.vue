@@ -3,17 +3,17 @@
     <h1 class="my-6 text-dark text-center font-bold text-xl">Add solution</h1>
 
     <!-- Progress indicator -->
-    <div class="progress-steps flex justify-between items-center">
-      <div class="step-one flex justify-center items-center">
+    <div class="flex justify-between items-center">
+      <div class="flex justify-center items-center">
         <div class="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center mr-3 font-bold text-sm">1</div>
         <div class="font-bold mr-3">General</div>
       </div>
       <CreateDottedLine color="#262626" />
-      <div class="step-two flex justify-center items-center">
+      <div class="flex justify-center items-center">
         <div class="w-6 h-6 rounded-full flex items-center justify-center border-2 text-dark border-dark font-bold text-sm">2</div>
       </div>
       <CreateDottedLine color="#262626" />
-      <div class="step-three flex justify-center items-center">
+      <div class="flex justify-center items-center">
         <div class="w-6 h-6 rounded-full text-dark flex items-center justify-center border-2 border-dark font-bold text-sm">3</div>
       </div>
     </div>
@@ -51,7 +51,7 @@
     </div>
 
     <!-- Category slider -->
-    <div class="category-slider mt-6">
+    <div class="mt-6">
       <CreateCategorySlider @toggle-category="toggleCategory" />
     </div>
 
@@ -59,7 +59,7 @@
     <div class="my-4">
       <label class="font-semibold text-sm">Cover image</label>
       <div class="flex justify-center items-center relative mt-2">
-        <div @click="resetImg" class="delete h-6 w-6 rounded-full absolute right-2 top-2 bg-white flex justify-center items-center">
+        <div @click="resetImg" class="h-6 w-6 rounded-full absolute right-2 top-2 bg-white flex justify-center items-center">
           <img src="@/assets/icons/x.svg" />
         </div>
         <file-upload

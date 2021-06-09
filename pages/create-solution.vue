@@ -1,8 +1,8 @@
 <template>
   <div>
-    <CreateBasicInfo />
+    <!-- <CreateBasicInfo /> -->
     <!-- <CreateMaterials /> -->
-    <!-- <CreateAddSteps /> -->
+    <CreateAddSteps />
   </div>
 </template>
 
