@@ -24,8 +24,8 @@ export const actions = {
   },
   fetchSolution(context, solutionId) {
     return SolutionService.getSolution(solutionId)
-      .then((pill) => {
-        return pill
+      .then((solution) => {
+        return solution
       })
       .catch((error) => {
         console.error(error)
