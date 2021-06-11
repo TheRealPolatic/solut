@@ -16,8 +16,7 @@ export default {
 
   css: ['@/assets/main.css', '@/assets/iconfont/icon-dist/icons.css'],
 
-  plugins: ['~/plugins/vue-avatar-cropper.js'], ['~/plugins/firebase.js'],
-
+  plugins: ['~/plugins/vue-avatar-cropper.js', '~/plugins/firebase.js'],
 
   components: true,
 

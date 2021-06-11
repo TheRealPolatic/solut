@@ -20,7 +20,21 @@
                   autocomplete="email"
                   placeholder="johndoe@gmail.com"
                   required
-                  class="h-14 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-2xl placeholder-gray-400 focus:outline-none focus:ring-gray-400 focus:border-gray-400 sm:text-sm"
+                  class="
+                    h-14
+                    appearance-none
+                    block
+                    w-full
+                    px-3
+                    py-2
+                    border border-gray-300
+                    rounded-2xl
+                    placeholder-gray-400
+                    focus:outline-none
+                    focus:ring-gray-400
+                    focus:border-gray-400
+                    sm:text-sm
+                  "
                 />
               </div>
             </div>
@@ -35,7 +49,20 @@
                   autocomplete="current-password"
                   placeholder=""
                   required
-                  class="h-14 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-2xl placeholder-gray-400 focus:outline-none focus:ring-gray-400 focus:border-gray-400"
+                  class="
+                    h-14
+                    appearance-none
+                    block
+                    w-full
+                    px-3
+                    py-2
+                    border border-gray-300
+                    rounded-2xl
+                    placeholder-gray-400
+                    focus:outline-none
+                    focus:ring-gray-400
+                    focus:border-gray-400
+                  "
                 />
               </div>
             </div>
@@ -52,7 +79,9 @@
           <div class="mt-6">
             <div class="relative">
               <div class="relative flex justify-center">
-                <a href="#" class="text-gray-500">Don't have an account yet? <u>Register</u></a>
+                <NuxtLink to="/register"
+                  ><a href="#" class="text-gray-500">Don't have an account yet? <u>Register</u></a></NuxtLink
+                >
               </div>
             </div>
           </div>

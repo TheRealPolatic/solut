@@ -1,52 +1,15 @@
 <template>
   <div>
     <div class="px-6 header flex justify-between items-center">
-      <div class="back w-10 h-10 border border-gray-200 rounded-xl flex items-center justify-center">
-        <img src="@/assets/icons/chevron-left.svg" />
-      </div>
+       <NuxtLink to="/login">
+          <div class="back w-10 h-10 border border-gray-200 rounded-xl flex items-center justify-center">
+          <img src="@/assets/icons/chevron-left.svg" />
+        </div>
+      </NuxtLink>
       <h1 class="my-6 text-dark text-center font-bold text-xl">Register</h1>
       <div class="w-10 h-10"></div>
     </div>
 
-<!-- 
-  <div class="card vue-avatar-cropper-demo text-center">
-    <div class="card-body">
-      <div class="w-full"><img :src="user.avatar" class="w-24 mx-auto rounded-full" /></div>
-
-<button class="btn btn-primary btn-sm" id="pick-avatar">Select an new image</button>
-    </div>
-    <div class="card-footer text-muted" v-html="message"></div>
-    <avatar-cropper
-        @uploading="handleUploading"
-        @uploaded="handleUploaded"
-        @completed="handleCompleted"
-        @error="handlerError"
-        trigger="#pick-avatar"
-        upload-url="https://demo.overtrue.me/upload.php" />
-  </div> -->
-
-
-
-
-<div class="card vue-avatar-cropper-demo text-center">
-    <div class="card-body">
-      <img :src="user.avatar" class="card-img avatar" />
-      <div class="card-img-overlay">
-        <button class="btn btn-primary btn-sm" id="pick-avatar">Select an new image</button>
-      </div>
-      <h5 class="card-title mb-0">{{ user.nickname }}</h5>
-      <div class="text-muted">{{ user.username }}</div>
-    </div>
-    <div class="card-footer text-muted" v-html="message"></div>
-    <avatar-cropper
-      @uploading="handleUploading"
-      @uploaded="handleUploaded"
-      @completed="handleCompleted"
-      @error="handlerError"
-      trigger="#pick-avatar"
-      upload-url="https://demo.overtrue.me/upload.php"
-    />
-  </div>
 
 
 
@@ -108,7 +71,8 @@
           <div class="mt-6">
             <div class="relative">
               <div class="relative flex justify-center">
-                <a href="#" class="text-gray-500">Already have an account? <u>Login</u></a>
+                 <NuxtLink to="/login"
+                  ><a href="#" class="text-gray-500">Already have an account? <u>Login</u></a></NuxtLink>
               </div>
             </div>
           </div>
@@ -119,42 +83,14 @@
 </template>
 
 <<script>
-import AvatarCropper from 'vue-avatar-cropper'
 
 export default {
   components: { AvatarCropper },
   data() {
     return {
       showPassword: false,
-      message: 'ready',
-      user: {
-        id: 1,
-        nickname: '安正超',
-        username: 'overtrue',
-        avatar: 'https://avatars0.githubusercontent.com/u/1472352?s=460&v=4',
-      },
     }
-  },
-  methods: {
-    handleUploading(form, xhr) {
-      this.message = 'uploading...'
-    },
-    handleUploaded(response) {
-      if (response.status == 'success') {
-        this.user.avatar = response.url
-        // Maybe you need call vuex action to
-        // update user avatar, for example:
-        // this.$dispatch('updateUser', {avatar: response.url})
-        this.message = 'user avatar updated.'
-      }
-    },
-    handleCompleted(response, form, xhr) {
-      this.message = 'upload completed.'
-    },
-    handlerError(message, type, xhr) {
-      this.message = 'Oops! Something went wrong...'
-    },
-  },
+  }
 }
 </script>
 
