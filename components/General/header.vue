@@ -7,7 +7,7 @@
         :class="buttonColor(background)"
         @click="goBack"
       >
-        <i class="icon icon-chevron"></i>
+        <i class="icon icon-chevron-left"></i>
       </div>
       <h1 class="font-bold" :class="{ 'text-xl': backbutton, 'text-3xl': !backbutton }">{{ title }}</h1>
       <div

@@ -51,6 +51,7 @@ export default {
     return {
       headerBackground: 'primary',
       headerButtonRight: 'bookmark',
+      slug: this.$route.params,
       solution: {
         solutionId: 'iu4Da8',
         userId: 'k90AN3di',
@@ -101,6 +102,7 @@ export default {
   },
   mounted() {
     this.handleScroll()
+    this.getSolution(this.$route.params.solution)
   },
   methods: {
     sortOnRank(arr) {
@@ -119,6 +121,10 @@ export default {
       // if (el.target.offsetHeight + el.target.scrollTop >= el.target.scrollHeight) {
       //   this.headerBackground = 'white'
       // }
+    },
+    getSolution(solutionId) {
+      /* eslint-disable no-console */
+      console.log(solutionId)
     },
   },
 }

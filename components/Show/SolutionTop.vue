@@ -15,7 +15,7 @@
           </div>
         </div>
         <div class="text-white text-xs">
-          impacted
+          Impacted
           <span class="font-semibold">{{ impactUserArr.slice(-1)[0].userId }}</span>
           <!-- v-if-else structure (user is session user) -->
           <span v-if="solution.impactUsers"> and {{ solution.impactUsers.length - 1 }} more</span>
