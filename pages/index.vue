@@ -1,13 +1,15 @@
 <template>
-  <div></div>
+  <div>
+    <h1>Solut</h1>
+  </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {}
+  created() {
+    this.$store.dispatch('solution/fetchSolutions')
   },
 }
 </script>
 
-<style></style>
+<style scoped></style>
