@@ -15,7 +15,15 @@
       />
     </div>
 
-    <SearchCategorySlider />
+    <div class="category-scrollbar flex w-full overflow-x-scroll overflow-y-hidden">
+      <SearchCategoryTile v-for="category in categories" :key="category.id" :category="category" />
+    </div>
+
+    <!-- <button v-for="(c, i) in colors" :key="i" @click="onClick(c)">{{ c }}</button> -->
+
+    <button v-for="category in categories" :key="category" @click="onClick(category)">{{ category.title }}</button>
+    <div v-for="s in filteredCategories" :key="s.title">{{ s.title }}</div>
+    <!-- <SearchSolutionCard v-for="s in filteredCategories" :key="s.title" :s="s" /> -->
 
     <div v-if="searchValue == ''">
       <SearchWeatherExtremeSlider v-for="solution in solutions" :key="solution.title" :solution="solution" />
@@ -42,19 +50,30 @@
 export default {
   data() {
     return {
-      searchValue: '',
+      categories: [
+        { id: 0, title: 'Extreme Heat', icon: 'heat-dark.svg' },
+        { id: 1, title: 'Blizzard', icon: 'blizzard-dark.svg' },
+        { id: 2, title: 'Heavy Rainfall', icon: 'rainfall-dark.svg' },
+        { id: 3, title: 'Flood', icon: 'flood-dark.svg' },
+        { id: 4, title: 'Tornado', icon: 'tornado-dark.svg' },
+        { id: 5, title: 'Drought', icon: 'drought-dark.svg' },
+      ],
       solutions: [
         {
           title: 'Sustainable beach',
           categories: [{ id: 0, title: 'Extreme Heat', icon: 'heat-dark.svg' }],
           coverImage: 'sustainable.jpg',
+          category: 'Extreme Heat',
         },
         {
           title: 'Avoiding wildfire',
-          categories: [{ id: 0, title: 'Blizzard', icon: 'heat-dark.svg' }],
+          categories: [{ id: 1, title: 'Blizzard', icon: 'heat-dark.svg' }],
           coverImage: 'drought.jpg',
+          category: 'Blizzard',
         },
       ],
+      filterBy: '',
+      searchValue: '',
     }
   },
   computed: {
@@ -67,6 +86,15 @@ export default {
         })
       }
       return tempSolutions
+    },
+    filteredCategories() {
+      if (this.filterBy === '') return this.solutions
+      else return this.solutions.filter((s) => s.category === this.filterBy)
+    },
+  },
+  methods: {
+    onClick(category) {
+      this.filterBy = category.title
     },
   },
 }
