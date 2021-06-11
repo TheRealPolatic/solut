@@ -1,13 +1,7 @@
 @font-face {
     font-family: "icons";
-<<<<<<< HEAD
-    src: url("./icons.eot?cc21600a4b16bd84148a152696b8121a#iefix") format("embedded-opentype"),
-url("./icons.woff2?cc21600a4b16bd84148a152696b8121a") format("woff2"),
-url("./icons.woff?cc21600a4b16bd84148a152696b8121a") format("woff");
-=======
-    src: url("./icons.ttf?ef09c261e2efc7476cd292f627836524") format("truetype"),
-url("./icons.svg?ef09c261e2efc7476cd292f627836524#icons") format("svg");
->>>>>>> main
+    src: url("./icons.ttf?7db807200fdcfc3b8dbe54864b55292c") format("truetype"),
+url("./icons.svg?7db807200fdcfc3b8dbe54864b55292c#icons") format("svg");
 }
 
 i[class^="icon-"]:before, i[class*=" icon-"]:before {

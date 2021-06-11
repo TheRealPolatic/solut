@@ -4,6 +4,8 @@
     ><br />
     <input
       :type="type"
+      :placeholder="placeholder"
+      :value="value"
       class="border border-dark-grey rounded-xl h-12 w-full mt-2 pl-4 pr-4"
     />
   </div>
@@ -19,6 +21,14 @@ export default {
     type: {
       type: String,
       default: 'text',
+    },
+    placeholder: {
+      type: String,
+      default: '',
+    },
+    value: {
+      type: String,
+      default: 'test',
     },
   },
   data() {

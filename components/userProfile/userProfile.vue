@@ -13,7 +13,7 @@
 
     <!-- Name & Change profile -->
     <div class="flex justify-between mt-8">
-      <div class="text-xl font-bold">John Doe</div>
+      <div class="text-xl font-bold">{{ userInfo.username }}</div>
       <NuxtLink to="/editAccount">
         <div class="text-sm pt-1">Change profile</div>
       </NuxtLink>
@@ -21,15 +21,22 @@
 
     <!-- Info list -->
     <ul class="list-reset text-black text-sm pt-4">
-      <ListItem :content="'Ecodorp Boekel'" :icon="'icon-location'"></ListItem>
-      <ListItem
-        :content="'johndoe@gmail.com'"
-        :icon="'icon-envelope'"
-      ></ListItem>
+      <ListItem :content="userInfo.location" :icon="'icon-location'"></ListItem>
+      <ListItem :content="userInfo.email" :icon="'icon-envelope'"></ListItem>
     </ul>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      userInfo: {
+        username: 'John Doe',
+        email: 'johndoe@gmail.com',
+        location: 'Ecodorp Boekel',
+      },
+    }
+  },
+}
 </script>
