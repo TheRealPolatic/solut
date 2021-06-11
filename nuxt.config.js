@@ -15,7 +15,7 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
-  css: [],
+  css: ['@/assets/main.css', '@/assets/iconfont/icon-dist/icons.css'],
 
   plugins: ['~/plugins/firebase.js', '~/plugins/vue-upload-component.js', '~/plugins/vue-form-wizard.js', '~/plugins/vue-bottom-sheet.js'],
 
