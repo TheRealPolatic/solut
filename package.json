@@ -8,12 +8,13 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
-    "lint": "npm run lint:js"
+    "lint": "npm run lint:js",
+    "iconfont": "fantasticon ./assets/iconfont/icon-source -o ./assets/iconfont/icon-dist"
   },
   "dependencies": {
-    "@nuxtjs/firebase": "^7.5.0",
     "@nuxtjs/pwa": "^3.3.5",
     "core-js": "^3.9.1",
+    "fantasticon": "^1.2.2",
     "firebase": "^8.6.3",
     "nuxt": "^2.15.3",
     "vue-avatar-cropper": "^2.0.0",
