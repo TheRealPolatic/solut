@@ -125,6 +125,7 @@ export default {
   components: { AvatarCropper },
   data() {
     return {
+      showPassword: false,
       message: 'ready',
       user: {
         id: 1,
