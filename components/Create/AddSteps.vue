@@ -58,10 +58,11 @@
         <p>Previous step</p>
       </div>
       <div
-        :class="!steps ? 'bg-primary text-white ' : 'bg-primary text-white opacity-40'"
-        class="rounded-xl w-40 h-14 flex items-center justify-center mb-8 cursor-pointer"
+        @click="addSteps"
+        :class="{ 'opacity-40': !steps.length }"
+        class="bg-primary text-white rounded-xl w-40 h-14 flex items-center justify-center mb-8 cursor-pointer"
       >
-        <p>Next step</p>
+        <p>Add solution</p>
       </div>
     </div>
 
@@ -110,7 +111,7 @@
             </file-upload>
           </div>
         </div>
-        <div class="w-full relative" v-for="image in currentStep.images" :key="image.blob">
+        <div class="w-full relative" v-for="image in currentStep.stepImage" :key="image.blob">
           <div v-if="image.blob" class="preview h-40 rounded-xl overflow-hidden" :style="{ 'background-image': `url(${image.blob})` }"></div>
           <div @click="resetImg" class="delete h-6 w-6 rounded-full absolute right-2 top-2 bg-white flex justify-center items-center cursor-pointer">
             <img src="@/assets/icons/x.svg" />
@@ -166,8 +167,14 @@ export default {
     },
     addStep(value, fieldType) {
       fieldType.push(value)
-      this.currentStep = { 'description': null, 'images': [] }
+      this.currentStep = { 'description': '', 'stepImage': [] }
       this.close()
+    },
+    addSteps() {
+      const solutionData = {
+        steps: this.steps,
+      }
+      this.$emit('addSteps', solutionData)
     },
   },
 }

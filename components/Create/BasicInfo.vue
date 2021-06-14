@@ -64,8 +64,8 @@
         </div>
         <file-upload
           ref="upload"
-          v-model="images"
-          v-if="images.length == 0"
+          v-model="form.images"
+          v-if="form.images.length == 0"
           @input-filter="inputFilter"
           accept="image/*"
           :size="1024 * 1024"
@@ -79,14 +79,14 @@
       </div>
 
       <!--  Preview uploaded image -->
-      <div class="w-full" v-for="image in images" :key="image.blob">
+      <div class="w-full" v-for="image in form.images" :key="image.blob">
         <div v-if="image.blob" class="preview h-40 rounded-xl overflow-hidden" :style="{ 'background-image': `url(${image.blob})` }"></div>
       </div>
     </div>
 
     <!-- Next step button -->
     <div
-      @click="addSolution"
+      @click="addBasicInfo"
       :class="form.introduction && form.title ? 'bg-primary text-white ' : 'bg-primary text-white opacity-40'"
       class="rounded-lg w-full h-14 flex items-center justify-center mb-8 cursor-pointer"
     >
@@ -96,8 +96,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
 export default {
   data() {
     return {
@@ -105,29 +103,27 @@ export default {
         title: '',
         introduction: '',
         categories: [],
+        images: [],
       },
-      images: [],
       introductionMax: 250,
       titleMax: 40,
     }
   },
   methods: {
-    addSolution() {
-      // Check for formvalidation
-
+    addBasicInfo() {
       const solutionData = {
         title: this.form.title,
         introduction: this.form.introduction,
-        categories: [1, 3, 4, 5, 6],
-        image: this.images[0],
+        categories: this.form.categories,
+        image: this.form.images[0],
       }
-      //   console.log(solutionData)
-      this.$store.dispatch('solution/createSolution', solutionData)
-
-      // Send success
+      this.$emit('addBasicInfo', solutionData)
     },
     toggleCategory(e) {
-      this.form.categories.push(e)
+      // Toggle category
+      var i = this.form.categories.indexOf(e.id)
+      if (i === -1) this.form.categories.push(e.id)
+      else this.form.categories.splice(i, 1)
     },
 
     inputFilter(newFile, oldFile, prevent) {
@@ -146,22 +142,12 @@ export default {
       }
     },
     resetImg() {
-      this.images = []
+      this.form.images = []
     },
   },
   created() {
     this.$store.dispatch('category/fetchCategories')
   },
-  //   computed: {
-  //     message: {
-  //       get() {
-  //         return this.$store.state.obj.message
-  //       },
-  //       set(value) {
-  //         this.$store.commit('updateMessage', value)
-  //       },
-  //     },
-  //   },
 }
 </script>
 

@@ -78,6 +78,7 @@
           <p>Previous step</p>
         </div>
         <div
+          @click="addMaterials"
           :class="materials.length >= 1 || tools.length >= 1 ? 'bg-primary text-white' : 'bg-primary text-white opacity-40'"
           class="rounded-xl w-40 h-14 flex items-center justify-center mb-8 cursor-pointer"
         >
@@ -102,6 +103,21 @@ export default {
     },
     removeField(index, fieldType) {
       fieldType.splice(index, 1)
+    },
+    addMaterials() {
+      const materialArray = this.materials.map((material) => {
+        return material['material']
+      })
+      const toolArray = this.tools.map((tool) => {
+        return tool['tool']
+      })
+
+      const solutionData = {
+        materials: materialArray,
+        tools: toolArray,
+      }
+
+      this.$emit('addMaterials', solutionData)
     },
   },
 }
