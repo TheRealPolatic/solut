@@ -62,7 +62,7 @@
               </div>
             </div>
             <div>
-              <button type="submit" @click="submit" class="py-3 w-full flex justify-center rounded-2xl text-white bg-primary">Register</button>
+              <button @click="submit" class="py-3 w-full flex justify-center rounded-2xl text-white bg-primary">Register</button>
             </div>
           </form>
 
@@ -97,9 +97,7 @@ export default {
   },
   methods: {
     submit() {
-      auth
-        .createUserWithEmailAndPassword(this.user.email, this.user.password)
-
+      auth.createUserWithEmailAndPassword(this.user.email, this.user.password)
         .catch((err) => {
           this.error = err.message
         })
