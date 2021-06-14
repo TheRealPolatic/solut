@@ -16,7 +16,7 @@
     </div>
 
     <div class="category-scrollbar flex w-full overflow-x-scroll overflow-y-hidden">
-      <SearchCategorySlider v-for="category in categories" :key="category.id" :category="category" />
+      <SearchCategorySlider @toggle-category="toggleCategory" />
     </div>
 
     <!-- <button v-for="(c, i) in colors" :key="i" @click="onClick(c)">{{ c }}</button> -->
@@ -39,14 +39,7 @@
 export default {
   data() {
     return {
-      categories: [
-        { id: 0, title: 'Extreme Heat', icon: 'heat-dark.svg' },
-        { id: 1, title: 'Blizzard', icon: 'blizzard-dark.svg' },
-        { id: 2, title: 'Heavy Rainfall', icon: 'rainfall-dark.svg' },
-        { id: 3, title: 'Flood', icon: 'flood-dark.svg' },
-        { id: 4, title: 'Tornado', icon: 'tornado-dark.svg' },
-        { id: 5, title: 'Drought', icon: 'drought-dark.svg' },
-      ],
+      categories: [],
       solutions: [
         {
           title: 'Sustainable beach',
@@ -85,6 +78,12 @@ export default {
     onClick(category) {
       this.filterBy = category.title
     },
+    toggleCategory(e) {
+      this.categories.push(e.id)
+    },
+  },
+  created() {
+    this.$store.dispatch('category/fetchCategories')
   },
 }
 </script>
