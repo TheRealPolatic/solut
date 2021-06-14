@@ -86,6 +86,7 @@
 
     <!-- Next step button -->
     <div
+      @click="addSolution"
       :class="form.introduction && form.title ? 'bg-primary text-white ' : 'bg-primary text-white opacity-40'"
       class="rounded-lg w-full h-14 flex items-center justify-center mb-8 cursor-pointer"
     >
@@ -95,6 +96,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   data() {
     return {
@@ -109,6 +112,20 @@ export default {
     }
   },
   methods: {
+    addSolution() {
+      // Check for formvalidation
+
+      const solutionData = {
+        title: this.form.title,
+        introduction: this.form.introduction,
+        categories: [1, 3, 4, 5, 6],
+        image: this.images[0],
+      }
+      //   console.log(solutionData)
+      this.$store.dispatch('solution/createSolution', solutionData)
+
+      // Send success
+    },
     toggleCategory(e) {
       this.form.categories.push(e)
     },
@@ -132,6 +149,19 @@ export default {
       this.images = []
     },
   },
+  created() {
+    this.$store.dispatch('category/fetchCategories')
+  },
+  //   computed: {
+  //     message: {
+  //       get() {
+  //         return this.$store.state.obj.message
+  //       },
+  //       set(value) {
+  //         this.$store.commit('updateMessage', value)
+  //       },
+  //     },
+  //   },
 }
 </script>
 
