@@ -16,13 +16,13 @@
     </div>
 
     <div class="category-scrollbar flex w-full overflow-x-scroll overflow-y-hidden">
-      <SearchCategoryTile v-for="category in categories" :key="category.id" :category="category" />
+      <SearchCategorySlider v-for="category in categories" :key="category.id" :category="category" />
     </div>
 
     <!-- <button v-for="(c, i) in colors" :key="i" @click="onClick(c)">{{ c }}</button> -->
 
-    <button v-for="category in categories" :key="category" @click="onClick(category)">{{ category.title }}</button>
-    <div v-for="s in filteredCategories" :key="s.title">{{ s.title }}</div>
+    <!-- <button v-for="category in categories" :key="category" @click="onClick(category)">{{ category.title }}</button>
+    <div v-for="s in filteredCategories" :key="s.title">{{ s.title }}</div> -->
     <!-- <SearchSolutionCard v-for="s in filteredCategories" :key="s.title" :s="s" /> -->
 
     <div v-if="searchValue == ''">
@@ -32,17 +32,6 @@
     <div v-else-if="searchValue !== ''">
       <SearchSolutionCard v-for="solution in filteredName" :key="solution.title" :solution="solution" />
     </div>
-
-    <!-- <div class="my-6">
-      <div class="flex justify-between">
-        <h2 class="text-xl font-bold">Extreme Heat</h2>
-        <p class="text-sm font-medium mt-1">View all</p>
-      </div>
-      <div class="flex overflow-x-auto overflow-y-hidden whitespace-nowrap">
-        <img class="h-full rounded-2xl my-4 mr-3" src="@/assets/images/sustainable.jpg" />
-        <img class="h-full rounded-2xl my-4 mr-3" src="@/assets/images/sustainable.jpg" />
-      </div>
-    </div> -->
   </div>
 </template>
 
@@ -114,5 +103,10 @@ input[type='search']::-webkit-search-cancel-button {
 input[type='search']:focus::-webkit-search-cancel-button {
   opacity: 0.3;
   pointer-events: all;
+}
+
+.category-scrollbar::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
 }
 </style>
