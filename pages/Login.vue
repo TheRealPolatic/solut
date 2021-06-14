@@ -40,12 +40,12 @@
             </div>
 
             <div>
-              <label for="password" class="block font-semibold text-dark">Password</label>
-              <div class="mt-1">
+              <label for="password" class="mb-0 block font-semibold text-dark">Password</label>
+              <div class="relative mt-1">
                 <input
                   id="password"
                   name="password"
-                  type="password"
+                  v-bind:type="[showPassword ? 'text' : 'password']"
                   autocomplete="current-password"
                   placeholder=""
                   required
@@ -64,6 +64,9 @@
                     focus:border-gray-400
                   "
                 />
+                <button @click="showPassword = !showPassword" class="absolute inset-y-0 right-0 flex items-center px-4 border-l">
+                  <img v-if="showPassword" src="@/assets/icons/eye.svg" /> <img v-else src="@/assets/icons/eye-off.svg" />
+                </button>
               </div>
             </div>
 
@@ -92,8 +95,15 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      showPassword: false,
+    }
+  },
+}
 </script>
+
 
 <style lang="scss" scoped>
 </style>

@@ -9,11 +9,6 @@
       <h1 class="my-6 text-dark text-center font-bold text-xl">Register</h1>
       <div class="w-10 h-10"></div>
     </div>
-
-
-
-
-
       <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-md">
         <div class="py-8 px-6 sm:rounded-lg sm:px-10">
           <form class="space-y-6" action="#" method="POST">
@@ -82,15 +77,13 @@
   </div>
 </template>
 
-<<script>
-
+<script>
 export default {
-  components: { AvatarCropper },
   data() {
     return {
       showPassword: false,
     }
-  }
+  },
 }
 </script>
 
