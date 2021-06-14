@@ -11,7 +11,7 @@
     </div>
       <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-md">
         <div class="py-8 px-6 sm:rounded-lg sm:px-10">
-          <form class="space-y-6" action="#" method="POST">
+          <form class="space-y-6">
             <div>
               <label for="email" class="block font-semibold text-dark">Username</label>
               <div class="mt-1">
@@ -97,10 +97,9 @@ export default {
   },
   methods: {
     submit() {
-      auth.createUserWithEmailAndPassword(this.user.email, this.user.password)
-        .catch((err) => {
-          this.error = err.message
-        })
+      auth.createUserWithEmailAndPassword(this.user.email, this.user.password).catch((err) => {
+        this.error = err.message
+      })
     },
   },
 }
