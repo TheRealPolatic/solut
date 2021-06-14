@@ -52,6 +52,7 @@ export default {
       headerBackground: 'primary',
       headerButtonRight: 'bookmark',
       slug: this.$route.params,
+      author: {},
       solution: {
         solutionId: 'iu4Da8',
         userId: 'k90AN3di',
@@ -102,6 +103,8 @@ export default {
   },
   mounted() {
     this.handleScroll()
+  },
+  created() {
     this.getSolution(this.$route.params.solution)
   },
   methods: {
@@ -118,13 +121,23 @@ export default {
           this.headerBackground = 'primary'
         }
       }
-      // if (el.target.offsetHeight + el.target.scrollTop >= el.target.scrollHeight) {
-      //   this.headerBackground = 'white'
-      // }
     },
-    getSolution(solutionId) {
-      /* eslint-disable no-console */
-      console.log(solutionId)
+    getSolution(id) {
+      this.$store.dispatch('solution/fetchSolution', id).then((result) => {
+        /* eslint-disable no-console */
+        console.log(result)
+        this.solution = result
+
+        this.author = this.getUser(result.userId)
+      })
+    },
+    getUser(id) {
+      console.log(id)
+      this.$store.dispatch('user/fetchUser', id).then((result) => {
+        /* eslint-disable no-console */
+        console.log(result)
+        return result
+      })
     },
   },
 }
