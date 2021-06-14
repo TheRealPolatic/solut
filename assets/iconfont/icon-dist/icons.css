@@ -1,7 +1,12 @@
 @font-face {
     font-family: "icons";
+<<<<<<< HEAD
     src: url("./icons.ttf?7db807200fdcfc3b8dbe54864b55292c") format("truetype"),
 url("./icons.svg?7db807200fdcfc3b8dbe54864b55292c#icons") format("svg");
+=======
+    src: url("./icons.ttf?4131f680109a5a2e74930661deb1451f") format("truetype"),
+url("./icons.woff?4131f680109a5a2e74930661deb1451f") format("woff");
+>>>>>>> main
 }
 
 i[class^="icon-"]:before, i[class*=" icon-"]:before {
@@ -15,24 +20,25 @@ i[class^="icon-"]:before, i[class*=" icon-"]:before {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-blizzard:before {
+.icon-add:before {
     content: "\f101";
 }
-.icon-chevron:before {
+.icon-blizzard:before {
     content: "\f102";
 }
-.icon-close:before {
+.icon-bookmark:before {
     content: "\f103";
 }
-.icon-dotted:before {
+.icon-chevron-left:before {
     content: "\f104";
 }
-.icon-drought:before {
+.icon-chevron-right:before {
     content: "\f105";
 }
-.icon-dust:before {
+.icon-close:before {
     content: "\f106";
 }
+<<<<<<< HEAD
 .icon-envelope:before {
     content: "\f107";
 }
@@ -69,3 +75,50 @@ i[class^="icon-"]:before, i[class*=" icon-"]:before {
 .icon-x:before {
     content: "\f112";
 }
+=======
+.icon-drought:before {
+    content: "\f107";
+}
+.icon-dust:before {
+    content: "\f108";
+}
+.icon-flood:before {
+    content: "\f109";
+}
+.icon-hail:before {
+    content: "\f10a";
+}
+.icon-heat:before {
+    content: "\f10b";
+}
+.icon-home:before {
+    content: "\f10c";
+}
+.icon-info:before {
+    content: "\f10d";
+}
+.icon-plus:before {
+    content: "\f10e";
+}
+.icon-rainfall:before {
+    content: "\f10f";
+}
+.icon-search:before {
+    content: "\f110";
+}
+.icon-smog:before {
+    content: "\f111";
+}
+.icon-tornado:before {
+    content: "\f112";
+}
+.icon-upload:before {
+    content: "\f113";
+}
+.icon-user:before {
+    content: "\f114";
+}
+.icon-wildfire:before {
+    content: "\f115";
+}
+>>>>>>> main
