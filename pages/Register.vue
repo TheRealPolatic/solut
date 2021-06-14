@@ -56,9 +56,9 @@
                   required
                   class="h-14 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-2xl placeholder-gray-400 focus:outline-none focus:ring-gray-400 focus:border-gray-400"
                 />
-                <button @click="showPassword = !showPassword" class="absolute inset-y-0 right-0 flex items-center px-4 border-l">
+                <div @click="showPassword = !showPassword" class="absolute inset-y-0 right-0 flex items-center px-4 border-l">
                   <img v-if="showPassword" src="@/assets/icons/eye.svg" /> <img v-else src="@/assets/icons/eye-off.svg" />
-                </button>
+                </div>
               </div>
             </div>
             <div>
