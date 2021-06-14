@@ -9,11 +9,12 @@
 
       <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-md">
         <div class="py-8 px-6 sm:rounded-lg sm:px-10">
-          <form class="space-y-6" action="#" method="POST">
+          <form class="space-y-6">
             <div>
               <label for="email" class="block font-semibold text-dark">Email</label>
               <div class="mt-1">
                 <input
+                  v-model="user.email"
                   id="email"
                   name="email"
                   type="email"
@@ -43,6 +44,7 @@
               <label for="password" class="mb-0 block font-semibold text-dark">Password</label>
               <div class="relative mt-1">
                 <input
+                  v-model="user.password"
                   id="password"
                   name="password"
                   v-bind:type="[showPassword ? 'text' : 'password']"
@@ -99,7 +101,18 @@ export default {
   data() {
     return {
       showPassword: false,
+      user: {
+        email: '',
+        password: '',
+      },
     }
+  },
+  methods: {
+    submit() {
+      auth.signInWithEmailAndPassword(this.user.email, this.user.password).catch((err) => {
+        this.error = err.message
+      })
+    },
   },
 }
 </script>
