@@ -16,6 +16,7 @@
               <label for="email" class="block font-semibold text-dark">Username</label>
               <div class="mt-1">
                 <input
+                v-model="user.username"
                   id="username"
                   name="username"
                   type="username"
@@ -31,6 +32,7 @@
               <label for="email" class="block font-semibold text-dark">Email</label>
               <div class="mt-1">
                 <input
+                  v-model="user.email"
                   id="email"
                   name="email"
                   type="email"
@@ -45,6 +47,7 @@
               <label for="password" class="mb-0 block font-semibold text-dark">Password</label>
               <div class="relative mt-1">
                 <input
+                  v-model="user.password"
                   id="password"
                   name="password"
                   v-bind:type="[showPassword ? 'text' : 'password']"
@@ -59,7 +62,7 @@
               </div>
             </div>
             <div>
-              <button type="submit" class="py-3 w-full flex justify-center rounded-2xl text-white bg-primary">Register</button>
+              <button type="submit" @click="submit" class="py-3 w-full flex justify-center rounded-2xl text-white bg-primary">Register</button>
             </div>
           </form>
 
@@ -78,11 +81,29 @@
 </template>
 
 <script>
+import { auth } from '~/plugins/firebase.js'
+
 export default {
   data() {
     return {
       showPassword: false,
+      user: {
+        username: '',
+        email: '',
+        profileImage: '',
+        password: '',
+      },
     }
+  },
+  methods: {
+    submit() {
+      auth
+        .createUserWithEmailAndPassword(this.user.email, this.user.password)
+
+        .catch((err) => {
+          this.error = err.message
+        })
+    },
   },
 }
 </script>
