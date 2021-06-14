@@ -1,4 +1,7 @@
 export default {
+  server: {
+    host: '0.0.0.0',
+  },
   ssr: false,
 
   head: {
@@ -13,11 +16,11 @@ export default {
 
   css: ['@/assets/main.css', '@/assets/iconfont/icon-dist/icons.css'],
 
-  plugins: ['~/plugins/firebase.js'],
+  plugins: ['~/plugins/vue-avatar-cropper.js', '~/plugins/firebase.js'],
 
   components: true,
 
-  buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/tailwindcss'],
+  buildModules: ['@nuxtjs/tailwindcss'],
 
   modules: ['@nuxtjs/pwa'],
 
