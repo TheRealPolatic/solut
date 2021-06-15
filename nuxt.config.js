@@ -13,7 +13,7 @@ export default {
 
   css: ['@/assets/main.css', '@/assets/iconfont/icon-dist/icons.css'],
 
-  plugins: ['~/plugins/firebase.js'],
+  plugins: ['~/plugins/firebase.js', '~/plugins/firebaseAuth.js'],
 
   components: true,
 
