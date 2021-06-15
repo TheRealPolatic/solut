@@ -1,54 +1,13 @@
 <template>
   <div>
       
-    <div class="bg-white absolute bottom-0 w-full filter drop-shadow-2xl flex">
-      <a href="#" class="flex flex-grow items-center justify-center p-4 text-dark-grey focus:none">
-        <div class="text-center">
-          <span class="block text-2xl">
-            <NuxtLink to="/timeline">
-                <i class="icon icon-home"></i>
-                <p class="text-white leading-0 mb-1">.</p>
-            </NuxtLink>
-          </span>
-      
-        </div>
-      </a>
+    <div class="bg-white fixed z-50 bottom-0 w-full filter drop-shadow-2xl flex justify-between items-center px-6 py-2">
 
-      <a href="#" class="flex flex-grow items-center justify-center p-4 text-dark-grey">
+      <a v-for="item in navItems" :key="item.link" href="#" class="text-dark-grey p-4">
         <div class="text-center">
           <span class="block text-2xl">
-            <NuxtLink to="/search">
-                <i class="icon icon-search"></i>
-                <p class="text-white leading-0 mb-1">.</p>
-            </NuxtLink>
-          </span>
-        </div>
-      </a>
-      <a href="#" class="flex flex-grow items-center justify-center p-4 text-dark-grey">
-        <div class="text-center">
-          <span class="block text-2xl">
-            <NuxtLink to="/create-solution">
-                <i class="icon icon-add"></i>
-                <p class="text-white leading-0 mb-1">.</p>
-            </NuxtLink>
-          </span>
-        </div>
-      </a>
-      <a href="#" class="flex flex-grow items-center justify-center p-4 text-dark-grey">
-        <div class="text-center">
-          <span class="block text-2xl">
-            <NuxtLink to="/bookmarks">
-                <i class="icon icon-bookmark"></i>
-                <p class="text-white leading-0 mb-1">.</p>
-            </NuxtLink>
-          </span>
-        </div>
-      </a>
-      <a href="#" class="flex flex-grow items-center justify-center p-4 text-dark-grey">
-        <div class="text-center">
-          <span class="block text-2xl">
-            <NuxtLink to="/profile"> 
-                <i class="icon icon-user"></i>
+            <NuxtLink :to="'/' + item.link">
+                <i class="icon" :class="'icon-' + item.icon"></i>
                 <p class="text-white leading-0 mb-1">.</p>
             </NuxtLink>
           </span>
@@ -59,7 +18,20 @@
 </template>
 
 <script>
-export default {}
+export default {
+  
+  data() {
+    return {
+      navItems: [
+        { link: 'timeline', icon: 'home' },
+        { link: 'search', icon: 'search' },
+        { link: 'create-solution', icon: 'add ' },
+        { link: 'bookmarks', icon: 'bookmark' },
+        { link: 'profile', icon: 'user' },
+      ],
+    }
+  },
+}
 </script>
 
 <style scoped>
