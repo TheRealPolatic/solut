@@ -97,9 +97,20 @@ export default {
   },
   methods: {
     submit() {
-      auth.createUserWithEmailAndPassword(this.user.email, this.user.password).catch((err) => {
-        this.error = err.message
-      })
+      auth
+        .createUserWithEmailAndPassword(this.user.email, this.user.password)
+        .then((res) => {
+          res.user
+            .updateProfile({
+              displayName: this.user.username,
+            })
+            .then(() => {
+              this.$router.push('/timeline')
+            })
+        })
+        .catch((err) => {
+          this.error = err.message
+        })
     },
   },
 }
