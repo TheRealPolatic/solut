@@ -83,49 +83,22 @@ export const actions = {
               'description': step.description,
             }
             if (step.stepImage.length) {
-              console.log('iterating stepimages...')
-              console.log(step.stepImage[0])
               const filename = step.stepImage[0].name
               ext = filename.slice(filename.lastIndexOf('.'))
 
               r = await fetch(step.stepImage[0].blob)
               blob = await r.blob()
-              await storage.ref(`solutions/${id}_${filename}${ext}`).put(blob)
-              let url = await storage.ref(`solutions/${id}_${filename}${ext}`).getDownloadURL()
-
+              await storage.ref(`solutions/${id}_${filename}`).put(blob)
+              let url = await storage.ref(`solutions/${id}_${filename}`).getDownloadURL()
+              console.log(url)
               stepData['stepImage'] = url
             }
             resolve(stepData)
           })
         })
         Promise.all(actions).then((data) => {
-          console.log('Done with loop!')
-          console.log(uploadedSteps)
-          firestore.collection('solutions').doc(id).update({ steps: uploadedSteps })
+          firestore.collection('solutions').doc(id).update({ steps: data })
         })
-
-        // await new Promise((resolve, reject) => {
-        //   steps.forEach(async (step, index) => {
-        //     let stepData = {
-        //       'description': step.description,
-        //     }
-        //     if (step.stepImage.length) {
-        //       console.log(step.stepImage[0])
-        //       const filename = step.stepImage[0].name
-        //       ext = filename.slice(filename.lastIndexOf('.'))
-
-        //       r = await fetch(step.stepImage[0].blob)
-        //       blob = await r.blob()
-        //       await storage.ref(`solutions/${id}_${index}${ext}`).put(blob)
-        //       let url = await storage.ref(`solutions/${id}_${index}${ext}`).getDownloadURL()
-
-        //       step['stepImage'] = url
-        //     }
-        //     uploadedSteps.push(stepData)
-
-        //     if (index === steps.length - 1) resolve()
-        //   })
-        // })
       })
       .catch((error) => {
         console.log(error)
