@@ -1,8 +1,8 @@
 <template>
-  <li class="flex items-center mb-1">
+  <li class="flex items-center mb-2">
     <i class="icon text-lg text-primary mr-4" :class="icon"></i>
 
-    <p class="-mt-2">{{ content }}</p>
+    <p class="">{{ content }}</p>
   </li>
 </template>
 

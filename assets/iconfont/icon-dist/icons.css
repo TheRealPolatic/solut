@@ -1,12 +1,7 @@
 @font-face {
     font-family: "icons";
-<<<<<<< HEAD
-    src: url("./icons.ttf?7db807200fdcfc3b8dbe54864b55292c") format("truetype"),
-url("./icons.svg?7db807200fdcfc3b8dbe54864b55292c#icons") format("svg");
-=======
-    src: url("./icons.ttf?4131f680109a5a2e74930661deb1451f") format("truetype"),
-url("./icons.woff?4131f680109a5a2e74930661deb1451f") format("woff");
->>>>>>> main
+    src: url("./icons.ttf?c10122f201bb6bc93645463706c9a918") format("truetype"),
+url("./icons.woff?c10122f201bb6bc93645463706c9a918") format("woff");
 }
 
 i[class^="icon-"]:before, i[class*=" icon-"]:before {
@@ -38,87 +33,54 @@ i[class^="icon-"]:before, i[class*=" icon-"]:before {
 .icon-close:before {
     content: "\f106";
 }
-<<<<<<< HEAD
-.icon-envelope:before {
-    content: "\f107";
-}
-.icon-flood:before {
-    content: "\f108";
-}
-.icon-hail:before {
-    content: "\f109";
-}
-.icon-heat:before {
-    content: "\f10a";
-}
-.icon-location:before {
-    content: "\f10b";
-}
-.icon-plus:before {
-    content: "\f10c";
-}
-.icon-rainfall:before {
-    content: "\f10d";
-}
-.icon-smog:before {
-    content: "\f10e";
-}
-.icon-tornado:before {
-    content: "\f10f";
-}
-.icon-upload:before {
-    content: "\f110";
-}
-.icon-wildfire:before {
-    content: "\f111";
-}
-.icon-x:before {
-    content: "\f112";
-}
-=======
 .icon-drought:before {
     content: "\f107";
 }
 .icon-dust:before {
     content: "\f108";
 }
-.icon-flood:before {
+.icon-envelope:before {
     content: "\f109";
 }
-.icon-hail:before {
+.icon-flood:before {
     content: "\f10a";
 }
-.icon-heat:before {
+.icon-hail:before {
     content: "\f10b";
 }
-.icon-home:before {
+.icon-heat:before {
     content: "\f10c";
 }
-.icon-info:before {
+.icon-home:before {
     content: "\f10d";
 }
-.icon-plus:before {
+.icon-info:before {
     content: "\f10e";
 }
-.icon-rainfall:before {
+.icon-location:before {
     content: "\f10f";
 }
-.icon-search:before {
+.icon-plus:before {
     content: "\f110";
 }
-.icon-smog:before {
+.icon-rainfall:before {
     content: "\f111";
 }
-.icon-tornado:before {
+.icon-search:before {
     content: "\f112";
 }
-.icon-upload:before {
+.icon-smog:before {
     content: "\f113";
 }
-.icon-user:before {
+.icon-tornado:before {
     content: "\f114";
 }
-.icon-wildfire:before {
+.icon-upload:before {
     content: "\f115";
 }
->>>>>>> main
+.icon-user:before {
+    content: "\f116";
+}
+.icon-wildfire:before {
+    content: "\f117";
+}
