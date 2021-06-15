@@ -16,16 +16,14 @@
     </div>
 
     <div class="category-scrollbar flex w-full overflow-x-scroll overflow-y-hidden">
-      <SearchCategorySlider @toggle-category="toggleCategory" />
+      <SearchCategorySlider @toggle-category="toggleCategory" :selectedCategory="selectedCategory" />
     </div>
 
-    <!-- <button v-for="(c, i) in colors" :key="i" @click="onClick(c)">{{ c }}</button> -->
+    <div v-if="selectedCategory !== ''">
+      <SearchSolutionCard v-for="solution in filteredCategory" :key="solution.title" :solution="solution" />
+    </div>
 
-    <!-- <button v-for="category in categories" :key="category" @click="onClick(category)">{{ category.title }}</button>
-    <div v-for="s in filteredCategories" :key="s.title">{{ s.title }}</div> -->
-    <!-- <SearchSolutionCard v-for="s in filteredCategories" :key="s.title" :s="s" /> -->
-
-    <div v-if="searchValue == ''">
+    <div v-else-if="searchValue == ''">
       <SearchWeatherExtremeSlider v-for="solution in solutions" :key="solution.title" :solution="solution" />
     </div>
 
@@ -50,8 +48,8 @@ export default {
       //     category: 'Extreme Heat',
       //   },
       // ],
-      filterBy: '',
       searchValue: '',
+      selectedCategory: '',
     }
   },
   computed: {
@@ -66,22 +64,27 @@ export default {
       }
       return tempSolutions
     },
-    filteredCategories() {
-      if (this.filterBy === '') return this.solutions
-      else return this.solutions.filter((s) => s.category === this.filterBy)
-    },
-  },
-  methods: {
-    onClick(category) {
-      this.filterBy = category.title
-    },
-    toggleCategory(e) {
-      this.categories.push(e.id)
+    filteredCategory() {
+      if (this.selectedCategory !== '') {
+        return this.solutions.filter((item) => {
+          return item.categories.includes(this.selectedCategory)
+        })
+      }
+      return this.solutions
     },
   },
   created() {
     this.$store.dispatch('category/fetchCategories')
     this.$store.dispatch('solution/fetchSolutions')
+  },
+  methods: {
+    toggleCategory(e) {
+      if (this.selectedCategory) {
+        this.selectedCategory = ''
+      } else {
+        this.selectedCategory = e.id
+      }
+    },
   },
 }
 </script>

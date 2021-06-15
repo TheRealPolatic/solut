@@ -2,7 +2,7 @@
   <div>
     <div
       @click="toggleTile(category)"
-      :class="isActive ? 'bg-primary text-white' : 'bg-light-grey'"
+      :class="active ? 'bg-primary text-white' : 'bg-light-grey'"
       class="inline-flex items-center px-3 py-2 rounded-full text-sm font-medium mr-3 w-max"
     >
       <!-- <img :src="require(`~/assets/icons/${category.icon}`)" class="h-5 w-5 mx-1" /> -->
@@ -23,16 +23,21 @@ export default {
         return {}
       },
     },
+    selectedCategory: {
+      type: String,
+      default() {
+        return ''
+      },
+    },
   },
-  data() {
-    return {
-      isActive: false,
-    }
+  computed: {
+    active() {
+      return this.selectedCategory === this.category.id
+    },
   },
   methods: {
     toggleTile(category) {
       this.$emit('toggle-category', category)
-      this.isActive = !this.isActive
     },
   },
 }
