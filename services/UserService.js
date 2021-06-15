@@ -17,4 +17,13 @@ export default {
         console.error(error)
       })
   },
+  createUser(user) {
+    return firestore.collection('users').add(user)
+  },
+  setUser(userId, user) {
+    return firestore.collection('users').doc(userId).set(user)
+  },
+  updateUser(userId, data) {
+    return firestore.collection('users').doc(userId).update(data)
+  },
 }

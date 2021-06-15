@@ -34,7 +34,7 @@ export const actions = {
   createSolution(context, solution) {
     return SolutionService.createSolution(solution).catch((error) => console.error(error))
   },
-  updateSolution(context, { solutionId, updatedSolution }) {
-    return SolutionService.updateSolution(solutionId, updatedSolution).catch((error) => console.error(error))
+  updateSolution(context, { solutionId, data }) {
+    return SolutionService.updateSolution(solutionId, data).catch((error) => console.error(error))
   },
 }
