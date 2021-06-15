@@ -31,4 +31,10 @@ export const actions = {
         console.error(error)
       })
   },
+  createUser(context, user) {
+    return UserService.createUser(user).catch((error) => console.error(error))
+  },
+  updateUser(context, { userId, data }) {
+    return UserService.updateUser(userId, data).catch((error) => console.error(error))
+  },
 }
