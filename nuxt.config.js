@@ -17,7 +17,7 @@ export default {
 
   components: true,
 
-  buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/tailwindcss'],
+  buildModules: [ '@nuxtjs/tailwindcss'],
 
   modules: ['@nuxtjs/pwa'],
 
