@@ -19,11 +19,8 @@ export default {
 
   buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/tailwindcss'],
 
-<<<<<<< HEAD
-=======
   modules: ['@nuxtjs/pwa'],
 
->>>>>>> main
   pwa: {
     manifest: {
       lang: 'en',

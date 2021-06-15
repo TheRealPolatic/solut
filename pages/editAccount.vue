@@ -2,7 +2,7 @@
   <div class="m-6">
     <!-- Top bar -->
     <div class="flex justify-between">
-      <NuxtLink to="/account"><ButtonBackButton class="w-1/6" :icon="'icon-chevron-left'"></ButtonBackButton></NuxtLink>
+      <NuxtLink to="/profile"><ButtonBackButton class="w-1/6" :icon="'icon-chevron-left'"></ButtonBackButton></NuxtLink>
       <h1 class="text-center text-xl font-bold mt-2">Edit account</h1>
       <div class="w-1/6"></div>
     </div>
@@ -24,7 +24,7 @@
 
       <p class="mt-8">Change password</p>
 
-      <NuxtLink to="/account">
+      <NuxtLink to="/profile">
         <Button :label="'Update Account'" class="mt-8"></Button>
       </NuxtLink>
     </form>
