@@ -6,9 +6,7 @@
 
 <script>
 export default {
-  created() {
-    this.$store.dispatch('solution/fetchSolutions')
-  },
+  created() {},
 }
 </script>
 

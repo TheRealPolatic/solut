@@ -36,25 +36,20 @@ export const actions = {
         console.error(error)
       })
   },
-  signUpUser({ commit }, { email, password }) {
+  signUpUser({ dispatch }, { email, password }) {
     return auth
       .createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        commit('SET_USER', userCredential.user)
+        dispatch('setUser', { userId: userCredential.user.uid, data: { bookmarks: [] } })
       })
       .catch((error) => {
         console.error(error)
       })
   },
-  signInUser({ commit }, { email, password }) {
-    return auth
-      .signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        commit('SET_USER', userCredential.user)
-      })
-      .catch((error) => {
-        console.error(error)
-      })
+  signInUser(context, { email, password }) {
+    return auth.signInWithEmailAndPassword(email, password).catch((error) => {
+      console.error(error)
+    })
   },
   signOutUser({ commit }) {
     return auth
@@ -66,6 +61,11 @@ export const actions = {
       .catch((error) => {
         console.error(error)
       })
+  },
+  setUser(context, { userId, data }) {
+    return UserService.setUser(userId, data).catch((error) => {
+      console.error(error)
+    })
   },
   createUser(context, user) {
     return UserService.createUser(user).catch((error) => console.error(error))

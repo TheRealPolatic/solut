@@ -1,4 +1,4 @@
-import { auth } from '~/firebase'
+import { auth } from '~/plugins/firebase'
 
 export default async function ({ store, redirect }) {
   const { authenticated, user } = store.state.user
