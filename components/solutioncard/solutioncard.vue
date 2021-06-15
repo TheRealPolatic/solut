@@ -48,6 +48,12 @@
 
 <script>
 export default {
+  async getUser() {
+    const carddata = this
+    carddata.user = await this.$store.dispatch('user/fetchUser', this.carddata.userId)
+
+    return carddata
+  },
   props: {
     carddata: {
       type: Object,
@@ -57,19 +63,7 @@ export default {
     },
   },
   data() {
-    return this.carddata
+    return {}
   },
-  async getUser() {
-    const carddata = this.carddata
-    carddata.user = await this.$store.dispatch('user/fetchUser', this.carddata.userId)
-
-    return carddata
-  },
-  //   created() {
-  //     // this.user = this.$store.dispatch('user/fetchUser', this.carddata.userId)
-  //     // this.$store.dispatch('user/fetchUser', this.carddata.userId).then((result) => {
-  //     //   this.carddata.user = result
-  //     // })
-  //   },
 }
 </script>
