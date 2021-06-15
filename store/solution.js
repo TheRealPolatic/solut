@@ -50,6 +50,7 @@ export const actions = {
     let ext
     let blob
     let r
+    let uploadedSteps = []
 
     firestore
       .collection('solutions')
@@ -75,24 +76,56 @@ export const actions = {
       .then(async () => {
         // https://stackoverflow.com/questions/52873516/vue-js-returns-ob-observer-data-instead-of-my-array-of-objects
         let steps = JSON.parse(JSON.stringify(solution.steps))
-        let uploadedSteps = []
-        steps.forEach(async (step, index) => {
-          console.log(step.stepImage[0])
-          const filename = step.stepImage[0].name
-          ext = filename.slice(filename.lastIndexOf('.'))
 
-          r = await fetch(step.stepImage[0].blob)
-          blob = await r.blob()
-          await storage.ref(`solutions/${id}_${index}${ext}`).put(blob)
-          const url = await storage.ref(`solutions/${id}_${index}${ext}`).getDownloadURL()
+        let actions = steps.map((step) => {
+          return new Promise(async (resolve) => {
+            let stepData = {
+              'description': step.description,
+            }
+            if (step.stepImage.length) {
+              console.log('iterating stepimages...')
+              console.log(step.stepImage[0])
+              const filename = step.stepImage[0].name
+              ext = filename.slice(filename.lastIndexOf('.'))
 
-          uploadedSteps.push({
-            description: step.description,
-            stepImage: url,
+              r = await fetch(step.stepImage[0].blob)
+              blob = await r.blob()
+              await storage.ref(`solutions/${id}_${filename}${ext}`).put(blob)
+              let url = await storage.ref(`solutions/${id}_${filename}${ext}`).getDownloadURL()
+
+              stepData['stepImage'] = url
+            }
+            resolve(stepData)
           })
         })
-        console.log(uploadedSteps) // Shows the uploaded step
-        await firestore.collection('solutions').doc(id).update({ steps: uploadedSteps }) // Only uploads steps: []
+        Promise.all(actions).then((data) => {
+          console.log('Done with loop!')
+          console.log(uploadedSteps)
+          firestore.collection('solutions').doc(id).update({ steps: uploadedSteps })
+        })
+
+        // await new Promise((resolve, reject) => {
+        //   steps.forEach(async (step, index) => {
+        //     let stepData = {
+        //       'description': step.description,
+        //     }
+        //     if (step.stepImage.length) {
+        //       console.log(step.stepImage[0])
+        //       const filename = step.stepImage[0].name
+        //       ext = filename.slice(filename.lastIndexOf('.'))
+
+        //       r = await fetch(step.stepImage[0].blob)
+        //       blob = await r.blob()
+        //       await storage.ref(`solutions/${id}_${index}${ext}`).put(blob)
+        //       let url = await storage.ref(`solutions/${id}_${index}${ext}`).getDownloadURL()
+
+        //       step['stepImage'] = url
+        //     }
+        //     uploadedSteps.push(stepData)
+
+        //     if (index === steps.length - 1) resolve()
+        //   })
+        // })
       })
       .catch((error) => {
         console.log(error)
