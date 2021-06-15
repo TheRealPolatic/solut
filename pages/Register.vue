@@ -62,7 +62,7 @@
               </div>
             </div>
             <div>
-              <button @click="submit" class="py-3 w-full flex justify-center rounded-2xl text-white bg-primary">Register</button>
+              <div @click="submit" class="py-3 w-full flex justify-center rounded-2xl text-white bg-primary">Register</div>
             </div>
           </form>
 
@@ -88,6 +88,7 @@ export default {
     return {
       showPassword: false,
       user: {
+        uid: '',
         username: '',
         email: '',
         profileImage: '',
@@ -103,10 +104,17 @@ export default {
           res.user
             .updateProfile({
               displayName: this.user.username,
+              // todo profile image toevoegen
             })
+
             .then(() => {
+              this.user.uid = res.user.uid
+              console.log('submitting user...')
+              this.$store.dispatch('user/createUser', { id: this.user.uid })
               this.$router.push('/timeline')
             })
+
+          console.log(res.user.uid)
         })
         .catch((err) => {
           this.error = err.message
