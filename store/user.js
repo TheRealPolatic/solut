@@ -22,7 +22,7 @@ export const actions = {
         console.error(error)
       })
   },
-  fetchUser({ commit }, userId) {
+  fetchUser(context, userId) {
     return UserService.getUser(userId)
       .then((user) => {
         return user
@@ -30,5 +30,11 @@ export const actions = {
       .catch((error) => {
         console.error(error)
       })
+  },
+  createUser(context, user) {
+    return UserService.createUser(user).catch((error) => console.error(error))
+  },
+  updateUser(context, { userId, data }) {
+    UserService.updateUser(userId, data).catch((error) => console.error(error))
   },
 }
