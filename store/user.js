@@ -22,7 +22,7 @@ export const actions = {
         console.error(error)
       })
   },
-  fetchUser({ commit }, userId) {
+  fetchUser(context, userId) {
     return UserService.getUser(userId)
       .then((user) => {
         return user

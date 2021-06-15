@@ -47,67 +47,44 @@
 
 <script>
 export default {
+  async asyncData({ params, store }) {
+    // Set categories in state
+    store.dispatch('category/fetchCategories')
+
+    // Fetching solution data
+    const solution = await store.dispatch('solution/fetchSolution', params.solution)
+
+    // Fetching author data
+    const author = await store.dispatch('user/fetchUser', solution.userId)
+    solution.author = author
+
+    //  Fetching impacted user data
+    const impactUsers = solution.impactUsers.slice(0, 5)
+    const impactUserArr = []
+
+    for (let i = 0; i < impactUsers.length; i++) {
+      const user = await store.dispatch('user/fetchUser', impactUsers[i].userId)
+      impactUserArr.push(user)
+    }
+    solution.impactUserArr = impactUserArr
+
+    // Set solution data object
+    return { solution }
+  },
   data() {
     return {
       headerBackground: 'primary',
       headerButtonRight: 'bookmark',
       slug: this.$route.params,
-      author: {},
-      solution: {
-        solutionId: 'iu4Da8',
-        userId: 'k90AN3di',
-        title: 'How to construct your own green roof',
-        introduction:
-          'A green roof has benefits for insulation and for the environment. You can put a green roof on your house, but also on a shed, a carport or a bike shed.',
-        coverImage: 'https://upload.wikimedia.org/wikipedia/commons/4/41/British_Horse_Society_Head_Quarters_and_Green_Roof.jpg',
-        categories: [
-          { id: 'kajdfk', label: 'Extreme heat', value: 'heat' },
-          { id: 'jadfn', label: 'Hail storm', value: 'hail' },
-        ],
-        materials: ['20L bag of soil', 'Ground cover plants', 'Water', 'canvas'],
-        tools: ['Hammer', 'Buckets', 'Stanley knife'],
-        steps: [
-          {
-            id: 'ADSJf3',
-            rank: '1',
-            description: 'Wipe the existing roofing thoroughly.',
-            image: 'https://longhomeproducts.com/wp-content/uploads/2017/04/Flat-Roofing-Construction-Wood.jpg',
-          },
-          {
-            id: 'ADSJf3',
-            rank: '3',
-            description:
-              'Roll out the fleece on the roof and cut it to size with sharp scissors if necessary. Spread the substrate evenly over the roof by hand. Do not use sharp tools because of damage to the roof.',
-            image: '',
-          },
-          {
-            id: 'ADSJf3',
-            rank: '2',
-            description:
-              'Look for seams or cracks in your current roof. If necessary, flood your roof with a waterhose to detect any leakage. If your roofing is waterproof (and not very old) you can start laying the underlayments.',
-            image: '',
-          },
-        ],
-        impactUsers: [
-          { userId: 'ldka34AH', impacted: 12, createdAt: 1623070756, updatedAt: '' },
-          { userId: 'ldka45w', impacted: 12, createdAt: 1623070756, updatedAt: '' },
-          { userId: 'ldka02fd', impacted: 12, createdAt: 1623070756, updatedAt: '' },
-          { userId: 'ldk905f', impacted: 12, createdAt: 1623070756, updatedAt: '' },
-          { userId: 'ld85ceA', impacted: 12, createdAt: 1623070756, updatedAt: '' },
-          { userId: 'ldKio89k', impacted: 12, createdAt: 1623070756, updatedAt: '' },
-        ],
-        createdAt: 1623070756,
-        updatedAt: 1623070756,
-      },
+      solution: {},
     }
   },
+
   mounted() {
     this.handleScroll()
   },
-  created() {
-    this.getSolution(this.$route.params.solution)
-  },
   methods: {
+    // sort steps on rank
     sortOnRank(arr) {
       return arr.slice(0, arr.length).sort((a, b) => (a.rank > b.rank ? 1 : -1))
     },
@@ -122,20 +99,8 @@ export default {
         }
       }
     },
-    getSolution(id) {
-      this.$store.dispatch('solution/fetchSolution', id).then((result) => {
-        /* eslint-disable no-console */
-        console.log(result)
-        this.solution = result
-
-        this.author = this.getUser(result.userId)
-      })
-    },
     getUser(id) {
-      console.log(id)
       this.$store.dispatch('user/fetchUser', id).then((result) => {
-        /* eslint-disable no-console */
-        console.log(result)
         return result
       })
     },
