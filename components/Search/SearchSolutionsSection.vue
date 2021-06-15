@@ -36,29 +36,26 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   data() {
     return {
       categories: [],
-      solutions: [
-        {
-          title: 'Sustainable beach',
-          categories: [{ id: 0, title: 'Extreme Heat', icon: 'heat-dark.svg' }],
-          coverImage: 'sustainable.jpg',
-          category: 'Extreme Heat',
-        },
-        {
-          title: 'Avoiding wildfire',
-          categories: [{ id: 1, title: 'Blizzard', icon: 'heat-dark.svg' }],
-          coverImage: 'drought.jpg',
-          category: 'Blizzard',
-        },
-      ],
+      // solutions: [
+      //   {
+      //     title: 'Sustainable beach',
+      //     categories: ["fsfdf", "fff"],
+      //     coverImage: 'sustainable.jpg',
+      //     category: 'Extreme Heat',
+      //   },
+      // ],
       filterBy: '',
       searchValue: '',
     }
   },
   computed: {
+    ...mapState('solution', ['solutions']),
     filteredName() {
       let tempSolutions = this.solutions
 
@@ -84,6 +81,7 @@ export default {
   },
   created() {
     this.$store.dispatch('category/fetchCategories')
+    this.$store.dispatch('solution/fetchSolutions')
   },
 }
 </script>

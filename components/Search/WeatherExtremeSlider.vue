@@ -8,7 +8,7 @@
     </div>
     <div class="">
       <div class="relative">
-        <img class="w-full relative h-full rounded-2xl my-4 mr-3" :src="require(`~/assets/images/${solution.coverImage}`)" />
+        <img class="w-full relative h-64 rounded-2xl my-4 mr-3" :src="solution.coverImage" />
         <div class="absolute bottom-0">
           <img class="rounded-2xl w-screen" src="@/assets/images/overlay.png" />
         </div>
