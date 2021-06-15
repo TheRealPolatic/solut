@@ -13,10 +13,19 @@ export const mutations = {
 }
 
 export const actions = {
-  fetchUser({ commit }, userId) {
+  fetchCurrentUser({ commit }, userId) {
     return UserService.getUser(userId)
       .then((user) => {
         commit('SET_USER', user)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  },
+  fetchUser({ commit }, userId) {
+    return UserService.getUser(userId)
+      .then((user) => {
+        return user
       })
       .catch((error) => {
         console.error(error)
