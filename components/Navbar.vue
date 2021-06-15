@@ -1,39 +1,56 @@
 <template>
   <div>
-    <div class="bg-white absolute bottom-0 w-full border-t border-gray-200 flex">
-      <a href="#" class="flex flex-grow items-center justify-center p-2 text-dark-grey">
+      
+    <div class="bg-white absolute bottom-0 w-full filter drop-shadow-2xl flex">
+      <a href="#" class="flex flex-grow items-center justify-center p-4 text-dark-grey focus:none">
         <div class="text-center">
-          <span class="block h-8 text-3xl leading-8">
-            <NuxtLink to="/timeline"><i class="icon icon-home"></i></NuxtLink>
+          <span class="block text-2xl">
+            <NuxtLink to="/timeline">
+                <i class="icon icon-home"></i>
+                <p class="text-white leading-0 mb-1">.</p>
+            </NuxtLink>
           </span>
+      
         </div>
       </a>
 
-      <a href="#" class="flex flex-grow items-center justify-center p-2 text-dark-grey">
+      <a href="#" class="flex flex-grow items-center justify-center p-4 text-dark-grey">
         <div class="text-center">
-          <span class="block h-8 text-3xl leading-8">
-            <NuxtLink to="/search"><i class="icon icon-search"></i></NuxtLink>
+          <span class="block text-2xl">
+            <NuxtLink to="/search">
+                <i class="icon icon-search"></i>
+                <p class="text-white leading-0 mb-1">.</p>
+            </NuxtLink>
           </span>
         </div>
       </a>
-      <a href="#" class="flex flex-grow items-center justify-center p-2 text-dark-grey">
+      <a href="#" class="flex flex-grow items-center justify-center p-4 text-dark-grey">
         <div class="text-center">
-          <span class="block h-8 text-3xl leading-8">
-            <NuxtLink to="/create-solution"><i class="icon icon-add"></i></NuxtLink>
+          <span class="block text-2xl">
+            <NuxtLink to="/create-solution">
+                <i class="icon icon-add"></i>
+                <p class="text-white leading-0 mb-1">.</p>
+            </NuxtLink>
           </span>
         </div>
       </a>
-      <a href="#" class="flex flex-grow items-center justify-center p-2 text-dark-grey">
+      <a href="#" class="flex flex-grow items-center justify-center p-4 text-dark-grey">
         <div class="text-center">
-          <span class="block h-8 text-3xl leading-8">
-            <NuxtLink to="/bookmarks"><i class="icon icon-bookmark"></i></NuxtLink>
+          <span class="block text-2xl">
+            <NuxtLink to="/bookmarks">
+                <i class="icon icon-bookmark"></i>
+                <p class="text-white leading-0 mb-1">.</p>
+            </NuxtLink>
           </span>
         </div>
       </a>
-      <a href="#" class="flex flex-grow items-center justify-center p-2 text-dark-grey">
+      <a href="#" class="flex flex-grow items-center justify-center p-4 text-dark-grey">
         <div class="text-center">
-          <span class="block h-8 text-3xl leading-8">
-            <NuxtLink to="/profile"> <i class="icon icon-user"></i></NuxtLink>
+          <span class="block text-2xl">
+            <NuxtLink to="/profile"> 
+                <i class="icon icon-user"></i>
+                <p class="text-white leading-0 mb-1">.</p>
+            </NuxtLink>
           </span>
         </div>
       </a>
@@ -48,5 +65,14 @@ export default {}
 <style scoped>
 .nuxt-link-active {
   color: #00e3a8;
+}
+
+.leading-0{
+    line-height: 0px;
+}
+
+.nuxt-link-active .leading-0{
+
+    color: #00e3a8 !important; 
 }
 </style>
