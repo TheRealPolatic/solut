@@ -1,4 +1,5 @@
 import UserService from '~/services/UserService'
+import { auth } from '~/plugins/firebase'
 
 export const state = () => ({
   user: {},
@@ -30,6 +31,37 @@ export const actions = {
     return UserService.getUser(userId)
       .then((user) => {
         return user
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  },
+  signUpUser({ commit }, { email, password }) {
+    return auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        commit('SET_USER', userCredential.user)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  },
+  signInUser({ commit }, { email, password }) {
+    return auth
+      .signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        commit('SET_USER', userCredential.user)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  },
+  signOutUser({ commit }) {
+    return auth
+      .signOut()
+      .then(() => {
+        commit('SET_AUTHENTICATED', false)
+        commit('SET_USER', {})
       })
       .catch((error) => {
         console.error(error)
