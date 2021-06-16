@@ -20,8 +20,8 @@ export default {
   createUser(user) {
     return firestore.collection('users').add(user)
   },
-  setUser(userId, user) {
-    return firestore.collection('users').doc(userId).set(user)
+  setUser(userId, data) {
+    return firestore.collection('users').doc(userId).set(data)
   },
   updateUser(userId, data) {
     return firestore.collection('users').doc(userId).update(data)
