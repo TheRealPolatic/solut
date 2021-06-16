@@ -3,7 +3,7 @@
     <h1 class="text-dark font-bold text-2xl my-6">Search</h1>
     <div class="relative rounded-2xl border border-gray my-6 py-3">
       <div class="absolute inset-y-0 left-0 pl-3 flex items-center">
-        <img class="h-5 w-5 text-gray-400" src="@/assets/icons/search.svg" />
+        <i class="icon icon-search text-gray-400"></i>
       </div>
       <input
         id="search"

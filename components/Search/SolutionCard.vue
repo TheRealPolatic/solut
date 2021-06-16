@@ -15,7 +15,9 @@
             </div>
           </div>
           <div>
-            <a href="#"> <img class="h-5 w-5 text-gray-400" src="@/assets/icons/chevron-right.svg" /> </a>
+            <a href="#">
+              <i class="icon icon-chevron-right text-gray-400"></i>
+            </a>
           </div>
         </div>
       </li>

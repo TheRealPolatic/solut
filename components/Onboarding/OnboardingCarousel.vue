@@ -25,7 +25,7 @@
     </VueSlickCarousel>
 
     <button class="mx-auto rounded-3xl bg-primary h-12 w-12 flex justify-center items-center" @click="showNext">
-      <img class="" src="@/assets/icons/next-arrow.svg" alt="" />
+      <i class="icon icon-next"></i>
     </button>
   </div>
 </template>
