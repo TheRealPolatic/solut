@@ -4,7 +4,7 @@
       <div class="text-dark-grey uppercase mb-2">15 may, 2021</div>
       <h1 class="text-dark font-bold text-xl">How to construct your own green roof</h1>
       <ul class="list-none text-darker-grey my-2">
-        <li v-for="category in getCategories(solution.categories)" :key="category.id">
+        <li v-for="category in solution.categories" :key="category.id">
           <i class="mr-2 icon inline-flex" :class="'icon-' + category.icon"></i>{{ category.title }}
         </li>
       </ul>
@@ -34,22 +34,6 @@ export default {
       default() {
         return {}
       },
-    },
-  },
-  computed: {
-    ...mapState('category', ['categories']),
-  },
-  methods: {
-    getCategories(values) {
-      const currentCategories = []
-      for (let i = 0; i < values.length; i++) {
-        for (let j = 0; j < this.categories.length; j++) {
-          if (values[i] === this.categories[j].id) {
-            currentCategories.push(this.categories[j])
-          }
-        }
-      }
-      return currentCategories
     },
   },
 }

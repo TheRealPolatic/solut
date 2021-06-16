@@ -50,6 +50,7 @@ export default {
   async asyncData({ params, store }) {
     // Set categories in state
     store.dispatch('category/fetchCategories')
+    const categories = store.state.category.categories
 
     // Fetching solution data
     const solution = await store.dispatch('solution/fetchSolution', params.solution)
@@ -58,7 +59,7 @@ export default {
     const author = await store.dispatch('user/fetchUser', solution.userId)
     solution.author = author
 
-    //  Fetching impacted user data
+    // Fetching impacted user data
     const impactUsers = solution.impactUsers.slice(0, 5)
     const impactUserArr = []
 
@@ -68,6 +69,17 @@ export default {
     }
     solution.impactUserArr = impactUserArr
 
+    // Setting category data in solution
+    const categoriesData = []
+      for (let i = 0; i < solution.categories.length; i++) {
+        for (let j = 0; j < categories.length; j++) {
+          if (solution.categories[i] === categories[j].id) {
+            categoriesData.push(categories[j])
+          }
+        }
+      }
+      solution.categories = categoriesData
+    
     // Set solution data object
     return { solution }
   },
@@ -79,7 +91,6 @@ export default {
       solution: {},
     }
   },
-
   mounted() {
     this.handleScroll()
   },
