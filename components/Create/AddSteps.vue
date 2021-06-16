@@ -2,7 +2,7 @@
   <div class="mx-6">
     <!-- Header -->
     <div class="header flex justify-between items-center">
-      <div class="back w-10 h-10 border border-gray-200 rounded-xl flex items-center justify-center">
+      <div class="back w-10 h-10 border border-gray-200 rounded-xl flex items-center justify-center" @click="$emit('back')">
         <img src="@/assets/icons/chevron-left.svg" />
       </div>
       <h1 class="my-6 text-dark text-center font-bold text-xl">Add solution</h1>
@@ -54,7 +54,7 @@
 
     <!-- Buttons -->
     <div class="w-full mt-6 flex justify-between">
-      <div class="rounded-xl bg-light-grey text-black w-40 h-14 flex items-center justify-center mb-8 cursor-pointer">
+      <div class="rounded-xl bg-light-grey text-black w-40 h-14 flex items-center justify-center mb-8 cursor-pointer" @click="$emit('back')">
         <p>Previous step</p>
       </div>
       <div

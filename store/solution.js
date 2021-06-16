@@ -50,7 +50,6 @@ export const actions = {
     let ext
     let blob
     let r
-    let uploadedSteps = []
 
     firestore
       .collection('solutions')
@@ -64,7 +63,6 @@ export const actions = {
         ext = filename.slice(filename.lastIndexOf('.'))
         r = await fetch(solution.image.blob)
         blob = await r.blob()
-        // console.log(blob)
         return storage.ref(`solutions/${id}${ext}`).put(blob)
       })
       .then(() => {
