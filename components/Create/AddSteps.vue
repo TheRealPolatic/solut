@@ -114,8 +114,7 @@
         <div class="w-full relative" v-for="image in currentStep.stepImage" :key="image.blob">
           <div v-if="image.blob" class="preview h-40 rounded-xl overflow-hidden" :style="{ 'background-image': `url(${image.blob})` }"></div>
           <div @click="resetImg" class="delete h-6 w-6 rounded-full absolute right-2 top-2 bg-white flex justify-center items-center cursor-pointer">
-            <i class="icon icon-close"></i>
-            <i class="icon icon-upload text-dark opacity-50 mr-4"></i>
+            <i class="icon icon-close text-dark"></i>
           </div>
         </div>
         <div
@@ -164,7 +163,7 @@ export default {
       }
     },
     resetImg() {
-      this.images = []
+      this.currentStep.stepImage = []
     },
     addStep(value, fieldType) {
       fieldType.push(value)

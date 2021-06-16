@@ -4,11 +4,11 @@
       <CreateBasicInfo v-if="index == 1" @addBasicInfo="addToSolution" />
       <CreateMaterials v-else-if="index == 2" @addMaterials="addToSolution" @back="index--" />
       <CreateAddSteps v-else-if="index == 3" @addSteps="addToSolution" @back="index--" />
-      <div v-else-if="index == 4">
+      <!-- <div v-else-if="index == 4">
         <div @click="uploadSolution" class="rounded-xl w-40 h-14 flex items-center justify-center mb-8 cursor-pointer bg-primary text-white">
           <p>Submit</p>
         </div>
-      </div>
+      </div> -->
 
       <!-- <CreateImpactModal /> -->
     </transition>
@@ -28,7 +28,13 @@ export default {
   methods: {
     addToSolution(e) {
       this.solution = { ...e, ...this.solution }
-      this.index++
+
+      if (e.steps) {
+        this.uploadSolution()
+        // todo: redirect to impact modal
+      } else {
+        this.index++
+      }
     },
     submitSolution() {
       // Not needed since the solution uploading is in uploadSolution()
