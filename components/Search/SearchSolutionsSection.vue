@@ -94,7 +94,7 @@ input[type='search']::-webkit-search-cancel-button {
   -webkit-appearance: none;
   height: 1.7em;
   width: 1.7em;
-  background: url('@/assets/icons/x.svg') no-repeat 50% 50%;
+  background: url('@/assets/iconfont/icon-source/close.svg') no-repeat 50% 50%;
   background-size: contain;
   pointer-events: none;
   margin-right: 12px;
