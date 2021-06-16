@@ -7,7 +7,7 @@
           <div class="w-10 h-10"></div>
           <h2 class="text-dark text-center font-bold text-xl">Great work!</h2>
           <div @click="close" class="back w-10 h-10 border border-gray-200 rounded-xl flex items-center justify-center cursor-pointer">
-            <img src="@/assets/icons/x.svg" />
+            <i class="icon icon-close"></i>
           </div>
         </div>
         <div class="mx-12 flex justify-center flex-col">

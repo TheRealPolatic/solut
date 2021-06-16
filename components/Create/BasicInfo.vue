@@ -60,7 +60,7 @@
       <label class="font-semibold text-sm">Cover image</label>
       <div class="flex justify-center items-center relative mt-2">
         <div @click="resetImg" class="h-6 w-6 rounded-full absolute right-2 top-2 bg-white flex justify-center items-center">
-          <img src="@/assets/icons/x.svg" />
+          <i class="icon icon-close"></i>
         </div>
         <file-upload
           ref="upload"
@@ -72,7 +72,7 @@
           class="rounded-xl bg-light-grey h-16 w-screen"
         >
           <div class="flex my-5 justify-center">
-            <img class="opacity-50 mr-4" src="@/assets/icons/upload-dark.svg" />
+            <i class="icon icon-upload mr-4 opacity-50 text-dark"></i>
             <p class="opacity-50">Upload image</p>
           </div>
         </file-upload>

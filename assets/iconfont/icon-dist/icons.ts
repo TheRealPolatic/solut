@@ -5,8 +5,10 @@ export type IconsId =
   | "chevron-left"
   | "chevron-right"
   | "close"
+  | "dotted-line"
   | "drought"
   | "dust"
+  | "edit"
   | "flood"
   | "hail"
   | "heat"
@@ -22,7 +24,8 @@ export type IconsId =
   | "trending"
   | "upload"
   | "user"
-  | "wildfire";
+  | "wildfire"
+  | "x";
 
 export type IconsKey =
   | "Add"
@@ -31,8 +34,10 @@ export type IconsKey =
   | "ChevronLeft"
   | "ChevronRight"
   | "Close"
+  | "DottedLine"
   | "Drought"
   | "Dust"
+  | "Edit"
   | "Flood"
   | "Hail"
   | "Heat"
@@ -48,7 +53,8 @@ export type IconsKey =
   | "Trending"
   | "Upload"
   | "User"
-  | "Wildfire";
+  | "Wildfire"
+  | "X";
 
 export enum Icons {
   Add = "add",
@@ -57,8 +63,10 @@ export enum Icons {
   ChevronLeft = "chevron-left",
   ChevronRight = "chevron-right",
   Close = "close",
+  DottedLine = "dotted-line",
   Drought = "drought",
   Dust = "dust",
+  Edit = "edit",
   Flood = "flood",
   Hail = "hail",
   Heat = "heat",
@@ -75,6 +83,7 @@ export enum Icons {
   Upload = "upload",
   User = "user",
   Wildfire = "wildfire",
+  X = "x",
 }
 
 export const ICONS_CODEPOINTS: { [key in Icons]: string } = {
@@ -84,22 +93,25 @@ export const ICONS_CODEPOINTS: { [key in Icons]: string } = {
   [Icons.ChevronLeft]: "61700",
   [Icons.ChevronRight]: "61701",
   [Icons.Close]: "61702",
-  [Icons.Drought]: "61703",
-  [Icons.Dust]: "61704",
-  [Icons.Flood]: "61705",
-  [Icons.Hail]: "61706",
-  [Icons.Heat]: "61707",
-  [Icons.Home]: "61708",
-  [Icons.Info]: "61709",
-  [Icons.New]: "61710",
-  [Icons.Plus]: "61711",
-  [Icons.Rainfall]: "61712",
-  [Icons.Search]: "61713",
-  [Icons.Smog]: "61714",
-  [Icons.Top]: "61715",
-  [Icons.Tornado]: "61716",
-  [Icons.Trending]: "61717",
-  [Icons.Upload]: "61718",
-  [Icons.User]: "61719",
-  [Icons.Wildfire]: "61720",
+  [Icons.DottedLine]: "61703",
+  [Icons.Drought]: "61704",
+  [Icons.Dust]: "61705",
+  [Icons.Edit]: "61706",
+  [Icons.Flood]: "61707",
+  [Icons.Hail]: "61708",
+  [Icons.Heat]: "61709",
+  [Icons.Home]: "61710",
+  [Icons.Info]: "61711",
+  [Icons.New]: "61712",
+  [Icons.Plus]: "61713",
+  [Icons.Rainfall]: "61714",
+  [Icons.Search]: "61715",
+  [Icons.Smog]: "61716",
+  [Icons.Top]: "61717",
+  [Icons.Tornado]: "61718",
+  [Icons.Trending]: "61719",
+  [Icons.Upload]: "61720",
+  [Icons.User]: "61721",
+  [Icons.Wildfire]: "61722",
+  [Icons.X]: "61723",
 };

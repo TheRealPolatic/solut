@@ -3,7 +3,7 @@
     <!-- Header -->
     <div class="header flex justify-between items-center">
       <div class="back w-10 h-10 border border-gray-200 rounded-xl flex items-center justify-center" @click="$emit('back')">
-        <img src="@/assets/icons/chevron-left.svg" />
+        <i class="icon icon-chevron-left"></i>
       </div>
       <h1 class="my-6 text-dark text-center font-bold text-xl">Add solution</h1>
       <div class="w-10 h-10"></div>
@@ -40,14 +40,14 @@
       <div v-for="(step, index) in steps" :key="`step-${index}`" class="my-2 border h-14 rounded-2xl py-2 px-3 flex items-center">
         <p class="font-semibold mr-4">{{ index + 1 }}</p>
         <p class="text-gray-700 w-60 truncate">{{ step.description }}</p>
-        <img src="@/assets/icons/edit.svg" class="cursor-pointer ml-4" />
+        <i class="icon icon-edit cursor-pointer ml-4"></i>
       </div>
     </div>
 
     <!-- Add new step btn -->
     <div @click="open" class="rounded-xl mt-4 bg-light-grey h-14 w-full flex items-center justify-center cursor-pointer">
       <div class="content opacity-50 flex">
-        <img class="mr-3" src="@/assets/icons/plus-dark.svg" />
+        <i class="icon icon-plus text-dark mr-3"></i>
         <p>Add step</p>
       </div>
     </div>
@@ -73,7 +73,7 @@
           <div class="w-10 h-10"></div>
           <h2 class="text-dark text-center font-bold text-xl">Add step</h2>
           <div @click="close" class="back w-10 h-10 border border-gray-200 rounded-xl flex items-center justify-center cursor-pointer">
-            <img src="@/assets/icons/x.svg" />
+            <i class="icon icon-close"></i>
           </div>
         </div>
         <div class="mt-6">
@@ -105,7 +105,7 @@
               class="rounded-xl bg-light-grey h-16 w-screen"
             >
               <div class="flex my-5 justify-center">
-                <img class="opacity-50 mr-4" src="@/assets/icons/upload-dark.svg" />
+                <i class="icon icon-upload text-dark opacity-50 mr-4"></i>
                 <p class="opacity-50">Upload image</p>
               </div>
             </file-upload>
@@ -114,7 +114,8 @@
         <div class="w-full relative" v-for="image in currentStep.stepImage" :key="image.blob">
           <div v-if="image.blob" class="preview h-40 rounded-xl overflow-hidden" :style="{ 'background-image': `url(${image.blob})` }"></div>
           <div @click="resetImg" class="delete h-6 w-6 rounded-full absolute right-2 top-2 bg-white flex justify-center items-center cursor-pointer">
-            <img src="@/assets/icons/x.svg" />
+            <i class="icon icon-close"></i>
+            <i class="icon icon-upload text-dark opacity-50 mr-4"></i>
           </div>
         </div>
         <div

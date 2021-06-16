@@ -3,7 +3,7 @@
     <!-- Header -->
     <div class="flex justify-between items-center">
       <div class="back w-10 h-10 border border-gray-200 rounded-xl flex items-center justify-center" @click="$emit('back')">
-        <img src="@/assets/icons/chevron-left.svg" />
+        <i class="icon icon-chevron-left"></i>
       </div>
       <h1 class="my-6 text-dark text-center font-bold text-xl">Add solution</h1>
       <div class="w-10 h-10"></div>
@@ -34,7 +34,7 @@
       <!-- Material inputboxes -->
       <div>
         <div v-for="(input, index) in materials" :key="`material-${index}`" class="my-2 relative">
-          <img src="@/assets/icons/x.svg" class="absolute top-4 right-4 cursor-pointer" @click="removeField(index, materials)" />
+          <i class="icon icon-close absolute top-4 right-4 cursor-pointer" @click="removeField(index, materials)"></i>
           <input
             v-model="input.material"
             class="border rounded-2xl w-full py-2 px-3 text-gray-700 leading-loose focus:outline-none"
@@ -45,7 +45,7 @@
 
       <div @click="addField(input, materials)" class="rounded-xl bg-light-grey h-14 w-full flex items-center justify-center cursor-pointer">
         <div class="opacity-50 flex">
-          <img class="mr-3" src="@/assets/icons/plus-dark.svg" />
+          <i class="icon icon-plus mr-3 text-dark"></i>
           <p>Add material</p>
         </div>
       </div>
@@ -60,14 +60,14 @@
       <!-- Tool inputboxes -->
       <div>
         <div v-for="(input, index) in tools" :key="`tool-${index}`" class="my-2 relative">
-          <img src="@/assets/icons/x.svg" class="absolute top-4 right-4 cursor-pointer" @click="removeField(index, tools)" />
+          <i class="icon icon-close absolute top-4 right-4 cursor-pointer" @click="removeField(index, tools)"></i>
           <input v-model="input.tool" class="border rounded-2xl w-full py-2 px-3 text-gray-700 leading-loose focus:outline-none" placeholder="Tool name" />
         </div>
       </div>
 
       <div @click="addField(input, tools)" class="rounded-xl bg-light-grey h-14 w-full flex items-center justify-center cursor-pointer">
         <div class="opacity-50 flex">
-          <img class="mr-3" src="@/assets/icons/plus-dark.svg" />
+          <i class="icon icon-plus mr-3 text-dark"></i>
           <p>Add tool</p>
         </div>
       </div>
