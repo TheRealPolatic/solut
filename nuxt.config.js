@@ -1,4 +1,7 @@
 export default {
+  server: {
+    host: '0.0.0.0',
+  },
   ssr: false,
 
   head: {
@@ -13,11 +16,17 @@ export default {
 
   css: ['@/assets/main.css', '@/assets/iconfont/icon-dist/icons.css'],
 
-  plugins: ['~/plugins/firebase.js', '~/plugins/firebaseAuth.js'],
+  plugins: [
+    '~/plugins/firebase.js',
+    '~/plugins/vue-upload-component.js',
+    '~/plugins/vue-form-wizard.js',
+    '~/plugins/vue-bottom-sheet.js',
+    '~/plugins/firebaseAuth.js',
+  ],
 
   components: true,
 
-  buildModules: [ '@nuxtjs/tailwindcss'],
+  buildModules: ['@nuxtjs/tailwindcss'],
 
   modules: ['@nuxtjs/pwa'],
 

@@ -7,12 +7,23 @@ module.exports = {
   parserOptions: {
     parser: 'babel-eslint',
   },
-  extends: ['@nuxtjs', 'plugin:prettier/recommended', 'plugin:nuxt/recommended'],
-  plugins: [],
+  extends: ['@nuxtjs', 'plugin:prettier/recommended', 'plugin:nuxt/recommended', 'prettier'],
+  plugins: ['prettier'],
   // add your custom rules here
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warning' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'prettier/prettier': ['error', { printWidth: 160 }],
+    'prettier/prettier': [
+      'error',
+      {
+        'endOfLine': 'auto',
+        'printWidth': 160,
+        'semi': false,
+        'jsxSingleQuote': true,
+        'singleQuote': false,
+        'useTabs': false,
+        'tabWidth': 4,
+      },
+    ],
   },
 }
