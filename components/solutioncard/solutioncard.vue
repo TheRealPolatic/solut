@@ -4,7 +4,7 @@
       <div class="w-10 h-10 rounded-full overflow-hidden relative mr-4">
         <img src="https://dummyimage.com/50x50" alt="" class="absolute w-full h-full top-0 left-0" />
       </div>
-      <div class="font-semibold"></div>
+      <div class="font-semibold">{{ carddata.user.name }}</div>
       <div class="text-gray-300 ml-auto justify-self-end">14 min ago</div>
     </div>
 
@@ -26,7 +26,10 @@
         </div>
 
         <div class="w-1/4 flex justify-end items-end">
-          <div class="w-12 h-12 rounded-2xl border border-white flex items-center justify-center text-white text-lg">
+          <div
+            class="w-12 h-12 rounded-2xl border border-white flex items-center justify-center text-lg"
+            :class="{ 'text-black bg-white': carddata.bookmarked, 'text-white': !carddata.bookmarked }"
+          >
             <i class="icon icon-bookmark"></i>
           </div>
         </div>
@@ -48,12 +51,6 @@
 
 <script>
 export default {
-  async getUser() {
-    const carddata = this
-    carddata.user = await this.$store.dispatch('user/fetchUser', this.carddata.userId)
-
-    return carddata
-  },
   props: {
     carddata: {
       type: Object,
@@ -61,9 +58,6 @@ export default {
         return {}
       },
     },
-  },
-  data() {
-    return {}
   },
 }
 </script>
