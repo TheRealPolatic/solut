@@ -3,7 +3,7 @@
     <div class="px-6 header flex justify-between items-center">
        <NuxtLink to="/login">
           <div class="back w-10 h-10 border border-gray-200 rounded-xl flex items-center justify-center">
-          <img src="@/assets/icons/chevron-left.svg" />
+		  <i class="icon icon-chevron-left"></i>
         </div>
       </NuxtLink>
       <h1 class="my-6 text-dark text-center font-bold text-xl">Register</h1>
