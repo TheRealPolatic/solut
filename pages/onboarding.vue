@@ -5,7 +5,9 @@
 </template>
 
 <script>
+export default {
+  layout: 'nonavbar',
+}
 </script>
 
-<style>
-</style>
+<style></style>
