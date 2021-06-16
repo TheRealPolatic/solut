@@ -33,7 +33,6 @@
 <script>
 import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
-// optional style for arrows & dots
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
 export default {
@@ -68,7 +67,7 @@ export default {
 .slick-dots button:before {
   color: #00e3a8 !important; /* color of dots */
   opacity: 0.25; /* opacity of dots */
-  background-color: transparent; /* bg color of each "button" 
+  background-color: transparent; /* bg color of each "button"
                                   * (blends with the one set in .slick-dots
                                   * if opacity is not 1) */
   content: '•';
