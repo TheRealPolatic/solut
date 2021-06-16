@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-14">
+  <div>
     <GeneralHeader :background="headerBackground" title="Solution" :backbutton="true" :buttonright="headerButtonRight"></GeneralHeader>
     <div ref="solutionTopWrapper">
       <ShowSolutionTop :solution="solution" @scroll="handleScroll()"></ShowSolutionTop>
@@ -50,9 +50,9 @@ export default {
   async asyncData({ params, store, redirect }) {
     // Fetching solution data
     const solution = await store.dispatch('solution/fetchSolution', params.solution)
-    
+
     // Redirect to timeline when solution is not found
-    if (solution === undefined){
+    if (solution === undefined) {
       return redirect('/timeline')
     }
 
@@ -65,7 +65,7 @@ export default {
     solution.author = author
 
     // Fetching impacted user data
-    const impactUsers = solution.impactUsers.slice(solution.impactUsers.length - 5 , solution.impactUsers.length)
+    const impactUsers = solution.impactUsers.slice(solution.impactUsers.length - 5, solution.impactUsers.length)
     const impactUserArr = []
 
     for (let i = 0; i < impactUsers.length; i++) {
@@ -76,15 +76,15 @@ export default {
 
     // Setting category data in solution
     const categoriesData = []
-      for (let i = 0; i < solution.categories.length; i++) {
-        for (let j = 0; j < categories.length; j++) {
-          if (solution.categories[i] === categories[j].id) {
-            categoriesData.push(categories[j])
-          }
+    for (let i = 0; i < solution.categories.length; i++) {
+      for (let j = 0; j < categories.length; j++) {
+        if (solution.categories[i] === categories[j].id) {
+          categoriesData.push(categories[j])
         }
       }
-      solution.categories = categoriesData
-    
+    }
+    solution.categories = categoriesData
+
     // Set solution data object
     return { solution }
   },
