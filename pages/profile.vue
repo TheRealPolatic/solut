@@ -1,6 +1,6 @@
 <template>
   <div class="m-6">
-    <UserProfile></UserProfile>
+    <UserProfile :userinfo="currentUser"></UserProfile>
     <Statistics class="mt-8"></Statistics>
     <p class="text-sm mt-8">Log out</p>
 
@@ -17,11 +17,11 @@ import { mapState } from 'vuex'
 export default {
   async asyncData({ params, store }) {
     // Set current user
-    await store.dispatch('user/fetchCurrentUser', '4bH51OK8TUwxFtaQOXhN')
+    await store.dispatch('user/fetchCurrentUser', '7McMEAdNgFDC3KP36MSc')
   },
+
   data() {
     return {
-      solutions: [],
       currentUser: {},
     }
   },
@@ -29,11 +29,6 @@ export default {
     ...mapState('user', ['user']),
   },
   created() {
-    // this.$store.dispatch('solution/fetchSolution', 'yyFqSXc9cIn0l3VE6IgP').then((result) => {
-    //   this.solutions = result
-    // })
-    // this.$store.dispatch('user/fetch')
-
     this.currentUser = this.user
   },
 

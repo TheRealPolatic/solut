@@ -10,17 +10,14 @@
     <!-- Change user info -->
     <form id="profile-form" @submit.prevent="submit">
       <!-- Image component -->
-      <UserProfileAvatarInput
-        v-model="form.avatar"
-        default-src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80"
-      ></UserProfileAvatarInput>
+      <UserProfileAvatarInput v-model="form.avatar" :default-src="currentUser.profileImage"></UserProfileAvatarInput>
 
       <!-- Username -->
-      <FormField :label="'Username'" :type="'text'" :value="userInfo.username" class="mt-8"></FormField>
+      <FormField :label="'Username'" :type="'text'" :value="currentUser.username" class="mt-8"></FormField>
       <!-- Email -->
-      <FormField :label="'Email'" :type="'text'" :value="userInfo.email" class="mt-8"></FormField>
+      <FormField :label="'Email'" :type="'text'" :value="currentUser.email" class="mt-8"></FormField>
       <!-- Location -->
-      <FormField :label="'Location'" :type="'text'" :value="userInfo.location" class="mt-8"></FormField>
+      <!-- <FormField :label="'Location'" :type="'text'" :value="'Henk'" class="mt-8"></FormField> -->
 
       <p class="mt-8">Change password</p>
 
@@ -32,18 +29,27 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
+  async asyncData({ params, store }) {
+    // Set current user
+    await store.dispatch('user/fetchCurrentUser', '7McMEAdNgFDC3KP36MSc')
+  },
   data() {
     return {
       form: {
         avatar: null,
       },
-      userInfo: {
-        username: 'John Doe',
-        email: 'johndoe@gmail.com',
-        location: 'Ecodorp Boekel',
-      },
+
+      currentUser: {},
     }
+  },
+  computed: {
+    ...mapState('user', ['user']),
+  },
+  created() {
+    this.currentUser = this.user
   },
 }
 </script>
