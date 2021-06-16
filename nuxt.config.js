@@ -17,7 +17,13 @@ export default {
 
   css: ['@/assets/main.css', '@/assets/iconfont/icon-dist/icons.css'],
 
-  plugins: ['~/plugins/firebase.js', '~/plugins/vue-upload-component.js', '~/plugins/vue-form-wizard.js', '~/plugins/vue-bottom-sheet.js'],
+  plugins: [
+    '~/plugins/firebase.js',
+    '~/plugins/vue-upload-component.js',
+    '~/plugins/vue-form-wizard.js',
+    '~/plugins/vue-bottom-sheet.js',
+    '~/plugins/firebaseAuth.js',
+  ],
 
   components: true,
 
