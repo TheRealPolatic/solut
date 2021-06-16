@@ -20,7 +20,6 @@
                   id="username"
                   name="username"
                   type="username"
-                  autocomplete="email"
                   placeholder="john.doe"
                   required
                   class="h-14 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-2xl placeholder-gray-400 focus:outline-none focus:ring-gray-400 focus:border-gray-400 sm:text-sm"
@@ -36,7 +35,6 @@
                   id="email"
                   name="email"
                   type="email"
-                  autocomplete="email"
                   placeholder="johndoe@gmail.com"
                   required
                   class="h-14 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-2xl placeholder-gray-400 focus:outline-none focus:ring-gray-400 focus:border-gray-400 sm:text-sm"
@@ -51,13 +49,13 @@
                   id="password"
                   name="password"
                   v-bind:type="[showPassword ? 'text' : 'password']"
-                  autocomplete="current-password"
                   placeholder=""
                   required
                   class="h-14 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-2xl placeholder-gray-400 focus:outline-none focus:ring-gray-400 focus:border-gray-400"
                 />
-                <div @click="showPassword = !showPassword" class="absolute inset-y-0 right-0 flex items-center px-4 border-l">
-                  <img v-if="showPassword" src="@/assets/icons/eye.svg" /> <img v-else src="@/assets/icons/eye-off.svg" />
+                <div @click="showPassword = !showPassword" class="absolute inset-y-0 right-0 flex items-center px-4 border-l text-xl">
+                  <i class="icon icon-eye" v-if="showPassword"></i>
+                  <i v-else class="icon icon-eye-off"></i>
                 </div>
               </div>
             </div>
@@ -84,6 +82,7 @@
 import { auth } from '~/plugins/firebase.js'
 
 export default {
+    layout: 'nonavbar',
   data() {
     return {
       showPassword: false,

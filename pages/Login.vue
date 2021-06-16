@@ -18,7 +18,6 @@
                   id="email"
                   name="email"
                   type="email"
-                  autocomplete="email"
                   placeholder="johndoe@gmail.com"
                   required
                   class="
@@ -48,7 +47,6 @@
                   id="password"
                   name="password"
                   v-bind:type="[showPassword ? 'text' : 'password']"
-                  autocomplete="current-password"
                   placeholder=""
                   required
                   class="
@@ -66,8 +64,9 @@
                     focus:border-gray-400
                   "
                 />
-                <div @click="showPassword = !showPassword" class="absolute inset-y-0 right-0 flex items-center px-4 border-l">
-                  <img v-if="showPassword" src="@/assets/icons/eye.svg" /> <img v-else src="@/assets/icons/eye-off.svg" />
+                <div @click="showPassword = !showPassword" class="absolute inset-y-0 right-0 flex items-center px-4 border-l text-xl">
+                  <i class="icon icon-eye" v-if="showPassword"></i>
+                  <i v-else class="icon icon-eye-off"></i>
                 </div>
               </div>
             </div>
@@ -98,6 +97,7 @@
 
 <script>
 export default {
+  layout: 'nonavbar',
   data() {
     return {
       showPassword: false,
@@ -117,6 +117,4 @@ export default {
 }
 </script>
 
-
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
