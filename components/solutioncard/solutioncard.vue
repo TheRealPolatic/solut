@@ -27,8 +27,8 @@
 
         <div class="w-1/4 flex justify-end items-end">
           <div
-            class="w-12 h-12 rounded-2xl border border-white flex items-center justify-center text-lg"
-            :class="{ 'text-black bg-white': carddata.bookmarked, 'text-white': !carddata.bookmarked }"
+            class="w-12 h-12 rounded-2xl border-gray-400 flex items-center justify-center text-xl"
+            :class="{ 'text-black bg-white border-0': carddata.bookmarked, 'text-white border': !carddata.bookmarked }"
           >
             <i class="icon icon-bookmark"></i>
           </div>
