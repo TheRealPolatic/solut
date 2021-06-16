@@ -60,7 +60,7 @@ export default {
     solution.author = author
 
     // Fetching impacted user data
-    const impactUsers = solution.impactUsers.slice(0, 5)
+    const impactUsers = solution.impactUsers.slice(solution.impactUsers.length - 5 , solution.impactUsers.length)
     const impactUserArr = []
 
     for (let i = 0; i < impactUsers.length; i++) {
