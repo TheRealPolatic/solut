@@ -1,7 +1,7 @@
 @font-face {
     font-family: "icons";
-    src: url("./icons.ttf?4131f680109a5a2e74930661deb1451f") format("truetype"),
-url("./icons.woff?4131f680109a5a2e74930661deb1451f") format("woff");
+    src: url("./icons.ttf?9e73df7783c6237578f17043f42edde5") format("truetype"),
+url("./icons.woff?9e73df7783c6237578f17043f42edde5") format("woff");
 }
 
 i[class^="icon-"]:before, i[class*=" icon-"]:before {
@@ -54,27 +54,36 @@ i[class^="icon-"]:before, i[class*=" icon-"]:before {
 .icon-info:before {
     content: "\f10d";
 }
-.icon-plus:before {
+.icon-new:before {
     content: "\f10e";
 }
-.icon-rainfall:before {
+.icon-plus:before {
     content: "\f10f";
 }
-.icon-search:before {
+.icon-rainfall:before {
     content: "\f110";
 }
-.icon-smog:before {
+.icon-search:before {
     content: "\f111";
 }
-.icon-tornado:before {
+.icon-smog:before {
     content: "\f112";
 }
-.icon-upload:before {
+.icon-top:before {
     content: "\f113";
 }
-.icon-user:before {
+.icon-tornado:before {
     content: "\f114";
 }
-.icon-wildfire:before {
+.icon-trending:before {
     content: "\f115";
+}
+.icon-upload:before {
+    content: "\f116";
+}
+.icon-user:before {
+    content: "\f117";
+}
+.icon-wildfire:before {
+    content: "\f118";
 }
