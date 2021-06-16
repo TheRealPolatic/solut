@@ -1,17 +1,19 @@
 <template>
   <div>
-    <transition name="slide-left" mode="out-in">
-      <CreateBasicInfo v-if="index == 1" @addBasicInfo="addToSolution" />
-      <CreateMaterials v-else-if="index == 2" @addMaterials="addToSolution" @back="index--" />
-      <CreateAddSteps v-else-if="index == 3" @addSteps="addToSolution" @back="index--" />
-      <div v-else-if="index == 4">
-        <div @click="submitSolution" class="rounded-xl w-40 h-14 flex items-center justify-center mb-8 cursor-pointer bg-primary text-white">
-          <p>Submit</p>
-        </div>
+    <!-- <transition name="slide-left" mode="out-in"> -->
+    <!-- <CreateBasicInfo v-if="index == 1" @addBasicInfo="addToSolution" />
+    <CreateMaterials v-else-if="index == 2" @addMaterials="addToSolution" @back="index--" />
+    <CreateAddSteps v-else-if="index == 3" @addSteps="addToSolution" @back="index--" />
+    <div v-else-if="index == 4">
+      <div @click="submitSolution" class="rounded-xl w-40 h-14 flex items-center justify-center mb-8 cursor-pointer bg-primary text-white">
+        <p>Submit</p>
       </div>
-      <!-- <CreateAddSteps /> -->
-      <!-- <CreateMaterials /> -->
-    </transition>
+    </div> -->
+
+    <!-- <CreateAddSteps /> -->
+    <!-- <CreateMaterials /> -->
+    <CreateImpactModal />
+    <!-- </transition> -->
   </div>
 </template>
 
