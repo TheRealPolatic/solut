@@ -12,11 +12,14 @@ export type IconsId =
   | "heat"
   | "home"
   | "info"
+  | "new"
   | "plus"
   | "rainfall"
   | "search"
   | "smog"
+  | "top"
   | "tornado"
+  | "trending"
   | "upload"
   | "user"
   | "wildfire";
@@ -35,11 +38,14 @@ export type IconsKey =
   | "Heat"
   | "Home"
   | "Info"
+  | "New"
   | "Plus"
   | "Rainfall"
   | "Search"
   | "Smog"
+  | "Top"
   | "Tornado"
+  | "Trending"
   | "Upload"
   | "User"
   | "Wildfire";
@@ -58,11 +64,14 @@ export enum Icons {
   Heat = "heat",
   Home = "home",
   Info = "info",
+  New = "new",
   Plus = "plus",
   Rainfall = "rainfall",
   Search = "search",
   Smog = "smog",
+  Top = "top",
   Tornado = "tornado",
+  Trending = "trending",
   Upload = "upload",
   User = "user",
   Wildfire = "wildfire",
@@ -82,12 +91,15 @@ export const ICONS_CODEPOINTS: { [key in Icons]: string } = {
   [Icons.Heat]: "61707",
   [Icons.Home]: "61708",
   [Icons.Info]: "61709",
-  [Icons.Plus]: "61710",
-  [Icons.Rainfall]: "61711",
-  [Icons.Search]: "61712",
-  [Icons.Smog]: "61713",
-  [Icons.Tornado]: "61714",
-  [Icons.Upload]: "61715",
-  [Icons.User]: "61716",
-  [Icons.Wildfire]: "61717",
+  [Icons.New]: "61710",
+  [Icons.Plus]: "61711",
+  [Icons.Rainfall]: "61712",
+  [Icons.Search]: "61713",
+  [Icons.Smog]: "61714",
+  [Icons.Top]: "61715",
+  [Icons.Tornado]: "61716",
+  [Icons.Trending]: "61717",
+  [Icons.Upload]: "61718",
+  [Icons.User]: "61719",
+  [Icons.Wildfire]: "61720",
 };

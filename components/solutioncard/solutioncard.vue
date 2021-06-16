@@ -2,7 +2,7 @@
   <div class="m-4 flex flex-col">
     <div class="flex items-center text-sm">
       <div class="w-10 h-10 rounded-full overflow-hidden relative mr-4">
-        <img src="https://dummyimage.com/50x50" alt="" class="absolute w-full h-full top-0 left-0" />
+        <img :src="carddata.user.profileImage" alt="" class="absolute w-full h-full top-0 left-0 object-fit" />
       </div>
       <div class="font-semibold">{{ carddata.user.name }}</div>
       <div class="text-gray-300 ml-auto justify-self-end">14 min ago</div>
@@ -19,7 +19,7 @@
         <div class="flex-column w-3/4 pr-1">
           <h1 class="text-white text-lg leading-5 font-semibold">{{ carddata.title }}</h1>
           <div class="flex text-gray-400 font-light mt-2 text-sm">
-            <div v-for="condition in carddata.conditions" :key="condition" class="mr-2">
+            <div v-for="condition in carddata.conditions" :key="condition" class="mr-2 c_solutioncard__condition">
               {{ condition }}
             </div>
           </div>

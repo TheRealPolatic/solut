@@ -12,12 +12,15 @@
     "heat": 61707,
     "home": 61708,
     "info": 61709,
-    "plus": 61710,
-    "rainfall": 61711,
-    "search": 61712,
-    "smog": 61713,
-    "tornado": 61714,
-    "upload": 61715,
-    "user": 61716,
-    "wildfire": 61717
+    "new": 61710,
+    "plus": 61711,
+    "rainfall": 61712,
+    "search": 61713,
+    "smog": 61714,
+    "top": 61715,
+    "tornado": 61716,
+    "trending": 61717,
+    "upload": 61718,
+    "user": 61719,
+    "wildfire": 61720
 }
