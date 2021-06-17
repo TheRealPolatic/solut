@@ -47,7 +47,11 @@
 
 <script>
 export default {
-  async asyncData({ params, store, redirect }) {
+  async asyncData({ params, store }) {
+    // Set categories in state
+    store.dispatch('category/fetchCategories')
+    const categories = store.state.category.categories
+
     // Fetching solution data
     const solution = await store.dispatch('solution/fetchSolution', params.solution)
 
@@ -55,10 +59,6 @@ export default {
     if (solution === undefined) {
       return redirect('/timeline')
     }
-
-    // Set categories in state
-    store.dispatch('category/fetchCategories')
-    const categories = store.state.category.categories
 
     // Fetching author data
     const author = await store.dispatch('user/fetchUser', solution.userId)

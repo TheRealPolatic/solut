@@ -20,6 +20,7 @@
           <div class="text-darker-grey text-xs">[user data]</div>
         </div>
       </div>
+      <CreateImpactModal :solution="solution" />
     </div>
   </div>
 </template>
