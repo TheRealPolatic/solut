@@ -89,7 +89,7 @@ export default {
       solution.impactUsers.push({ userId: 'aQpEp19xPSXZBqQ4JdIe', impacted: this.count, created: Date.now() })
       const updateValues = { solutionId: currentSolution.id, updatedSolution: solution }
       this.$store.dispatch('solution/updateSolution', updateValues)
-      close()
+      this.close()
     },
   },
 }
