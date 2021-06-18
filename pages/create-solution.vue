@@ -9,8 +9,6 @@
           <p>Submit</p>
         </div>
       </div> -->
-
-      <!-- <CreateImpactModal /> -->
     </transition>
   </div>
 </template>
@@ -100,6 +98,7 @@ export default {
           })
           Promise.all(actions).then((data) => {
             firestore.collection('solutions').doc(id).update({ steps: data })
+            this.$router.push('/timeline')
           })
         })
         .catch((error) => {

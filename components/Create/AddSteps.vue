@@ -126,6 +126,7 @@
         </div>
       </div>
     </vue-bottom-sheet>
+    <CreateImpactModal />
   </div>
 </template>
 

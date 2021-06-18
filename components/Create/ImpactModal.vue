@@ -1,7 +1,7 @@
 <template>
   <!-- Add new step modal -->
   <div>
-    <vue-bottom-sheet ref="addstep" max-height="100%">
+    <vue-bottom-sheet ref="modal" max-height="100%">
       <div class="sheet-wrapper mx-4">
         <div class="flex justify-between items-center">
           <div class="w-10 h-10"></div>
@@ -19,7 +19,7 @@
           <p class="text-center">Estimate how many <span class="text-primary font-bold">people</span> did benefit from your solution.</p>
 
           <div class="flex mb-4 mt-6 justify-between">
-            <div class="rounded-full bg-primary w-12 h-12 flex justify-center items-center">
+            <div class="rounded-full bg-primary w-12 h-12 flex justify-center items-center" :class="count ? {} : 'opacity-40'" @click="count ? count-- : {}">
               <i class="icon icon-chevron-left text-white"></i>
             </div>
             <input
@@ -43,15 +43,12 @@
         <div
           :class="count ? 'bg-primary text-white ' : 'bg-primary text-white opacity-40'"
           class="rounded-lg w-full h-14 flex items-center justify-center my-8 cursor-pointer"
-          @click="submitImpact"
+          @click="count ? submitImpact(solution) : {}"
         >
           <p>Submit impact</p>
         </div>
       </div>
     </vue-bottom-sheet>
-    <div class="bg-primary text-white rounded-lg w-full h-14 flex items-center justify-center my-8 cursor-pointer" @click="open">
-      <p>Submit impact</p>
-    </div>
   </div>
 </template>
 
@@ -73,13 +70,19 @@ export default {
       this.interval = false
     },
     open() {
-      this.$refs.addstep.open()
+      this.$refs.modal.open()
     },
     close() {
-      this.$refs.addstep.close()
+      this.$refs.modal.close()
     },
     submitImpact() {
-      // todo
+      console.log(`Impacted ${this.count} users`)
+      //   const solution = {}
+      //   solution.impactUsers = currentSolution.impactUsers
+      //   solution.impactUsers.push({ userId: 'useridvandecurrentuser', impacted: this.count, created: Date.now() })
+      //   const updateValues = { solutionId: currentSolution.id, updatedSolution: solution }
+
+      // this.$store.dispatch('solution/updateSolution', { updateValues })
     },
   },
 }
