@@ -54,6 +54,14 @@
 
 <script>
 export default {
+  props: {
+    solution: {
+      type: Object,
+      default() {
+        return {}
+      },
+    },
+  },
   data() {
     return {
       count: 0,
@@ -75,14 +83,13 @@ export default {
     close() {
       this.$refs.modal.close()
     },
-    submitImpact() {
-      console.log(`Impacted ${this.count} users`)
-      //   const solution = {}
-      //   solution.impactUsers = currentSolution.impactUsers
-      //   solution.impactUsers.push({ userId: 'useridvandecurrentuser', impacted: this.count, created: Date.now() })
-      //   const updateValues = { solutionId: currentSolution.id, updatedSolution: solution }
-
-      // this.$store.dispatch('solution/updateSolution', { updateValues })
+    submitImpact(currentSolution) {
+      const solution = {}
+      solution.impactUsers = currentSolution.impactUsers
+      solution.impactUsers.push({ userId: 'aQpEp19xPSXZBqQ4JdIe', impacted: this.count, created: Date.now() })
+      const updateValues = { solutionId: currentSolution.id, updatedSolution: solution }
+      this.$store.dispatch('solution/updateSolution', updateValues)
+      close()
     },
   },
 }

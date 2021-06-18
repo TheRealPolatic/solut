@@ -30,7 +30,7 @@
             </span>
             <h2 class="text-lg font-semibold mb-2">Step {{ step.rank }}</h2>
             <p>{{ step.description }}</p>
-            <img v-if="step.image" :src="step.image" :alt="'image step ' + step.rank" class="rounded-16 mt-6 mb-3" />
+            <img v-if="step.stepImage" :src="step.stepImage" :alt="'image step ' + step.rank" class="rounded-16 mt-6 mb-3" />
           </li>
           <li class="mb-6">
             <span class="absolute flex items-center -ml-8 -mt-1 rounded-full h-8 w-8 mr-3 bg-grey">
@@ -47,7 +47,11 @@
 
 <script>
 export default {
-  async asyncData({ params, store, redirect }) {
+  async asyncData({ params, store }) {
+    // Set categories in state
+    store.dispatch('category/fetchCategories')
+    const categories = store.state.category.categories
+
     // Fetching solution data
     const solution = await store.dispatch('solution/fetchSolution', params.solution)
 
@@ -55,10 +59,6 @@ export default {
     if (solution === undefined) {
       return redirect('/timeline')
     }
-
-    // Set categories in state
-    store.dispatch('category/fetchCategories')
-    const categories = store.state.category.categories
 
     // Fetching author data
     const author = await store.dispatch('user/fetchUser', solution.userId)
