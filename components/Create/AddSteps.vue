@@ -58,7 +58,7 @@
         <p>Previous step</p>
       </div>
       <div
-        @click="addSteps"
+        @click="steps.length ? addSteps() : {}"
         :class="{ 'opacity-40': !steps.length }"
         class="bg-primary text-white rounded-xl w-40 h-14 flex items-center justify-center mb-8 cursor-pointer"
       >
@@ -134,10 +134,11 @@
 export default {
   data() {
     return {
-      currentStep: { 'description': '', 'stepImage': [] },
+      currentStep: { 'description': '', 'stepImage': [], 'rank': 1 },
       steps: [],
       images: [],
       maxLength: 250,
+      index: 2,
     }
   },
   methods: {
@@ -168,7 +169,8 @@ export default {
     },
     addStep(value, fieldType) {
       fieldType.push(value)
-      this.currentStep = { 'description': '', 'stepImage': [] }
+      this.currentStep = { 'description': '', 'stepImage': [], 'rank': this.index }
+      this.index++
       this.close()
     },
     addSteps() {

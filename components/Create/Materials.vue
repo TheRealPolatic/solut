@@ -78,9 +78,9 @@
           <p>Previous step</p>
         </div>
         <div
-          @click="addMaterials"
-          :class="materials.length >= 1 || tools.length >= 1 ? 'bg-primary text-white' : 'bg-primary text-white opacity-40'"
-          class="rounded-xl w-40 h-14 flex items-center justify-center mb-8 cursor-pointer"
+          @click="valid ? addMaterials() : {}"
+          :class="materials.length >= 1 || tools.length >= 1 ? '' : 'opacity-40'"
+          class="bg-primary text-white rounded-xl w-40 h-14 flex items-center justify-center mb-8 cursor-pointer"
         >
           <p>Next step</p>
         </div>
@@ -118,6 +118,11 @@ export default {
       }
 
       this.$emit('addMaterials', solutionData)
+    },
+  },
+  computed: {
+    valid: function () {
+      return this.materials.length >= 1 || this.tools.length >= 1
     },
   },
 }

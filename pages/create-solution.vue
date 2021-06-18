@@ -41,12 +41,16 @@ export default {
     uploadSolution() {
       console.log(this.solution)
 
+      // add static key impactuser
+      // add own userId to impactUsers
       const postData = {
         title: this.solution.title,
         introduction: this.solution.introduction,
         categories: this.solution.categories,
         materials: this.solution.materials,
         tools: this.solution.tools,
+        impactUsers: [],
+        userId: 'hierdecurrentuserIDuitdevuexstore',
       }
       let id
       let ext
@@ -71,16 +75,17 @@ export default {
           return storage.ref(`solutions/${id}${ext}`).getDownloadURL()
         })
         .then((url) => {
-          return firestore.collection('solutions').doc(id).update({ imageUrl: url })
+          return firestore.collection('solutions').doc(id).update({ coverImage: url })
         })
         .then(async () => {
           // https://stackoverflow.com/questions/52873516/vue-js-returns-ob-observer-data-instead-of-my-array-of-objects
           let steps = JSON.parse(JSON.stringify(this.solution.steps))
 
-          let actions = steps.map((step) => {
+          let actions = steps.map((step, index) => {
             return new Promise(async (resolve) => {
               let stepData = {
                 'description': step.description,
+                'rank': step.rank,
               }
               if (step.stepImage.length) {
                 const filename = step.stepImage[0].name
@@ -99,6 +104,7 @@ export default {
           Promise.all(actions).then((data) => {
             firestore.collection('solutions').doc(id).update({ steps: data })
             this.$router.push('/timeline')
+            // todo redirect to the posted solution
           })
         })
         .catch((error) => {

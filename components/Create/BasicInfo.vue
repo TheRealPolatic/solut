@@ -21,7 +21,7 @@
     <!-- Title input -->
     <div class="mt-6 form-group" :class="{ 'form-group--error': $v.form.title.$error }">
       <div class="flex justify-between">
-        <label class="font-semibold text-sm">Title</label>
+        <label class="font-semibold text-sm">Title *</label>
         <p :class="form.title.length == titleMax ? 'text-red-500' : 'text-dark opacity-40'" class="text-sm mt-2">{{ `${form.title.length} / ${titleMax}` }}</p>
       </div>
       <input
@@ -35,7 +35,7 @@
     <!-- Introduction textarea -->
     <div class="mt-6">
       <div class="flex justify-between">
-        <label class="font-semibold text-sm">Introduction</label>
+        <label class="font-semibold text-sm">Introduction *</label>
         <p :class="form.introduction.length == introductionMax ? 'text-red-500' : 'text-dark opacity-40'" class="text-sm">
           {{ `${form.introduction.length} / ${introductionMax}` }}
         </p>
@@ -57,7 +57,7 @@
 
     <!-- Cover image uploadfield -->
     <div class="my-4">
-      <label class="font-semibold text-sm">Cover image</label>
+      <label class="font-semibold text-sm">Cover image *</label>
       <div class="flex justify-center items-center relative mt-2">
         <div @click="resetImg" class="h-6 w-6 rounded-full absolute right-2 top-2 bg-white flex justify-center items-center">
           <i class="icon icon-close"></i>
@@ -86,8 +86,8 @@
 
     <!-- Next step button -->
     <div
-      @click="addBasicInfo"
-      :class="form.introduction && form.title ? 'bg-primary text-white ' : 'bg-primary text-white opacity-40'"
+      @click="form.introduction && form.title && form.images.length ? addBasicInfo() : {}"
+      :class="form.introduction && form.title && form.images.length ? 'bg-primary text-white ' : 'bg-primary text-white opacity-40'"
       class="rounded-lg w-full h-14 flex items-center justify-center mb-8 cursor-pointer"
     >
       <p>Next step</p>
