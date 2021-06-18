@@ -34,6 +34,6 @@ export default {
     return firestore.collection('solutions').add(solution)
   },
   updateSolution(solutionId, updatedSolution) {
-    return firestore.collection('solution').doc(solutionId).update(updatedSolution)
+    return firestore.collection('solutions').doc(solutionId).update(updatedSolution)
   },
 }

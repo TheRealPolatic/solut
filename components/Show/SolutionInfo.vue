@@ -20,7 +20,10 @@
           <div class="text-darker-grey text-xs">[user data]</div>
         </div>
       </div>
-      <CreateImpactModal :solution="solution" />
+      <div class="bg-primary text-white rounded-12 w-full h-14 flex items-center justify-center mt-8 cursor-pointer" @click="openImpactModal">
+        <p>I've used this solution</p>
+      </div>
+      <CreateImpactModal ref="impactModal" :solution="solution" />
     </div>
   </div>
 </template>
@@ -33,6 +36,11 @@ export default {
       default() {
         return {}
       },
+    },
+  },
+  methods: {
+    openImpactModal: function () {
+      this.$refs.impactModal.open()
     },
   },
 }

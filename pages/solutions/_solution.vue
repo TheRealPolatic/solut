@@ -30,7 +30,7 @@
             </span>
             <h2 class="text-lg font-semibold mb-2">Step {{ step.rank }}</h2>
             <p>{{ step.description }}</p>
-            <img v-if="step.image" :src="step.image" :alt="'image step ' + step.rank" class="rounded-16 mt-6 mb-3" />
+            <img v-if="step.stepImage" :src="step.stepImage" :alt="'image step ' + step.rank" class="rounded-16 mt-6 mb-3" />
           </li>
           <li class="mb-6">
             <span class="absolute flex items-center -ml-8 -mt-1 rounded-full h-8 w-8 mr-3 bg-grey">

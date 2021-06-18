@@ -49,9 +49,6 @@
         </div>
       </div>
     </vue-bottom-sheet>
-    <div class="bg-primary text-white rounded-12 w-full h-14 flex items-center justify-center mt-8 cursor-pointer" @click="open">
-      <p>I've used this solution</p>
-    </div>
   </div>
 </template>
 
@@ -89,9 +86,10 @@ export default {
     submitImpact(currentSolution) {
       const solution = {}
       solution.impactUsers = currentSolution.impactUsers
-      solution.impactUsers.push({ userId: 'useridvandecurrentuser', impacted: this.count, created: Date.now() })
+      solution.impactUsers.push({ userId: 'aQpEp19xPSXZBqQ4JdIe', impacted: this.count, created: Date.now() })
       const updateValues = { solutionId: currentSolution.id, updatedSolution: solution }
-      // this.$store.dispatch('solution/updateSolution', { updateValues })
+      this.$store.dispatch('solution/updateSolution', updateValues)
+      close()
     },
   },
 }
