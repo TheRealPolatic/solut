@@ -103,7 +103,7 @@ export default {
           })
           Promise.all(actions).then((data) => {
             firestore.collection('solutions').doc(id).update({ steps: data })
-            this.$router.push('/timeline')
+            this.$router.push(`/solutions/${id}`)
             // todo redirect to the posted solution
           })
         })

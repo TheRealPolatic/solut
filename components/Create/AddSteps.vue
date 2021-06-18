@@ -40,7 +40,7 @@
       <div v-for="(step, index) in steps" :key="`step-${index}`" class="my-2 border h-14 rounded-2xl py-2 px-3 flex items-center">
         <p class="font-semibold mr-4">{{ index + 1 }}</p>
         <p class="text-gray-700 w-60 truncate">{{ step.description }}</p>
-        <i class="icon icon-edit cursor-pointer ml-4"></i>
+        <i class="icon icon-close cursor-pointer ml-4" @click="removeField(index, steps)"></i>
       </div>
     </div>
 
@@ -147,6 +147,9 @@ export default {
     },
     close() {
       this.$refs.addstep.close()
+    },
+    removeField(index, fieldType) {
+      fieldType.splice(index, 1)
     },
 
     inputFilter(newFile, oldFile, prevent) {
