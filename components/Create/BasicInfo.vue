@@ -19,7 +19,7 @@
     </div>
 
     <!-- Title input -->
-    <div class="mt-6">
+    <div class="mt-6 form-group" :class="{ 'form-group--error': $v.form.title.$error }">
       <div class="flex justify-between">
         <label class="font-semibold text-sm">Title</label>
         <p :class="form.title.length == titleMax ? 'text-red-500' : 'text-dark opacity-40'" class="text-sm mt-2">{{ `${form.title.length} / ${titleMax}` }}</p>
@@ -28,7 +28,7 @@
         class="border rounded-2xl w-full py-2 px-3 text-gray-700 leading-loose focus:outline-none"
         type="text"
         placeholder="Title"
-        v-model="form.title"
+        v-model="$v.form.title.$model"
         :maxlength="titleMax"
       />
     </div>
@@ -96,6 +96,8 @@
 </template>
 
 <script>
+import { required, maxLength, minLength, between } from 'vuelidate/lib/validators'
+
 export default {
   data() {
     return {
@@ -108,6 +110,17 @@ export default {
       introductionMax: 250,
       titleMax: 40,
     }
+  },
+  validations: {
+    form: {
+      title: {
+        required,
+        minLength: minLength(4),
+      },
+      introduction: {
+        between: between(20, 30),
+      },
+    },
   },
   methods: {
     addBasicInfo() {
