@@ -22,9 +22,9 @@ export default {
       const user = await store.dispatch('user/fetchUser', allSolutions[i].userId)
 
       // Check if the solution has been bookmarked
-      if (user.bookmarks.includes(allSolutions[i].id)) {
-        allSolutions[i].bookmarked = true
-      }
+      // if (user.bookmarks.includes(allSolutions[i].id)) {
+      //   allSolutions[i].bookmarked = true
+      // }
 
       allSolutions[i].user = user
 
