@@ -25,6 +25,7 @@ export default {
     // Catch all solutions in a variable
     const allSolutions = store.state.solution.solutions
 
+    // Collect current user data
     const currentUser = store.state.user.user
 
     // Loop through all the solutions and add the user to 'carddata'
@@ -46,6 +47,7 @@ export default {
 
       const impactedUsersLength = allSolutions[i].impactUsers.length
 
+      // Collect the last 5 users that have been impacted
       const impactedUsers = await allSolutions[i].impactUsers.slice(impactedUsersStart, impactedUsersLength)
       const lastFiveUsers = []
 
@@ -75,6 +77,7 @@ export default {
         }
       }
 
+      // Push category data to carddata
       allSolutions[i].allCategories = categoriesData
     }
 
