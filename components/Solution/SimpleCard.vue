@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-full pb-3/4 bg-red rounded-16 overflow-hidden mb-4">
+  <div class="relative w-full pb-3/4 bg-red rounded-16 overflow-hidden mb-4" @click="goToSolution(solution.id)">
     <div class="absolute h-full w-full p-4 z-10">
       <div class="relative flex h-full w-full">
         <div v-if="buttonright" class="absolute right-0 h-10 w-10 flex items-center justify-center border rounded-12 border-opacity-70 text-white">
@@ -35,6 +35,11 @@ export default {
       default() {
         return 'bookmark'
       },
+    },
+  },
+  methods: {
+    goToSolution(id) {
+      this.$router.push('/solutions/' + id)
     },
   },
 }
