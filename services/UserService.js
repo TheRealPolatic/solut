@@ -18,8 +18,7 @@ export default {
       })
   },
   createUser(user) {
-    // return firestore.collection('users').add(user)
-    return firestore.collection('users').doc(user.id).set({ bookmarks: [] })
+    return firestore.collection('users').add(user)
   },
   setUser(userId, data) {
     return firestore.collection('users').doc(userId).set(data)

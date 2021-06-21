@@ -13,6 +13,7 @@
 const moment = require('moment')
 
 export default {
+  middleware: 'private',
   async asyncData({ params, store }) {
     // Fetch all solutions
     await store.dispatch('solution/fetchSolutions')
@@ -24,16 +25,18 @@ export default {
     // Catch all solutions in a variable
     const allSolutions = store.state.solution.solutions
 
+    // Collect current user data
+    const currentUser = store.state.user.user
+
     // Loop through all the solutions and add the user to 'carddata'
     for (let i = 0; i < allSolutions.length; i += 1) {
       const user = await store.dispatch('user/fetchUser', allSolutions[i].userId)
-
-      // Check if the solution has been bookmarked
-      // if (user.bookmarks.includes(allSolutions[i].id)) {
-      //   allSolutions[i].bookmarked = true
-      // }
-
       allSolutions[i].user = user
+
+      //   Check if the solution has been bookmarked
+      if (currentUser.bookmarks.includes(allSolutions[i].id)) {
+        allSolutions[i].bookmarked = true
+      }
 
       // Find the 5 latest users who got impacted
       const impactedUsersStart = allSolutions[i].impactUsers.length - 5
@@ -44,6 +47,7 @@ export default {
 
       const impactedUsersLength = allSolutions[i].impactUsers.length
 
+      // Collect the last 5 users that have been impacted
       const impactedUsers = await allSolutions[i].impactUsers.slice(impactedUsersStart, impactedUsersLength)
       const lastFiveUsers = []
 
@@ -73,6 +77,7 @@ export default {
         }
       }
 
+      // Push category data to carddata
       allSolutions[i].allCategories = categoriesData
     }
 

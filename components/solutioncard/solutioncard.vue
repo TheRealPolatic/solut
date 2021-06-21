@@ -26,7 +26,7 @@
             class="w-12 h-12 rounded-2xl border-gray-400 flex items-center justify-center text-xl"
             :class="{ 'text-black bg-white border-0': carddata.bookmarked, 'text-white border': !carddata.bookmarked }"
           >
-            <i class="icon icon-bookmark"></i>
+            <i class="icon" :class="{ 'icon-bookmark-filled': carddata.bookmarked, 'icon-bookmark': !carddata.bookmarked }"></i>
           </div>
         </div>
       </div>
