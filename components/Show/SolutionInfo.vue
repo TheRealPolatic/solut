@@ -13,7 +13,7 @@
       </p>
       <div class="bg-grey flex items-center w-full h-16 px-4 mb-6 rounded-16">
         <div class="w-8 h-8 bg-black rounded-full overflow-hidden">
-          <img class="object-cover w-full" :src="solution.author.profileImage" alt="Profile image" />
+          <img class="object-cover w-full h-full" :src="solution.author.profileImage" alt="Profile image" />
         </div>
         <div class="pl-4">
           <div class="font-semibold text-sm">{{ solution.author.username }}</div>
