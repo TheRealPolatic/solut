@@ -47,7 +47,7 @@
 
 <script>
 export default {
-  async asyncData({ params, store }) {
+  async asyncData({ params, store, redirect }) {
     // Set categories in state
     store.dispatch('category/fetchCategories')
     const categories = store.state.category.categories
