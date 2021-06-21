@@ -25,16 +25,17 @@ export default {
     // Catch all solutions in a variable
     const allSolutions = store.state.solution.solutions
 
+    const currentUser = store.state.user.user
+
     // Loop through all the solutions and add the user to 'carddata'
     for (let i = 0; i < allSolutions.length; i += 1) {
       const user = await store.dispatch('user/fetchUser', allSolutions[i].userId)
-
-      // Check if the solution has been bookmarked
-      // if (user.bookmarks.includes(allSolutions[i].id)) {
-      //   allSolutions[i].bookmarked = true
-      // }
-
       allSolutions[i].user = user
+
+      //   Check if the solution has been bookmarked
+      if (currentUser.bookmarks.includes(allSolutions[i].id)) {
+        allSolutions[i].bookmarked = true
+      }
 
       // Find the 5 latest users who got impacted
       const impactedUsersStart = allSolutions[i].impactUsers.length - 5
