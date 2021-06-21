@@ -10,6 +10,7 @@
 
 <script>
 export default {
+  middleware: 'private',
   async asyncData({ params, store }) {
     // Fetch all solutions
     await store.dispatch('solution/fetchSolutions')

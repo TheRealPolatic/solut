@@ -18,7 +18,7 @@ export const mutations = {
 }
 
 export const actions = {
-  fetchUser({ commit }, userId) {
+  fetchCurrentUser({ commit }, userId) {
     return UserService.getUser(userId)
       .then((user) => {
         commit('SET_USER', user)
@@ -36,11 +36,11 @@ export const actions = {
         console.error(error)
       })
   },
-  signUpUser({ dispatch }, { email, password }) {
+  signUpUser({ dispatch }, { email, password, username }) {
     return auth
       .createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        dispatch('setUser', { userId: userCredential.user.uid, data: { bookmarks: [] } })
+        dispatch('setUser', { userId: userCredential.user.uid, data: { username, bookmarks: [] } })
       })
       .catch((error) => {
         console.error(error)

@@ -16,8 +16,8 @@
               <label for="email" class="block font-semibold text-dark">Username</label>
               <div class="mt-1">
                 <input
-                v-model="user.username"
-                  id="username"
+                id="username"
+                  v-model="user.username"
                   name="username"
                   type="username"
                   placeholder="john.doe"
@@ -31,8 +31,8 @@
               <label for="email" class="block font-semibold text-dark">Email</label>
               <div class="mt-1">
                 <input
-                  v-model="user.email"
                   id="email"
+                  v-model="user.email"
                   name="email"
                   type="email"
                   placeholder="johndoe@gmail.com"
@@ -45,22 +45,22 @@
               <label for="password" class="mb-0 block font-semibold text-dark">Password</label>
               <div class="relative mt-1">
                 <input
-                  v-model="user.password"
                   id="password"
+                  v-model="user.password"
                   name="password"
-                  v-bind:type="[showPassword ? 'text' : 'password']"
+                  :type="[showPassword ? 'text' : 'password']"
                   placeholder=""
                   required
                   class="h-14 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-2xl placeholder-gray-400 focus:outline-none focus:ring-gray-400 focus:border-gray-400"
                 />
-                <div @click="showPassword = !showPassword" class="absolute inset-y-0 right-0 flex items-center px-4 border-l text-xl">
-                  <i class="icon icon-eye" v-if="showPassword"></i>
+                <div class="absolute inset-y-0 right-0 flex items-center px-4 border-l text-xl" @click="showPassword = !showPassword">
+                  <i v-if="showPassword" class="icon icon-eye"></i>
                   <i v-else class="icon icon-eye-off"></i>
                 </div>
               </div>
             </div>
             <div>
-              <div @click="submit" class="py-3 w-full flex justify-center rounded-2xl text-white bg-primary">Register</div>
+              <div class="py-3 w-full flex justify-center rounded-2xl text-white bg-primary" @click="signUp">Register</div>
             </div>
           </form>
 
@@ -82,7 +82,8 @@
 import { auth } from '~/plugins/firebase.js'
 
 export default {
-    layout: 'nonavbar',
+  layout: 'nonavbar',
+  middleware: 'public',
   data() {
     return {
       showPassword: false,
@@ -119,6 +120,10 @@ export default {
           this.error = err.message
         })
     },
+    async signUp() {
+      await this.$store.dispatch('user/signUpUser', this.user)
+      await this.$router.push('/timeline')
+    }
   },
 }
 </script>
