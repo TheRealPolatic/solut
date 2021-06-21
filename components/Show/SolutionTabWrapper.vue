@@ -11,10 +11,10 @@
       >
         {{ tab.title }}
       </li>
-      <div class="w-1/2 h-1 bg-primary absolute bottom-0 transition transform translate-x-0" :class="{ 'translate-x-1/1': selectedIndex === 1 }"></div>
+      <div class="w-1/2 h-0.5 bg-primary absolute bottom-0 transition transform translate-x-0" :class="{ 'translate-x-1/1': selectedIndex === 1 }"></div>
     </ul>
 
-    <div class="px-6 py-12 bg-grey">
+    <div class="px-6 py-12">
       <slot />
     </div>
   </div>

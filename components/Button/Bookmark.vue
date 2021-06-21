@@ -1,7 +1,7 @@
 <template>
   <div
-    @click="toggleBookmark(solutionId)"
-    class="absolute right-0 h-10 w-10 flex items-center justify-center border rounded-12 border-opacity-70 bg-opacity-70 transition"
+    v-on:click.stop="toggleBookmark(solutionId)"
+    class="h-10 w-10 flex items-center justify-center border rounded-12 border-opacity-70 bg-opacity-70 transition"
     :class="setButtonColor(background)"
   >
     <i class="icon" :class="activeState ? 'icon-bookmark-filled' : 'icon-bookmark'"></i>
@@ -21,7 +21,7 @@ export default {
     background: {
       type: String,
       default() {
-        return 'white'
+        return 'dark'
       },
     },
   },
@@ -81,7 +81,7 @@ export default {
         this.activeState = false
       } else {
         for (let i = 0; i <= bookmarks.length; i++) {
-          if (0 === 0) {
+          if (i === bookmarks.length) {
             newBookmarks[i] = this.solutionId
           } else {
             newBookmarks[i] = bookmarks[i]
