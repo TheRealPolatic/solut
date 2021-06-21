@@ -1,6 +1,6 @@
 <template>
-  <div class="flex justify-between items-center">
-    <div v-if="solutionData.impactUsers" class="flex ml-2">
+  <div class="flex justify-between items-center" v-if="solutionData.impactUsers.length">
+    <div class="flex ml-2">
       <div
         v-for="impactUser in solutionData.impactUserArr"
         :key="impactUser.userId"
