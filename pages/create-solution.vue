@@ -1,22 +1,19 @@
 <template>
   <div>
+    <p @click="index = 3">Go to index 3</p>
+    <p>{{ $store.state.user.user.id }}</p>
     <transition name="slide-left" mode="out-in">
       <CreateBasicInfo v-if="index == 1" @addBasicInfo="addToSolution" />
       <CreateMaterials v-else-if="index == 2" @addMaterials="addToSolution" @back="index--" />
       <CreateAddSteps v-else-if="index == 3" @addSteps="addToSolution" @back="index--" />
-      <!-- <div v-else-if="index == 4">
-        <div @click="uploadSolution" class="rounded-xl w-40 h-14 flex items-center justify-center mb-8 cursor-pointer bg-primary text-white">
-          <p>Submit</p>
-        </div>
-      </div> -->
     </transition>
   </div>
 </template>
 
 <script>
 import { firestore, storage } from '../plugins/firebase'
-
 export default {
+  middleware: 'private',
   data() {
     return {
       solution: {},
@@ -50,7 +47,8 @@ export default {
         materials: this.solution.materials,
         tools: this.solution.tools,
         impactUsers: [],
-        userId: 'hierdecurrentuserIDuitdevuexstore',
+        userId: this.$store.state.user.user.id,
+        createdAt: Date.now(),
       }
       let id
       let ext
@@ -84,8 +82,8 @@ export default {
           let actions = steps.map((step, index) => {
             return new Promise(async (resolve) => {
               let stepData = {
-                'description': step.description,
-                'rank': step.rank,
+                description: step.description,
+                rank: step.rank,
               }
               if (step.stepImage.length) {
                 const filename = step.stepImage[0].name
@@ -104,7 +102,6 @@ export default {
           Promise.all(actions).then((data) => {
             firestore.collection('solutions').doc(id).update({ steps: data })
             this.$router.push(`/solutions/${id}`)
-            // todo redirect to the posted solution
           })
         })
         .catch((error) => {
