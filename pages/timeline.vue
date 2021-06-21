@@ -1,5 +1,6 @@
 <template>
-  <div class="m-4">
+  <div class="p-6">
+    <GeneralHeader title="Solutions" :class="'px-0'"></GeneralHeader>
     <impactgoal></impactgoal>
     <div class="flex mb-4 mt-4">
       <pill v-for="pill in pills" :key="pill.text" :pill="pill" :class="{ 'bg-primary text-white': pill.active }" />
