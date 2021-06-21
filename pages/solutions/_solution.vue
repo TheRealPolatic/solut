@@ -1,6 +1,6 @@
 <template>
   <div>
-    <GeneralHeader :background="headerBackground" title="Solution" :backbutton="true" :buttonright="headerButtonRight"></GeneralHeader>
+    <GeneralHeader :solution="solution" :background="headerBackground" title="Solution" :backbutton="true" :buttonright="headerButtonRight"></GeneralHeader>
     <div ref="solutionTopWrapper">
       <ShowSolutionTop :solution="solution" @scroll="handleScroll()"></ShowSolutionTop>
     </div>
@@ -47,9 +47,10 @@
 
 <script>
 export default {
+  middleware: 'public',
   async asyncData({ params, store, redirect }) {
     // Set categories in state
-    store.dispatch('category/fetchCategories')
+    await store.dispatch('category/fetchCategories')
     const categories = store.state.category.categories
 
     // Fetching solution data
@@ -65,7 +66,11 @@ export default {
     solution.author = author
 
     // Fetching impacted user data
-    const impactUsers = solution.impactUsers.slice(solution.impactUsers.length - 5, solution.impactUsers.length)
+    let impactUsersStart = solution.impactUsers.length - 5
+    if (impactUsersStart < 0) {
+      impactUsersStart = 0
+    }
+    const impactUsers = solution.impactUsers.slice(impactUsersStart, solution.impactUsers.length)
     const impactUserArr = []
 
     for (let i = 0; i < impactUsers.length; i++) {
@@ -94,6 +99,14 @@ export default {
       headerButtonRight: 'bookmark',
       slug: this.$route.params,
       solution: {},
+    }
+  },
+  created() {
+    // Checking if current user is author
+    if (this.$store.state.user.authenticated) {
+      if (this.$store.state.user.user.id === this.solution.author.id) {
+        this.headerButtonRight = 'edit'
+      }
     }
   },
   mounted() {

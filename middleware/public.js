@@ -7,7 +7,7 @@ export default async function ({ store, redirect }) {
     try {
       const idTokenResult = await auth.currentUser.getIdTokenResult(true)
       await store.dispatch('user/fetchCurrentUser', idTokenResult.claims.user_id)
-      return redirect('/timeline')
+      // return redirect('/timeline')
     } catch (error) {
       console.error(error)
     }
