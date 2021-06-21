@@ -1,7 +1,7 @@
 <template>
   <div class="w-full">
     <div class="p-6">
-      <div class="text-dark-grey uppercase mb-2">15 may, 2021</div>
+      <div class="text-dark-grey uppercase mb-2">{{ formatDate(solution.createdAt) }}</div>
       <h1 class="text-dark font-bold text-xl">How to construct your own green roof</h1>
       <ul class="list-none text-darker-grey my-2">
         <li v-for="category in solution.categories" :key="category.id">
@@ -29,6 +29,8 @@
 </template>
 
 <script>
+const moment = require('moment')
+
 export default {
   props: {
     solution: {
@@ -41,6 +43,12 @@ export default {
   methods: {
     openImpactModal: function () {
       this.$refs.impactModal.open()
+    },
+    formatDate(time) {
+      // Calculate timestamp
+      const timestamp = time.toDate()
+      const newDate = moment(timestamp).format('MMMM Do YYYY')
+      return newDate
     },
   },
 }
