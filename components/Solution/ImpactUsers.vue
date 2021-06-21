@@ -4,7 +4,8 @@
       <div
         v-for="impactUser in solutionData.impactUserArr"
         :key="impactUser.userId"
-        class="w-6 h-6 overflow-hidden bg-darker-grey rounded-full border-2 border-primary -ml-2"
+        class="w-6 h-6 overflow-hidden bg-darker-grey rounded-full border-2 -ml-2"
+        :class="'border-' + setBorderColor(textColor)"
       >
         <img v-if="impactUser.profileImage" class="object-cover w-full h-full" :src="impactUser.profileImage" alt="" />
       </div>
@@ -42,6 +43,15 @@ export default {
         count += solution.impactUsers[i].impacted
       }
       return count
+    },
+    setBorderColor(textColor) {
+      let borderColor = ''
+      if (textColor === 'dark') {
+        borderColor = 'white'
+      } else {
+        borderColor = 'primary'
+      }
+      return borderColor
     },
   },
 }
