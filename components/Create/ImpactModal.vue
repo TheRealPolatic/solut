@@ -84,10 +84,11 @@ export default {
       this.$refs.modal.close()
     },
     submitImpact(currentSolution) {
+      const user = this.$store.state.user.user
       const solution = {}
       solution.impactUsers = currentSolution.impactUsers
-      solution.impactUsers.push({ userId: 'aQpEp19xPSXZBqQ4JdIe', impacted: this.count, created: Date.now() })
-      const updateValues = { solutionId: currentSolution.id, updatedSolution: solution }
+      solution.impactUsers.push({ userId: user.id, impacted: this.count, createdAt: Date.now() })
+      const updateValues = { solutionId: currentSolution.id, data: solution }
       this.$store.dispatch('solution/updateSolution', updateValues)
       this.close()
     },
