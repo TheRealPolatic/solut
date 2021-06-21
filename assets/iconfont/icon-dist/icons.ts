@@ -1,6 +1,7 @@
 export type IconsId =
   | "add"
   | "blizzard"
+  | "bookmark-filled"
   | "bookmark"
   | "chevron-left"
   | "chevron-right"
@@ -33,6 +34,7 @@ export type IconsId =
 export type IconsKey =
   | "Add"
   | "Blizzard"
+  | "BookmarkFilled"
   | "Bookmark"
   | "ChevronLeft"
   | "ChevronRight"
@@ -65,6 +67,7 @@ export type IconsKey =
 export enum Icons {
   Add = "add",
   Blizzard = "blizzard",
+  BookmarkFilled = "bookmark-filled",
   Bookmark = "bookmark",
   ChevronLeft = "chevron-left",
   ChevronRight = "chevron-right",
@@ -98,32 +101,33 @@ export enum Icons {
 export const ICONS_CODEPOINTS: { [key in Icons]: string } = {
   [Icons.Add]: "61697",
   [Icons.Blizzard]: "61698",
-  [Icons.Bookmark]: "61699",
-  [Icons.ChevronLeft]: "61700",
-  [Icons.ChevronRight]: "61701",
-  [Icons.Close]: "61702",
-  [Icons.DottedLine]: "61703",
-  [Icons.Drought]: "61704",
-  [Icons.Dust]: "61705",
-  [Icons.Edit]: "61706",
-  [Icons.Envelope]: "61707",
-  [Icons.EyeOff]: "61708",
-  [Icons.Eye]: "61709",
-  [Icons.Flood]: "61710",
-  [Icons.Hail]: "61711",
-  [Icons.Heat]: "61712",
-  [Icons.Home]: "61713",
-  [Icons.Info]: "61714",
-  [Icons.Location]: "61715",
-  [Icons.New]: "61716",
-  [Icons.Plus]: "61717",
-  [Icons.Rainfall]: "61718",
-  [Icons.Search]: "61719",
-  [Icons.Smog]: "61720",
-  [Icons.Top]: "61721",
-  [Icons.Tornado]: "61722",
-  [Icons.Trending]: "61723",
-  [Icons.Upload]: "61724",
-  [Icons.User]: "61725",
-  [Icons.Wildfire]: "61726",
+  [Icons.BookmarkFilled]: "61699",
+  [Icons.Bookmark]: "61700",
+  [Icons.ChevronLeft]: "61701",
+  [Icons.ChevronRight]: "61702",
+  [Icons.Close]: "61703",
+  [Icons.DottedLine]: "61704",
+  [Icons.Drought]: "61705",
+  [Icons.Dust]: "61706",
+  [Icons.Edit]: "61707",
+  [Icons.Envelope]: "61708",
+  [Icons.EyeOff]: "61709",
+  [Icons.Eye]: "61710",
+  [Icons.Flood]: "61711",
+  [Icons.Hail]: "61712",
+  [Icons.Heat]: "61713",
+  [Icons.Home]: "61714",
+  [Icons.Info]: "61715",
+  [Icons.Location]: "61716",
+  [Icons.New]: "61717",
+  [Icons.Plus]: "61718",
+  [Icons.Rainfall]: "61719",
+  [Icons.Search]: "61720",
+  [Icons.Smog]: "61721",
+  [Icons.Top]: "61722",
+  [Icons.Tornado]: "61723",
+  [Icons.Trending]: "61724",
+  [Icons.Upload]: "61725",
+  [Icons.User]: "61726",
+  [Icons.Wildfire]: "61727",
 };
