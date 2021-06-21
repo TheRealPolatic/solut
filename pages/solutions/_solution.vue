@@ -24,13 +24,13 @@
       </ShowSolutionTab>
       <ShowSolutionTab title="Instructions">
         <ul class="border-dark-grey border-l pl-6">
-          <li v-for="step in sortOnRank(solution.steps)" :key="step.rank" class="mb-6">
+          <li v-for="(step, index) in sortOnRank(solution.steps)" :key="index" class="mb-6">
             <span class="absolute flex items-center -ml-8 -mt-1 rounded-full h-8 w-8 mr-3 bg-grey">
               <span class="flex rounded-full h-4 w-4 border-2 border-primary"></span>
             </span>
             <h2 class="text-lg font-semibold mb-2">Step {{ step.rank }}</h2>
             <p>{{ step.description }}</p>
-            <img v-if="step.stepImage" :src="step.stepImage" :alt="'image step ' + step.rank" class="rounded-16 mt-6 mb-3" />
+            <img v-if="step.stepImage" :src="step.stepImage" :alt="'image step ' + (index + 1)" class="rounded-16 mt-6 mb-3" />
           </li>
           <li class="mb-6">
             <span class="absolute flex items-center -ml-8 -mt-1 rounded-full h-8 w-8 mr-3 bg-grey">
@@ -47,7 +47,7 @@
 
 <script>
 export default {
-  async asyncData({ params, store }) {
+  async asyncData({ params, store, redirect }) {
     // Set categories in state
     store.dispatch('category/fetchCategories')
     const categories = store.state.category.categories

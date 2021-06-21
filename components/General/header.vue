@@ -1,6 +1,6 @@
 <template>
   <div class="pt-14">
-    <div class="w-full h-16 px-6 fixed top-0 z-50 transition" :class="[textColor(background), 'bg-' + background]">
+    <div class="w-full h-16 px-6 fixed top-0 z-50 transition left-0" :class="[textColor(background), 'bg-' + background]">
       <div class="w-full h-full relative flex items-center transition" :class="{ 'justify-center': backbutton }">
         <div
           v-if="backbutton"

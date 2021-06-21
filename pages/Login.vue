@@ -98,6 +98,7 @@
 <script>
 export default {
   layout: 'nonavbar',
+  middleware: 'public',
   data() {
     return {
       showPassword: false,
