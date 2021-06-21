@@ -11,7 +11,10 @@
           <i class="icon icon-chevron-left"></i>
         </div>
         <h1 class="font-bold" :class="{ 'text-xl': backbutton, 'text-2xl': !backbutton }">{{ title }}</h1>
-        <ButtonBookmark v-if="buttonright === 'bookmark'" :solutionId="solution.id" :background="background" />
+        <div v-if="buttonright === 'bookmark'" class="absolute right-0">
+          <ButtonBookmark :solutionId="solution.id" :background="background" />
+        </div>
+
         <div
           v-if="buttonright && buttonright != 'bookmark'"
           @click="clickButtonRight(buttonright, solution)"
@@ -74,26 +77,6 @@ export default {
     },
     goBack() {
       this.$router.go(-1)
-    },
-    clickButtonRight(func, currentSolution) {
-      if (func === 'bookmark') {
-        const currentUser = this.$store.state.user.user
-        let user = {}
-        let newBookmarks = []
-
-        if (currentUser.bookmarks.includes(currentSolution.id)) {
-          const index = currentUser.bookmarks.indexOf(currentSolution.id)
-          newBookmarks = currentUser.bookmarks.splice(index, index)
-        } else {
-          newBookmarks = currentUser.bookmarks.push(currentSolution.id)
-        }
-        console.log(newBookmarks)
-        // user.bookmarks = newBookmarks
-        const updateValues = { userId: currentUser.id, data: user }
-        this.$store.dispatch('user/updateUser', updateValues)
-      } else if (func === 'edit') {
-      } else {
-      }
     },
   },
 }
