@@ -8,7 +8,7 @@
     </div>
 
     <!-- Change user info -->
-    <form id="profile-form" @submit.prevent="submit">
+    <form id="profile-form" @submit.prevent="updateProfile(this.form.username, 'henk')">
       <!-- Image component -->
       <UserProfileAvatarInput v-model="form.avatar" :default-src="currentUser.profileImage"></UserProfileAvatarInput>
 
@@ -16,14 +16,10 @@
       <FormField :label="'Username'" :type="'text'" :value="currentUser.username" class="mt-8"></FormField>
       <!-- Email -->
       <FormField :label="'Email'" :type="'text'" :value="currentUser.email" class="mt-8"></FormField>
-      <!-- Location -->
-      <!-- <FormField :label="'Location'" :type="'text'" :value="'Henk'" class="mt-8"></FormField> -->
 
       <p class="mt-8" @click="changePassword()">Change password</p>
 
-      <NuxtLink to="/profile">
-        <Button @click="updateProfile()" :label="'Update profile'" class="mt-8"></Button>
-      </NuxtLink>
+      <Button :label="'Update profile'" class="mt-8"></Button>
     </form>
   </div>
 </template>
@@ -42,14 +38,14 @@ export default {
     return {
       form: {
         avatar: null,
-      },
-
-      newData: {
-        username: 'Jan',
-        email: 'jan@gmail.com',
+        username: 'test',
+        email: '',
       },
 
       currentUser: {},
+      // newData: {
+      //   username: '',
+      // },
     }
   },
   computed: {
@@ -60,12 +56,15 @@ export default {
   },
 
   methods: {
-    updateProfile() {
+    updateProfile(x, y) {
+      // console.log('test')
       const newUserInfo = {}
-      newUserInfo.username = 'Pietje'
-      newUserInfo.email = 'pietje@gmail.com'
+      newUserInfo.username = x
+      newUserInfo.email = y
+      // console.log(newUserInfo)
       const updateInfo = { userId: 'Zmkw90GkkEEGirej05LGqyG5dnJi', data: newUserInfo }
       this.$store.dispatch('user/updateUser', updateInfo)
+      this.$router.push('/profile')
     },
     changePassword() {
       auth
