@@ -9,11 +9,7 @@
     </div>
 
     <div class="w-full pb-7/10 bg-black rounded-2xl my-4 flex relative overflow-hidden" @click="openSolution(carddata.id)">
-      <img
-        src="https://images.pexels.com/photos/33041/antelope-canyon-lower-canyon-arizona.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-        alt=""
-        class="absolute top-0 left-0 w-full h-full object-cover"
-      />
+      <img :src="carddata.coverImage" alt="" class="absolute top-0 left-0 w-full h-full object-cover" />
       <div class="z-5 absolute top-0 left-0 h-full w-full bg-gradient-to-t from-black to-transparent opacity-50"></div>
       <div class="absolute bottom-0 z-10 p-4 flex item-end w-full">
         <div class="flex-column w-3/4 pr-1">
