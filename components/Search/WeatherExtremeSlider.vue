@@ -1,10 +1,10 @@
 <template>
   <div class="">
-    <div class="flex justify-between my-6">
+    <div class="flex justify-between mt-6">
       <h2 class="text-xl font-bold">Extreme heat</h2>
       <p class="text-sm font-semibold mt-1">View all</p>
     </div>
-    <div class="category-scrollbar flex w-full overflow-x-scroll overflow-y-hidden">
+    <div class="category-scrollbar w-screen flex overflow-x-scroll overflow-y-hidden">
       <SearchWeatherExtremeTile v-for="solution in solutions" :key="solution.title" :solution="solution" />
     </div>
 
