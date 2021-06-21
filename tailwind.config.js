@@ -11,7 +11,8 @@ module.exports = {
       },
       fontFamily: {
         inter: ['Inter', 'sans-serif'],
-      },fontSize: {
+      },
+      fontSize: {
         '2xl': '1.5rem',
         '3xl': '1.875rem',
         '4xl': '2.25rem',
@@ -30,6 +31,7 @@ module.exports = {
         '3/5': '60%',
         '4/5': '80%',
         '9/16': '56.25%',
+        '7/10': '70%',
       },
       borderRadius: {
         '4': '4px',
