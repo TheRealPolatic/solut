@@ -57,11 +57,9 @@ export default {
 
   methods: {
     updateProfile(x, y) {
-      // console.log('test')
       const newUserInfo = {}
       newUserInfo.username = x
       newUserInfo.email = y
-      // console.log(newUserInfo)
       const updateInfo = { userId: 'Zmkw90GkkEEGirej05LGqyG5dnJi', data: newUserInfo }
       this.$store.dispatch('user/updateUser', updateInfo)
       this.$router.push('/profile')
