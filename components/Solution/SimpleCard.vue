@@ -7,8 +7,8 @@
         </div>
         <div class="absolute bottom-0 text-white">
           <div class="font-semibold">{{ solution.title }}</div>
-          <div v-for="category in solution.categories" :key="category.id" class="font-light text-dark-grey text-xs">
-            {{ category }}
+          <div v-for="(category, index) in solution.categoryData" :key="category.id" class="font-light text-dark-grey text-xs inline">
+            <span v-if="index > 0" class="mx-1">•</span>{{ category.title }}
           </div>
         </div>
       </div>

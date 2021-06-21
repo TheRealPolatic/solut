@@ -6,7 +6,9 @@
       <ShowSolutionTab title="Bookmarked">
         <SolutionSimpleCard v-for="solution in solutions" :key="solution.id" :solution="solution" />
       </ShowSolutionTab>
-      <ShowSolutionTab title="My solutions"></ShowSolutionTab>
+      <ShowSolutionTab title="My solutions">
+        <SolutionSimpleCard v-for="solution in solutions" :key="solution.id" :solution="solution" />
+      </ShowSolutionTab>
     </ShowSolutionTabWrapper>
   </div>
 </template>
@@ -23,7 +25,6 @@ export default {
     const solutions = store.state.solution.solutions
 
     for (let x = 0; x < solutions.length; x++) {
-      console.log(solutions[x])
       // Setting category data in solution
       const categoriesData = []
       if (solutions[x].categories) {
@@ -35,7 +36,7 @@ export default {
           }
         }
       }
-      // solutions[x].categories = categoriesData
+      solutions[x].categoryData = categoriesData
     }
 
     return { solutions }
