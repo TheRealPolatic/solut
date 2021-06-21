@@ -22,7 +22,7 @@
       <p class="mt-8">Change password</p>
 
       <NuxtLink to="/profile">
-        <Button @click="submit" :label="'Update Account'" class="mt-8"></Button>
+        <Button @click="updateProfile()" :label="'Update Account'" class="mt-8"></Button>
       </NuxtLink>
     </form>
   </div>
@@ -34,12 +34,17 @@ import { mapState } from 'vuex'
 export default {
   async asyncData({ params, store }) {
     // Set current user
-    await store.dispatch('user/fetchCurrentUser', 'zs2CBMbd85TPwMjz4A7R0nD1XJrR')
+    await store.dispatch('user/fetchCurrentUser', currentUid)
   },
   data() {
     return {
       form: {
         avatar: null,
+      },
+
+      newData: {
+        username: 'Jan',
+        email: 'jan@gmail.com',
       },
 
       currentUser: {},
@@ -50,6 +55,12 @@ export default {
   },
   created() {
     this.currentUser = this.user
+  },
+
+  methods: {
+    updateProfile() {
+      this.$store.dispatch('users/updateUser', this.newData)
+    },
   },
 }
 </script>
