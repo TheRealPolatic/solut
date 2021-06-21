@@ -6,7 +6,7 @@
         :key="impactUser.userId"
         class="w-6 h-6 overflow-hidden bg-darker-grey rounded-full border-2 border-primary -ml-2"
       >
-        <img class="object-cover w-full h-full" :src="impactUser.profileImage" alt="" />
+        <img v-if="impactUser.profileImage" class="object-cover w-full h-full" :src="impactUser.profileImage" alt="" />
       </div>
     </div>
     <div class="text-xs" :class="'text-' + textColor">
