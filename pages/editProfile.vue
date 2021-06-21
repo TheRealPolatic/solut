@@ -3,7 +3,7 @@
     <!-- Top bar -->
     <div class="flex justify-between">
       <NuxtLink to="/profile"><ButtonBackButton class="w-1/6" :icon="'icon-chevron-left'"></ButtonBackButton></NuxtLink>
-      <h1 class="text-center text-xl font-bold mt-2">Edit account</h1>
+      <h1 class="text-center text-xl font-bold mt-2">Edit profile</h1>
       <div class="w-1/6"></div>
     </div>
 
@@ -19,10 +19,10 @@
       <!-- Location -->
       <!-- <FormField :label="'Location'" :type="'text'" :value="'Henk'" class="mt-8"></FormField> -->
 
-      <p class="mt-8">Change password</p>
+      <p class="mt-8" @click="changePassword()">Change password</p>
 
       <NuxtLink to="/profile">
-        <Button @click="updateProfile()" :label="'Update Account'" class="mt-8"></Button>
+        <Button @click="updateProfile()" :label="'Update profile'" class="mt-8"></Button>
       </NuxtLink>
     </form>
   </div>
@@ -30,9 +30,11 @@
 
 <script>
 import { mapState } from 'vuex'
+import { auth } from '~/plugins/firebase.js'
 
 export default {
   async asyncData({ params, store }) {
+    const currentUid = 'Zmkw90GkkEEGirej05LGqyG5dnJi'
     // Set current user
     await store.dispatch('user/fetchCurrentUser', currentUid)
   },
@@ -59,7 +61,25 @@ export default {
 
   methods: {
     updateProfile() {
-      this.$store.dispatch('users/updateUser', this.newData)
+      const newUserInfo = {}
+      newUserInfo.username = 'Pietje'
+      newUserInfo.email = 'pietje@gmail.com'
+      const updateInfo = { userId: 'Zmkw90GkkEEGirej05LGqyG5dnJi', data: newUserInfo }
+      this.$store.dispatch('user/updateUser', updateInfo)
+    },
+    changePassword() {
+      auth
+        .sendPasswordResetEmail(this.currentUser.email)
+        .then(() => {
+          // Password reset email sent!
+          // ..
+          console.log('Email verstuurd')
+        })
+        .catch((error) => {
+          var errorCode = error.code
+          var errorMessage = error.message
+          // ..
+        })
     },
   },
 }
