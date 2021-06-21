@@ -27,9 +27,9 @@
 export default {
   props: {
     userinfo: {
-      type: Array,
+      type: Object,
       default() {
-        return []
+        return {}
       },
     },
   },

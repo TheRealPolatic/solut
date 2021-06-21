@@ -1,7 +1,7 @@
 <template>
-  <div class="h-14 w-full bg-primary text-white font-semibold rounded-xl flex">
+  <button class="h-14 w-full bg-primary text-white font-semibold rounded-xl flex">
     <p class="m-auto">{{ label }}</p>
-  </div>
+  </button>
 </template>
 
 <script>
