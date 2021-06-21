@@ -15,16 +15,16 @@
       />
     </div>
 
-    <div class="category-scrollbar flex w-full overflow-x-scroll overflow-y-hidden">
-      <SearchCategorySlider @toggle-category="toggleCategory" :selectedCategory="selectedCategory" />
-    </div>
+    <SearchCategorySlider @toggle-category="toggleCategory" :selectedCategory="selectedCategory" />
 
     <div v-if="selectedCategory !== ''">
       <SearchSolutionCard v-for="solution in filteredCategory" :key="solution.title" :solution="solution" />
     </div>
 
     <div v-else-if="searchValue == ''">
-      <SearchWeatherExtremeSlider v-for="solution in solutions" :key="solution.title" :solution="solution" />
+      <div class="">
+        <SearchWeatherExtremeSlider />
+      </div>
     </div>
 
     <div v-else-if="searchValue !== ''">
@@ -40,17 +40,23 @@ export default {
   data() {
     return {
       categories: [],
-      // solutions: [
-      //   {
-      //     title: 'Sustainable beach',
-      //     categories: ["fsfdf", "fff"],
-      //     coverImage: 'sustainable.jpg',
-      //     category: 'Extreme Heat',
-      //   },
-      // ],
       searchValue: '',
       selectedCategory: '',
     }
+  },
+  props: {
+    solution: {
+      type: Object,
+      default() {
+        return {}
+      },
+    },
+    category: {
+      type: Object,
+      default() {
+        return {}
+      },
+    },
   },
   computed: {
     ...mapState('solution', ['solutions']),
