@@ -134,12 +134,15 @@ export default {
     },
     handleScroll() {
       window.onscroll = () => {
-        const bottomOfElementReached = window.pageYOffset >= this.$refs.solutionTopWrapper.offsetHeight
+        const currentPath = this.$router.currentRoute.path.toString()
+        if (currentPath.includes('/solutions/')) {
+          const bottomOfElementReached = window.pageYOffset >= this.$refs.solutionTopWrapper.offsetHeight
 
-        if (bottomOfElementReached) {
-          this.headerBackground = 'white'
-        } else {
-          this.headerBackground = 'primary'
+          if (bottomOfElementReached) {
+            this.headerBackground = 'white'
+          } else {
+            this.headerBackground = 'primary'
+          }
         }
       }
     },
