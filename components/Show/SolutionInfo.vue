@@ -1,7 +1,7 @@
 <template>
   <div class="w-full">
     <div class="p-6">
-      <div class="text-dark-grey uppercase mb-2">{{ formatDate(solution.createdAt) }}</div>
+      <div class="text-dark-grey mb-2">{{ formatDate(solution.createdAt) }}</div>
       <h1 class="text-dark font-bold text-xl">How to construct your own green roof</h1>
       <ul class="list-none text-darker-grey my-2">
         <li v-for="category in solution.categories" :key="category.id">
@@ -23,7 +23,7 @@
       <div class="bg-primary text-white rounded-12 w-full h-14 flex items-center justify-center mt-8 cursor-pointer" @click="openImpactModal">
         <p>I've used this solution</p>
       </div>
-      <CreateImpactModal ref="impactModal" :solution="solution" />
+      <ShowImpactModal ref="impactModal" :solution="solution" />
     </div>
   </div>
 </template>
@@ -42,14 +42,16 @@ export default {
   },
   methods: {
     openImpactModal: function () {
-      this.$refs.impactModal.open()
+      if (this.$store.state.user.authenticated) {
+        this.$refs.impactModal.open()
+      } else {
+        this.$router.push('/login')
+      }
     },
     formatDate(time) {
       // Calculate timestamp
-      //   const timestamp = time.toDate()
-      //   const newDate = moment(timestamp).format('MMMM Do YYYY')
-      //   return newDate
-      return '21 juni'
+      const newDate = moment(time).format('MMMM Do YYYY')
+      return newDate
     },
   },
 }

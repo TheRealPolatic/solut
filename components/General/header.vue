@@ -10,9 +10,14 @@
         >
           <i class="icon icon-chevron-left"></i>
         </div>
-        <h1 class="font-bold" :class="{ 'text-xl': backbutton, 'text-3xl': !backbutton }">{{ title }}</h1>
+        <h1 class="font-bold" :class="{ 'text-xl': backbutton, 'text-2xl': !backbutton }">{{ title }}</h1>
+        <div v-if="buttonright === 'bookmark'" class="absolute right-0">
+          <ButtonBookmark :solutionId="solution.id" :background="background" />
+        </div>
+
         <div
-          v-if="buttonright"
+          v-if="buttonright && buttonright != 'bookmark'"
+          @click="clickButtonRight(buttonright, solution)"
           class="absolute right-0 h-10 w-10 flex items-center justify-center border rounded-12 border-opacity-70 transition"
           :class="buttonColor(background)"
         >
@@ -26,6 +31,12 @@
 <script>
 export default {
   props: {
+    solution: {
+      type: Object,
+      default() {
+        return {}
+      },
+    },
     background: {
       type: String,
       default() {
