@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     openSolution: function (id) {
-      //   this.$router.push('/solutions/' + id)
+      this.$router.push('/solutions/' + id)
     },
     bookmark: function (id) {
       const currentUser = this.$store.state.user.user
