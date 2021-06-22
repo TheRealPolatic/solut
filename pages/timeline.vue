@@ -34,7 +34,7 @@
 
             <b>Race to resilience</b>
             <p>
-              The app is linked to the race to resilience. This is a global campaign set up by the UN, in which Caeli participates. It seeks to take the step to
+              The app is linked to the race to resilience. This is a global campaign set up by the UN, in which Solut participates. It seeks to take the step to
               make humans more resilient to climate extremes.
             </p>
 
