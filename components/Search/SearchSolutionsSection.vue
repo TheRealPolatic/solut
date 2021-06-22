@@ -23,7 +23,7 @@
 
     <div v-else-if="searchValue == ''">
       <div class="">
-        <SearchWeatherExtremeSlider />
+        <SearchWeatherExtremeSlider v-for="category in categories" :key="category.id" :solutions="selectCategory(category.id)" :category="category" />
       </div>
     </div>
 
@@ -39,7 +39,6 @@ import { mapState } from 'vuex'
 export default {
   data() {
     return {
-      categories: [],
       searchValue: '',
       selectedCategory: '',
     }
@@ -60,6 +59,7 @@ export default {
   },
   computed: {
     ...mapState('solution', ['solutions']),
+    ...mapState('category', ['categories']),
     filteredName() {
       let tempSolutions = this.solutions
 
@@ -82,6 +82,7 @@ export default {
   created() {
     this.$store.dispatch('category/fetchCategories')
     this.$store.dispatch('solution/fetchSolutions')
+    console.log(this.categories)
   },
   methods: {
     toggleCategory(e) {
@@ -90,6 +91,16 @@ export default {
       } else {
         this.selectedCategory = e.id
       }
+    },
+    selectCategory(categoryId) {
+      const allSolutions = this.solutions
+      const selectedSolutions = []
+      for (let index = 0; index < allSolutions.length; index++) {
+        if (allSolutions[index].categories.includes(categoryId)) {
+          selectedSolutions.push(allSolutions[index])
+        }
+      }
+      return selectedSolutions
     },
   },
 }

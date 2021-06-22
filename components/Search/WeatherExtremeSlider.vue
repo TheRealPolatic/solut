@@ -1,11 +1,11 @@
 <template>
   <div class="">
     <div class="flex justify-between mt-6">
-      <h2 class="text-xl font-bold">Extreme heat</h2>
+      <h2 class="text-xl font-bold">{{ category.title }}</h2>
       <p class="text-sm font-semibold mt-1">View all</p>
     </div>
-    <div class="category-scrollbar w-screen flex overflow-x-scroll overflow-y-hidden">
-      <SearchWeatherExtremeTile v-for="solution in solutions" :key="solution.title" :solution="solution" />
+    <div class="category-scrollbar flex overflow-x-scroll overflow-y-hidden">
+      <SearchWeatherExtremeTile v-for="solution in solutions" :key="solution.id" :solution="solution" />
     </div>
 
     <!-- <div class="my-6">
@@ -22,12 +22,20 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
 export default {
-  computed: {
-    ...mapState('solution', ['solutions']),
-    ...mapState('category', ['categories']),
+  props: {
+    solutions: {
+      type: Array,
+      default() {
+        return []
+      },
+    },
+    category: {
+      type: Object,
+      default() {
+        return {}
+      },
+    },
   },
 }
 </script>
