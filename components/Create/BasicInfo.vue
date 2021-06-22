@@ -19,16 +19,18 @@
     </div>
 
     <!-- Title input -->
-    <div class="mt-6 form-group" :class="{ 'form-group--error': $v.form.title.$error }">
+    <div class="mt-6">
       <div class="flex justify-between">
         <label class="font-semibold text-sm">Title *</label>
-        <p :class="form.title.length == titleMax ? 'text-red-500' : 'text-dark opacity-40'" class="text-sm mt-2">{{ `${form.title.length} / ${titleMax}` }}</p>
+        <p :class="solution.title.length == titleMax ? 'text-red-500' : 'text-dark opacity-40'" class="text-sm mt-2">
+          {{ `${solution.title.length} / ${titleMax}` }}
+        </p>
       </div>
       <input
         class="border rounded-2xl w-full py-2 px-3 text-gray-700 leading-loose focus:outline-none"
         type="text"
         placeholder="Title"
-        v-model="$v.form.title.$model"
+        v-model="solution.title"
         :maxlength="titleMax"
       />
     </div>
@@ -36,8 +38,8 @@
     <div class="mt-6">
       <div class="flex justify-between">
         <label class="font-semibold text-sm">Introduction *</label>
-        <p :class="form.introduction.length == introductionMax ? 'text-red-500' : 'text-dark opacity-40'" class="text-sm">
-          {{ `${form.introduction.length} / ${introductionMax}` }}
+        <p :class="solution.introduction.length == introductionMax ? 'text-red-500' : 'text-dark opacity-40'" class="text-sm">
+          {{ `${solution.introduction.length} / ${introductionMax}` }}
         </p>
       </div>
 
@@ -45,7 +47,7 @@
         class="mt-2 border rounded-2xl w-full py-2 px-3 text-gray-700 leading-loose h-56 focus:outline-none"
         type="text"
         placeholder="Type a quick introduction about the solution"
-        v-model="form.introduction"
+        v-model="solution.introduction"
         :maxlength="introductionMax"
       />
     </div>
@@ -64,8 +66,8 @@
         </div>
         <file-upload
           ref="upload"
-          v-model="form.images"
-          v-if="form.images.length == 0"
+          v-model="solution.images"
+          v-if="solution.images.length == 0"
           @input-filter="inputFilter"
           accept="image/*"
           :size="1024 * 1024"
@@ -79,15 +81,15 @@
       </div>
 
       <!--  Preview uploaded image -->
-      <div class="w-full" v-for="image in form.images" :key="image.blob">
+      <div class="w-full" v-for="image in solution.images" :key="image.blob">
         <div v-if="image.blob" class="preview h-40 rounded-xl overflow-hidden" :style="{ 'background-image': `url(${image.blob})` }"></div>
       </div>
     </div>
 
     <!-- Next step button -->
     <div
-      @click="form.introduction && form.title && form.images.length ? addBasicInfo() : {}"
-      :class="form.introduction && form.title && form.images.length ? 'bg-primary text-white ' : 'bg-primary text-white opacity-40'"
+      @click="solution.introduction && solution.title && solution.images.length ? addBasicInfo() : {}"
+      :class="solution.introduction && solution.title && solution.images.length ? 'bg-primary text-white ' : 'bg-primary text-white opacity-40'"
       class="rounded-lg w-full h-14 flex items-center justify-center mb-8 cursor-pointer"
     >
       <p>Next step</p>
@@ -99,44 +101,42 @@
 import { required, maxLength, minLength, between } from 'vuelidate/lib/validators'
 
 export default {
+  props: {
+    solution: {
+      type: Object,
+      default() {
+        return {}
+      },
+    },
+  },
   data() {
     return {
-      form: {
-        title: '',
-        introduction: '',
-        categories: [],
-        images: [],
-      },
+      //   solution: {
+      //     title: '',
+      //     introduction: '',
+      //     categories: [],
+      //     images: [],
+      //   },
       introductionMax: 250,
       titleMax: 40,
     }
   },
-  validations: {
-    form: {
-      title: {
-        required,
-        minLength: minLength(4),
-      },
-      introduction: {
-        between: between(20, 30),
-      },
-    },
-  },
+
   methods: {
     addBasicInfo() {
       const solutionData = {
-        title: this.form.title,
-        introduction: this.form.introduction,
-        categories: this.form.categories,
-        image: this.form.images[0],
+        title: this.solution.title,
+        introduction: this.solution.introduction,
+        categories: this.solution.categories,
+        image: this.solution.images[0],
       }
       this.$emit('addBasicInfo', solutionData)
     },
     toggleCategory(e) {
       // Toggle category
-      var i = this.form.categories.indexOf(e.id)
-      if (i === -1) this.form.categories.push(e.id)
-      else this.form.categories.splice(i, 1)
+      var i = this.solution.categories.indexOf(e.id)
+      if (i === -1) this.solution.categories.push(e.id)
+      else this.solution.categories.splice(i, 1)
     },
 
     inputFilter(newFile, oldFile, prevent) {
@@ -155,7 +155,7 @@ export default {
       }
     },
     resetImg() {
-      this.form.images = []
+      this.solution.images = []
     },
   },
   created() {

@@ -1,10 +1,9 @@
 <template>
   <div>
-    <p @click="index = 3">Go to index 3</p>
     <transition name="slide-left" mode="out-in">
-      <CreateBasicInfo v-if="index == 1" @addBasicInfo="addToSolution" />
-      <CreateMaterials v-else-if="index == 2" @addMaterials="addToSolution" @back="index--" />
-      <CreateAddSteps v-else-if="index == 3" @addSteps="addToSolution" @back="index--" />
+      <CreateBasicInfo v-if="index == 1" @addBasicInfo="addToSolution" :solution="solution" />
+      <CreateMaterials v-else-if="index == 2" @addMaterials="addToSolution" @back="handleBack" :solution="solution" />
+      <CreateAddSteps v-else-if="index == 3" @addSteps="addToSolution" @back="handleBack" :solution="solution" />
     </transition>
     <CreateImpactModal ref="impactModal" :redirectToId="solution.id" />
   </div>
@@ -18,7 +17,15 @@ export default {
   data() {
     return {
       solution: {
-        id: '',
+        id: '', // otherwise it will give an error because it cant fetch the key 'id'
+        title: '',
+        introduction: '',
+        categories: [],
+        images: [],
+        materials: [{ material: '' }],
+        tools: [{ tool: '' }],
+        currentStep: { description: '', stepImage: [], rank: 1 },
+        steps: [],
       },
       index: 1,
       isReady: false,
@@ -32,6 +39,9 @@ export default {
     },
   },
   methods: {
+    handleBack() {
+      this.index--
+    },
     openImpactModal() {
       this.$refs.impactModal.open()
     },

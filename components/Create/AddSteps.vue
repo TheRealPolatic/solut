@@ -26,7 +26,7 @@
     </div>
 
     <!-- No instructions notice -->
-    <div v-if="steps.length == 0">
+    <div v-if="solution.steps.length == 0">
       <div class="center flex justify-center mb-8 mt-12">
         <img src="@/assets/imgs/no-instructions.svg" />
       </div>
@@ -37,10 +37,10 @@
     <!-- If there are steps, list them below -->
     <div v-else class="mt-10">
       <h3 class="font-semibold text-sm mb-2">Steps</h3>
-      <div v-for="(step, index) in steps" :key="`step-${index}`" class="my-2 border h-14 rounded-2xl py-2 px-3 flex items-center">
+      <div v-for="(step, index) in solution.steps" :key="`step-${index}`" class="my-2 border h-14 rounded-2xl py-2 px-3 flex items-center">
         <p class="font-semibold mr-4">{{ index + 1 }}</p>
         <p class="text-gray-700 w-60 truncate">{{ step.description }}</p>
-        <i class="icon icon-close cursor-pointer ml-4" @click="removeField(index, steps)"></i>
+        <i class="icon icon-close cursor-pointer ml-4" @click="removeField(index, solution.steps)"></i>
       </div>
     </div>
 
@@ -58,8 +58,8 @@
         <p>Previous step</p>
       </div>
       <div
-        @click=";[steps.length ? addSteps() : {}]"
-        :class="{ 'opacity-40': !steps.length }"
+        @click=";[solution.steps.length ? addSteps() : {}]"
+        :class="{ 'opacity-40': !solution.steps.length }"
         class="bg-primary text-white rounded-xl w-40 h-14 flex items-center justify-center mb-8 cursor-pointer"
       >
         <p>Add solution</p>
@@ -79,14 +79,14 @@
         <div class="mt-6">
           <div class="input-top flex justify-between">
             <label class="font-semibold text-sm">Description</label>
-            <p :class="currentStep.description.length == maxLength ? 'text-red-500' : 'text-dark opacity-40'" class="text-sm">
-              {{ `${currentStep.description.length} / ${maxLength}` }}
+            <p :class="solution.currentStep.description.length == maxLength ? 'text-red-500' : 'text-dark opacity-40'" class="text-sm">
+              {{ `${solution.currentStep.description.length} / ${maxLength}` }}
             </p>
           </div>
 
           <textarea
             class="mt-2 border rounded-2xl w-full py-2 px-3 text-gray-700 leading-loose h-40 focus:outline-none"
-            v-model="currentStep.description"
+            v-model="solution.currentStep.description"
             :maxlength="maxLength"
             type="text"
             placeholder="Type a quick introduction about the solution"
@@ -97,8 +97,8 @@
           <div class="flex justify-center items-center mt-2">
             <file-upload
               ref="upload"
-              v-model="currentStep.stepImage"
-              v-if="currentStep.stepImage.length == 0"
+              v-model="solution.currentStep.stepImage"
+              v-if="solution.currentStep.stepImage.length == 0"
               @input-filter="inputFilter"
               accept="image/*"
               :size="1024 * 1024"
@@ -111,16 +111,16 @@
             </file-upload>
           </div>
         </div>
-        <div class="w-full relative" v-for="image in currentStep.stepImage" :key="image.blob">
+        <div class="w-full relative" v-for="image in solution.currentStep.stepImage" :key="image.blob">
           <div v-if="image.blob" class="preview h-40 rounded-xl overflow-hidden" :style="{ 'background-image': `url(${image.blob})` }"></div>
           <div @click="resetImg" class="delete h-6 w-6 rounded-full absolute right-2 top-2 bg-white flex justify-center items-center cursor-pointer">
             <i class="icon icon-close text-dark"></i>
           </div>
         </div>
         <div
-          :class="currentStep.description ? 'bg-primary text-white ' : 'bg-primary text-white opacity-40'"
+          :class="solution.currentStep.description ? 'bg-primary text-white ' : 'bg-primary text-white opacity-40'"
           class="rounded-lg w-full h-14 flex items-center justify-center my-8 cursor-pointer"
-          @click="addStep(currentStep, steps)"
+          @click="addStep(solution.currentStep, solution.steps)"
         >
           <p>Add step</p>
         </div>
@@ -131,11 +131,16 @@
 
 <script>
 export default {
+  props: {
+    solution: {
+      type: Object,
+      default() {
+        return {}
+      },
+    },
+  },
   data() {
     return {
-      currentStep: { description: '', stepImage: [], rank: 1 },
-      steps: [],
-      images: [],
       maxLength: 250,
       index: 2,
     }
@@ -172,13 +177,13 @@ export default {
     },
     addStep(value, fieldType) {
       fieldType.push(value)
-      this.currentStep = { description: '', stepImage: [], rank: this.index }
+      this.solution.currentStep = { description: '', stepImage: [], rank: this.index }
       this.index++
       this.close()
     },
     addSteps() {
       const solutionData = {
-        steps: this.steps,
+        steps: this.solution.steps,
       }
       this.$emit('addSteps', solutionData)
     },
