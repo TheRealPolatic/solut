@@ -53,6 +53,10 @@ export default {
     await store.dispatch('category/fetchCategories')
     const categories = store.state.category.categories
 
+    // Set solutions in state
+    await store.dispatch('solution/fetchSolutions')
+    const allSolutions = store.state.solution.solutions
+
     // Fetching solution data
     const solution = await store.dispatch('solution/fetchSolution', params.solution)
 
@@ -63,6 +67,17 @@ export default {
 
     // Fetching author data
     const author = await store.dispatch('user/fetchUser', solution.userId)
+
+    // Fetching advanced author data
+    const ownedSolutions = []
+    for (let x = 0; x < allSolutions.length; x++) {
+      if (allSolutions[x].userId === author.id) {
+        ownedSolutions.push(allSolutions[x])
+      }
+    }
+    author.solutions = ownedSolutions
+
+    // Set author data in solution
     solution.author = author
 
     // Fetching impacted user data

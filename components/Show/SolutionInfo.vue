@@ -17,7 +17,10 @@
         </div>
         <div class="pl-4">
           <div class="font-semibold text-sm">{{ solution.author.username }}</div>
-          <div class="text-darker-grey text-xs">[user data]</div>
+          <div class="text-darker-grey text-xs">
+            {{ solution.author.solutions.length }} {{ solution.author.solutions.length <= 1 ? 'solution' : 'solutions' }}<span class="mx-1">•</span
+            >{{ 'Impacted ' + countTotalImpact(solution.author.solutions) + ' people' }}
+          </div>
         </div>
       </div>
       <div class="bg-primary text-white rounded-12 w-full h-14 flex items-center justify-center mt-8 cursor-pointer" @click="openImpactModal">
@@ -52,6 +55,15 @@ export default {
       // Calculate timestamp
       const newDate = moment(time).format('MMMM Do YYYY')
       return newDate
+    },
+    countTotalImpact(solutions) {
+      let totalImpact = 0
+      for (let i = 0; i < solutions.length; i++) {
+        for (let x = 0; x < solutions[i].impactUsers.length; x++) {
+          totalImpact += solutions[i].impactUsers[x].impacted
+        }
+      }
+      return totalImpact
     },
   },
 }
