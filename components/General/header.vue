@@ -78,6 +78,11 @@ export default {
     goBack() {
       this.$router.go(-1)
     },
+    clickButtonRight(func, solution) {
+      if (func === 'edit') {
+        this.$router.push('/edit/' + solution.id)
+      }
+    },
   },
 }
 </script>
