@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul class="w-full h-12 flex text-darker-grey font-semibold sticky top-16 bg-white z-10">
+    <ul class="w-full h-12 flex text-darker-grey font-semibold sticky top-16 bg-white z-40">
       <div class="w-full h-px bg-dark-grey absolute opacity-30"></div>
       <li
         v-for="(tab, index) in tabs"
