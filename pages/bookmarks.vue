@@ -58,7 +58,6 @@ export default {
       if (user.bookmarks) {
         if (Array.isArray(user.bookmarks)) {
           if (user.bookmarks.includes(solutions[x].id)) {
-            console.log(solutions[x])
             bookmarkedSolutions.push(solutions[x])
           }
         }
