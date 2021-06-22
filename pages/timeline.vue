@@ -1,7 +1,7 @@
 <template>
   <div class="p-6">
     <GeneralHeader title="Solutions" :class="'px-0'"></GeneralHeader>
-    <impactgoal v-on:click.native="open"></impactgoal>
+    <impactgoal v-on:click.native="open" :impactData="impact"></impactgoal>
     <div class="flex mb-4 mt-4">
       <pill v-for="pill in pills" :key="pill.text" :pill="pill" :class="{ 'bg-primary text-white': pill.active }" />
     </div>
@@ -34,7 +34,7 @@
 
             <b>Race to resilience</b>
             <p>
-              The app is linked to the race to resilience. This is a global campaign set up by the UN, in which Caeli participates. It seeks to take the step to
+              The app is linked to the race to resilience. This is a global campaign set up by the UN, in which Solut participates. It seeks to take the step to
               make humans more resilient to climate extremes.
             </p>
 
@@ -55,6 +55,9 @@ const moment = require('moment')
 export default {
   middleware: 'private',
   async asyncData({ params, store }) {
+    // Get total impact counter and set goals
+    const impact = await store.dispatch('impact/fetchImpact')
+
     // Fetch all solutions
     await store.dispatch('solution/fetchSolutions')
 
@@ -122,11 +125,12 @@ export default {
       allSolutions[i].allCategories = categoriesData
     }
 
-    return { allSolutions }
+    return { allSolutions, impact }
   },
   data() {
     return {
       allSolutions: [],
+      impact: {},
       pills: [
         {
           label: 'Trending',

@@ -6,7 +6,7 @@
           <ButtonBookmark v-if="setting === 'bookmark'" :solutionId="solution.id" />
           <div
             v-else-if="setting === 'edit'"
-            @click="goToEdit(solution.id)"
+            v-on:click.stop="goToEdit(solution.id)"
             class="absolute right-0 h-10 w-10 flex items-center justify-center border rounded-12 border-opacity-70 transition"
             :class="setButtonColor(background)"
           >
