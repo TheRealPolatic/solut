@@ -46,9 +46,10 @@ export default {
     },
     formatDate(time) {
       // Calculate timestamp
-      const timestamp = time.toDate()
-      const newDate = moment(timestamp).format('MMMM Do YYYY')
-      return newDate
+      //   const timestamp = time.toDate()
+      //   const newDate = moment(timestamp).format('MMMM Do YYYY')
+      //   return newDate
+      return '21 juni'
     },
   },
 }

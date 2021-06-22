@@ -58,7 +58,7 @@
         <p>Previous step</p>
       </div>
       <div
-        @click="steps.length ? addSteps() : {}"
+        @click=";[steps.length ? addSteps() : {}]"
         :class="{ 'opacity-40': !steps.length }"
         class="bg-primary text-white rounded-xl w-40 h-14 flex items-center justify-center mb-8 cursor-pointer"
       >
@@ -126,7 +126,6 @@
         </div>
       </div>
     </vue-bottom-sheet>
-    <CreateImpactModal />
   </div>
 </template>
 
@@ -134,7 +133,7 @@
 export default {
   data() {
     return {
-      currentStep: { 'description': '', 'stepImage': [], 'rank': 1 },
+      currentStep: { description: '', stepImage: [], rank: 1 },
       steps: [],
       images: [],
       maxLength: 250,
@@ -148,6 +147,7 @@ export default {
     close() {
       this.$refs.addstep.close()
     },
+
     removeField(index, fieldType) {
       fieldType.splice(index, 1)
     },
@@ -172,7 +172,7 @@ export default {
     },
     addStep(value, fieldType) {
       fieldType.push(value)
-      this.currentStep = { 'description': '', 'stepImage': [], 'rank': this.index }
+      this.currentStep = { description: '', stepImage: [], rank: this.index }
       this.index++
       this.close()
     },
