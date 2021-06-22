@@ -23,7 +23,7 @@
       <div class="bg-primary text-white rounded-12 w-full h-14 flex items-center justify-center mt-8 cursor-pointer" @click="openImpactModal">
         <p>I've used this solution</p>
       </div>
-      <CreateImpactModal ref="impactModal" :solution="solution" />
+      <ShowImpactModal ref="impactModal" :solution="solution" />
     </div>
   </div>
 </template>
