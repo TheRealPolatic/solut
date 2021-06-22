@@ -1,10 +1,10 @@
 <template>
   <div class="">
-    <div class="flex justify-between mt-6">
+    <div class="flex justify-between mt-2">
       <h2 class="text-xl font-bold">{{ category.title }}</h2>
       <p class="text-sm font-semibold mt-1">View all</p>
     </div>
-    <div class="category-scrollbar flex overflow-x-scroll overflow-y-hidden">
+    <div class="category-scrollbar flex overflow-x-scroll overflow-y-hidden w-screen">
       <SearchWeatherExtremeTile v-for="solution in solutions" :key="solution.id" :solution="solution" />
     </div>
 
