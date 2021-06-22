@@ -22,6 +22,7 @@ export default {
     '~/plugins/vue-form-wizard.js',
     '~/plugins/vue-bottom-sheet.js',
     '~/plugins/firebaseAuth.js',
+    '~/plugins/vuelidate.js',
   ],
 
   components: true,
