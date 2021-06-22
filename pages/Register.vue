@@ -12,8 +12,64 @@
       <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-md">
         <div class="py-8 px-6 sm:rounded-lg sm:px-10">
           <form class="space-y-6">
+
+            <!-- Profile Image -->
+
+            <div class="flex justify-center">
+  
+              <file-upload
+                ref="upload"
+                v-model="user.profileImage"
+                @input-filter="inputFilter"
+                accept="image/*"
+                :size="1024 * 1024"
+                class="rounded-full bg-light-grey h-24 w-24"
+              >
+                 
+              </file-upload>
+            </div>
+
+
+            <!-- <div>
+               <div class="flex justify-center">
+                <div class="w-24 h-24 relative">
+                  <img :src="src" alt="Avatar" class="bg-light-grey w-full h-full object-cover object-center rounded-full" />
+                  <file-upload
+                    ref="upload"
+                    v-model="user.profileImage"
+                    v-if="user.profileImage.length == 0"
+                    @input-filter="inputFilter"
+                    accept="image/*"
+                    :size="1024 * 1024"
+                    class="rounded-full bg-light-grey h-24 w-24"
+                  >
+                    <div class=" bg-primary  absolute bottom-0 right-0 rounded-full border-2 border-white text-center">
+                      <button type="button" class="flex justify-center h-7 w-7">
+                        <i class="icon icon-upload text-white text-me pt-1"></i>
+                      </button>
+                    </div>
+                  </file-upload>
+                </div>
+              </div>
+            </div> -->
+
+            <!-- <file-upload
+              ref="upload"
+              v-model="user.profileImage"
+              @input-filter="inputFilter"
+              accept="image/*"
+              :size="500 * 500"
+              class="rounded-full bg-light-grey h-16 w-16"
+            >
+              <div class="flex my-5 justify-center">
+                <i class="icon icon-upload text-dark opacity-50 mr-4"></i>
+              
+              </div>
+            </file-upload> -->
+
+            <!-- Username -->
             <div>
-              <label for="email" class="block font-semibold text-dark">Username</label>
+              <label for="username" class="block font-semibold text-dark">Username</label>
               <div class="mt-1">
                 <input
                 v-model="user.username"
@@ -27,6 +83,7 @@
               </div>
             </div>
 
+            <!-- email -->
             <div>
               <label for="email" class="block font-semibold text-dark">Email</label>
               <div class="mt-1">
@@ -41,6 +98,8 @@
                 />
               </div>
             </div>
+
+            <!-- password -->
             <div>
               <label for="password" class="mb-0 block font-semibold text-dark">Password</label>
               <div class="relative mt-1">
@@ -125,6 +184,21 @@ export default {
         })
         .catch((err) => {
           this.error = err.message
+        })
+      firebase
+
+        .then(async (id) => {
+          const filename = this.solution.image.name
+          ext = filename.slice(filename.lastIndexOf('.'))
+          r = await fetch(this.solution.image.blob)
+          blob = await r.blob()
+          return storage.ref(`solutions/${id}${ext}`).put(blob)
+        })
+        .then(() => {
+          return storage.ref(`solutions/${id}${ext}`).getDownloadURL()
+        })
+        .then((url) => {
+          return firestore.collection('solutions').doc(id).update({ coverImage: url })
         })
     },
   },
