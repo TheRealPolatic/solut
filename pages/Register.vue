@@ -82,7 +82,7 @@
 import { auth } from '~/plugins/firebase.js'
 
 export default {
-    layout: 'nonavbar',
+  layout: 'nonavbar',
   data() {
     return {
       showPassword: false,
@@ -103,17 +103,25 @@ export default {
           res.user
             .updateProfile({
               displayName: this.user.username,
+
               // todo profile image toevoegen
             })
 
             .then(() => {
               this.user.uid = res.user.uid
               console.log('submitting user...')
-              this.$store.dispatch('user/createUser', { id: this.user.uid })
-              this.$router.push('/timeline')
+              this.$store.dispatch('user/createUser', { id: this.user.uid }).then(() => {
+                const newUserInfo = {}
+                newUserInfo.username = this.user.username
+                newUserInfo.email = this.user.email
+                newUserInfo.profileImage = this.user.profileImage
+                const updateInfo = { userId: this.user.uid, data: newUserInfo }
+                this.$store.dispatch('user/updateUser', updateInfo)
+                this.$router.push('/timeline')
+              })
             })
 
-          console.log(res.user.uid)
+          // console.log(res.user.uid)
         })
         .catch((err) => {
           this.error = err.message
