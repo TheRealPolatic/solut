@@ -3,19 +3,19 @@
     <!-- Top bar -->
     <div class="flex justify-between">
       <NuxtLink to="/profile"><ButtonBackButton class="w-1/6" :icon="'icon-chevron-left'"></ButtonBackButton></NuxtLink>
-      <h1 class="text-center text-xl font-bold mt-2">Edit profile</h1>
+      <h1 class="text-center text-xl font-bold mt-2">Change profile</h1>
       <div class="w-1/6"></div>
     </div>
 
     <!-- Change user info -->
-    <form id="profile-form" @submit.prevent="updateProfile(this.form.username, 'henk')">
+    <form id="profile-form" @submit.prevent="updateProfileInfo(userinfo.id, 'piet', 'henk@gmail.com')">
       <!-- Image component -->
-      <UserProfileAvatarInput v-model="form.avatar" :default-src="currentUser.profileImage"></UserProfileAvatarInput>
+      <UserProfileAvatarInput v-model="form.avatar" :default-src="userinfo.profileImage"></UserProfileAvatarInput>
 
       <!-- Username -->
-      <FormField :label="'Username'" :type="'text'" :value="currentUser.username" class="mt-8"></FormField>
+      <FormField :label="'Username'" :type="'text'" :value="userinfo.username" class="mt-8"></FormField>
       <!-- Email -->
-      <FormField :label="'Email'" :type="'text'" :value="currentUser.email" class="mt-8"></FormField>
+      <FormField :label="'Email'" :type="'text'" :value="userinfo.email" class="mt-8"></FormField>
 
       <p class="mt-8" @click="changePassword()">Change password</p>
 
@@ -25,14 +25,14 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import { auth } from '~/plugins/firebase.js'
 
 export default {
+  middleware: 'private',
   async asyncData({ params, store }) {
-    const currentUid = 'Zmkw90GkkEEGirej05LGqyG5dnJi'
-    // Set current user
-    await store.dispatch('user/fetchCurrentUser', currentUid)
+    const userinfo = store.state.user.user
+
+    return { userinfo }
   },
   data() {
     return {
@@ -41,32 +41,47 @@ export default {
         username: 'test',
         email: '',
       },
-
-      currentUser: {},
-      // newData: {
-      //   username: '',
-      // },
+      userinfo: {},
     }
-  },
-  computed: {
-    ...mapState('user', ['user']),
-  },
-  created() {
-    this.currentUser = this.user
   },
 
   methods: {
-    updateProfile(x, y) {
-      const newUserInfo = {}
-      newUserInfo.username = x
-      newUserInfo.email = y
-      const updateInfo = { userId: 'Zmkw90GkkEEGirej05LGqyG5dnJi', data: newUserInfo }
-      this.$store.dispatch('user/updateUser', updateInfo)
-      this.$router.push('/profile')
+    updateProfileInfo(id, x, y) {
+      const user = auth.currentUser
+
+      user
+        .updateProfile({
+          displayName: x,
+        })
+        .then(() => {
+          // Update successful
+          // ...
+
+          user
+            .updateEmail(y)
+            .then(() => {
+              // Update successful
+              // ...
+              const newUserInfo = {}
+              newUserInfo.username = x
+              newUserInfo.email = y
+              const updateInfo = { userId: id, data: newUserInfo }
+              this.$store.dispatch('user/updateUser', updateInfo)
+              this.$router.push('/profile')
+            })
+            .catch((error) => {
+              // An error occurred
+              // ...
+            })
+        })
+        .catch((error) => {
+          // An error occurred
+          // ...
+        })
     },
     changePassword() {
       auth
-        .sendPasswordResetEmail(this.currentUser.email)
+        .sendPasswordResetEmail(this.userinfo.email)
         .then(() => {
           // Password reset email sent!
           // ..

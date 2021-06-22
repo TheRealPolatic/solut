@@ -4,7 +4,7 @@
 
     <div class="flex justify-center mt-8">
       <div class="w-24 h-24 relative">
-        <img :src="src" alt="Avatar" class="w-full h-full object-cover object-center rounded-full" />
+        <img :src="src" alt="Avatar" class="w-full h-full object-cover object-center rounded-full bg-black" />
         <div class="h-8 w-8 bg-primary z-50 absolute bottom-0 right-0 rounded-full border-2 border-white text-center">
           <button type="button" class="flex justify-center h-7 w-7" @click="browse()">
             <i class="icon icon-upload text-white text-me pt-1"></i>
