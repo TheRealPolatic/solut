@@ -16,56 +16,43 @@
             <!-- Profile Image -->
 
             <div class="flex justify-center">
-  
-              <file-upload
-                ref="upload"
-                v-model="user.profileImage"
-                @input-filter="inputFilter"
-                accept="image/*"
-                :size="1024 * 1024"
-                class="rounded-full bg-light-grey h-24 w-24"
-              >
-                 
-              </file-upload>
-            </div>
-
-
-            <!-- <div>
-               <div class="flex justify-center">
-                <div class="w-24 h-24 relative">
-                  <img :src="src" alt="Avatar" class="bg-light-grey w-full h-full object-cover object-center rounded-full" />
+              <div class="flex justify-center items-center relative mt-2">
+               
+                <div class="relative"  v-if="!user.profileImage.length">
                   <file-upload
                     ref="upload"
                     v-model="user.profileImage"
-                    v-if="user.profileImage.length == 0"
                     @input-filter="inputFilter"
                     accept="image/*"
                     :size="1024 * 1024"
-                    class="rounded-full bg-light-grey h-24 w-24"
+                    class="preview rounded-full h-24 w-24 bg-light-grey "
                   >
-                    <div class=" bg-primary  absolute bottom-0 right-0 rounded-full border-2 border-white text-center">
-                      <button type="button" class="flex justify-center h-7 w-7">
-                        <i class="icon icon-upload text-white text-me pt-1"></i>
-                      </button>
-                    </div>
+                  
                   </file-upload>
+                  <div class="h-8 w-8 absolute bottom-0 right-0 bg-primary rounded-full flex justify-center items-center border-2 border-white">
+                    <i class="flex text-xs icon icon-plus text-white "></i>
+                  </div>
                 </div>
-              </div>
-            </div> -->
 
-            <!-- <file-upload
-              ref="upload"
-              v-model="user.profileImage"
-              @input-filter="inputFilter"
-              accept="image/*"
-              :size="500 * 500"
-              class="rounded-full bg-light-grey h-16 w-16"
-            >
-              <div class="flex my-5 justify-center">
-                <i class="icon icon-upload text-dark opacity-50 mr-4"></i>
-              
+                <div class="relative" v-else>
+                  <file-upload
+                    ref="upload"
+                    v-model="user.profileImage"
+                    @input-filter="inputFilter"
+                    accept="image/*"
+                    :size="1024 * 1024"
+                    class="preview rounded-full h-24 w-24 "
+                    :style="{ 'background-image': `url(${user.profileImage[0].blob})` }"
+                  >
+                  
+                  </file-upload>
+                  <div class="h-8 w-8 absolute bottom-0 right-0 bg-primary rounded-full flex justify-center items-center border-2 border-white">
+                    <i class="flex text-xs icon icon-edit text-white "></i>
+                  </div>
+                </div>
+
               </div>
-            </file-upload> -->
+            </div>
 
             <!-- Username -->
             <div>
@@ -138,7 +125,7 @@
 </template>
 
 <script>
-import { auth } from '~/plugins/firebase.js'
+import { storage, auth } from '~/plugins/firebase.js'
 
 export default {
   layout: 'nonavbar',
@@ -149,7 +136,7 @@ export default {
         uid: '',
         username: '',
         email: '',
-        profileImage: '',
+        profileImage: [],
         password: '',
       },
     }
@@ -165,41 +152,53 @@ export default {
 
               // todo profile image toevoegen
             })
-
-            .then(() => {
+            .then(async () => {
+              let id
+              let ext
+              let blob
+              let r
               this.user.uid = res.user.uid
+              const filename = this.user.profileImage[0].name
+              ext = filename.slice(filename.lastIndexOf('.'))
+              r = await fetch(this.user.profileImage[0].blob)
+              blob = await r.blob()
+              await storage.ref(`users/${this.user.uid}${ext}`).put(blob)
+
+              return await storage.ref(`users/${this.user.uid}${ext}`).getDownloadURL()
+            })
+            .then((url) => {
+              console.log(url)
+
               console.log('submitting user...')
               this.$store.dispatch('user/createUser', { id: this.user.uid }).then(() => {
                 const newUserInfo = {}
                 newUserInfo.username = this.user.username
                 newUserInfo.email = this.user.email
-                newUserInfo.profileImage = this.user.profileImage
+                newUserInfo.profileImage = url
                 const updateInfo = { userId: this.user.uid, data: newUserInfo }
                 this.$store.dispatch('user/updateUser', updateInfo)
                 this.$router.push('/timeline')
               })
             })
-
-          // console.log(res.user.uid)
         })
         .catch((err) => {
           this.error = err.message
         })
-      firebase
+    },
+    inputFilter(newFile, oldFile, prevent) {
+      if (newFile && !oldFile) {
+        // Filter non-image file
+        if (!/\.(jpeg|jpe|jpg|gif|png|webp)$/i.test(newFile.name)) {
+          return prevent()
+        }
+      }
 
-        .then(async (id) => {
-          const filename = this.solution.image.name
-          ext = filename.slice(filename.lastIndexOf('.'))
-          r = await fetch(this.solution.image.blob)
-          blob = await r.blob()
-          return storage.ref(`solutions/${id}${ext}`).put(blob)
-        })
-        .then(() => {
-          return storage.ref(`solutions/${id}${ext}`).getDownloadURL()
-        })
-        .then((url) => {
-          return firestore.collection('solutions').doc(id).update({ coverImage: url })
-        })
+      // Create a blob field
+      newFile.blob = ''
+      let URL = window.URL || window.webkitURL
+      if (URL && URL.createObjectURL) {
+        newFile.blob = URL.createObjectURL(newFile.file)
+      }
     },
   },
 }
@@ -222,5 +221,10 @@ export default {
 }
 .card-img-overlay button {
   margin-top: 20vh;
+}
+.preview {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 </style>
