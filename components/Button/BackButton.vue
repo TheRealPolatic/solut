@@ -1,7 +1,7 @@
 <template>
   <div class="text-center">
-    <div class="flex h-10 w-10 border rounded-xl justify-center pt-2 pr-1">
-      <i class="icon text-2xl" :class="icon"></i>
+    <div class="flex h-10 w-10 border rounded-xl justify-center items-center">
+      <i class="icon text-2xl flex" :class="icon"></i>
     </div>
   </div>
 </template>

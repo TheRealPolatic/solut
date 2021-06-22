@@ -1,11 +1,51 @@
 <template>
   <div class="p-6">
     <GeneralHeader title="Solutions" :class="'px-0'"></GeneralHeader>
-    <impactgoal></impactgoal>
+    <impactgoal v-on:click.native="open"></impactgoal>
     <div class="flex mb-4 mt-4">
       <pill v-for="pill in pills" :key="pill.text" :pill="pill" :class="{ 'bg-primary text-white': pill.active }" />
     </div>
     <solutioncard v-for="card in allSolutions" :key="card.id" :carddata="card" />
+
+    <!-- Add new step modal -->
+    <vue-bottom-sheet ref="impactgoal" max-height="100%">
+      <div class="sheet-wrapper mx-4">
+        <div class="flex flex-col">
+          <div class="font-bold text-lg text-center relative overflow-visible pt-2 pb-2">
+            Making Impact
+            <div class="absolute right-0 top-0">
+              <ButtonBackButton icon="icon-close" v-on:click.native="close"></ButtonBackButton>
+            </div>
+          </div>
+
+          <div class="mt-7">
+            <b>Solut</b>
+            <p>Solut, also called climate in Latin, is an app aimed at sharing solutions to better resist today's extreme weather conditions.</p>
+
+            <br />
+
+            <p>
+              People can share their own developed solutions on the platform, which others can work out in their own environment. Every time you have applied a
+              solution in your own environment, you can indicate on how many people the solution has had an impact. This could be for yourself, a family or even
+              a whole village.
+            </p>
+
+            <br />
+
+            <b>Race to resilience</b>
+            <p>
+              The app is linked to the race to resilience. This is a global campaign set up by the UN, in which Caeli participates. It seeks to take the step to
+              make humans more resilient to climate extremes.
+            </p>
+
+            <div class="mt-7 flex space-between items-center">
+              <img src="@/assets/illustrations/logo.svg" alt="" class="w-16 h-16" />
+              <div class="ml-7 font-bold">Our ultimate goal is to make an impact on <span class="text-primary">100.000 people.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </vue-bottom-sheet>
   </div>
 </template>
 
@@ -60,8 +100,9 @@ export default {
       allSolutions[i].impactUserArr = lastFiveUsers
 
       // Calculate timestamp
-      const timestamp = allSolutions[i].createdAt.toDate()
-      const now = moment(timestamp, 'YYYYMMDD').fromNow()
+      const timestamp = allSolutions[i].createdAt
+      const date = moment(timestamp).format()
+      const now = moment(date, 'YYYYMMDD').fromNow()
 
       allSolutions[i].timeSince = now
 
@@ -103,6 +144,14 @@ export default {
         },
       ],
     }
+  },
+  methods: {
+    open() {
+      this.$refs.impactgoal.open()
+    },
+    close() {
+      this.$refs.impactgoal.close()
+    },
   },
 }
 </script>

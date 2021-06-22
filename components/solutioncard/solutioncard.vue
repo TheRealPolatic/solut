@@ -22,12 +22,7 @@
         </div>
 
         <div class="w-1/4 flex justify-end items-end">
-          <div
-            class="w-12 h-12 rounded-2xl border-gray-400 flex items-center justify-center text-xl"
-            :class="{ 'text-black bg-white border-0': carddata.bookmarked, 'text-white border': !carddata.bookmarked }"
-          >
-            <i class="icon" :class="{ 'icon-bookmark-filled': carddata.bookmarked, 'icon-bookmark': !carddata.bookmarked }"></i>
-          </div>
+          <ButtonBookmark :solutionId="carddata.id" />
         </div>
       </div>
     </div>
@@ -44,14 +39,42 @@ export default {
       default() {
         return {
           now: '',
+          userData: {
+            bookmarks: [],
+          },
         }
       },
     },
   },
   methods: {
     openSolution: function (id) {
-      this.$router.push('/solutions/' + id)
+      //   this.$router.push('/solutions/' + id)
     },
+    bookmark: function (id) {
+      const currentUser = this.$store.state.user.user
+
+      currentUser.bookmarks = 'nee'
+
+      console.log(currentUser)
+
+      //   const currentUserId = currentUser.id
+
+      //   const bookmarks = currentUser.bookmarks
+
+      //   if (bookmarks.includes(id)) {
+      //     const index = bookmarks.indexOf(id)
+      //     bookmarks.splice(index, 1)
+      //     console.log('zat er al in')
+      //   } else {
+      //     bookmarks.push(id)
+      //   }
+      //   console.log(currentUser)
+
+      //   this.$store.dispatch('user/updateUser', { currentUserId, currentUser })
+    },
+  },
+  mutations: {
+    updateBookmarks(currentUser) {},
   },
 }
 </script>
