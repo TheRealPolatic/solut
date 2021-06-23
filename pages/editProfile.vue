@@ -8,7 +8,7 @@
     </div>
 
     <!-- Change user info -->
-    <form id="profile-form" @submit.prevent="updateProfileInfo(userinfo.id, 'John', 'john@gmail.com')">
+    <form id="profile-form" @submit.prevent="updateProfileInfo(userinfo.id, 'Pim van den Hurk', 'pimvandenhurk@gmail.com')">
       <!-- Image component -->
       <UserProfileAvatarInput v-model="form.avatar" :default-src="userinfo.profileImage"></UserProfileAvatarInput>
 
@@ -20,6 +20,8 @@
       <p class="mt-8" @click="changePassword()">Change password</p>
 
       <Button :label="'Update profile'" class="mt-8"></Button>
+
+      <p id="error" class="error text-red-500 text-center text-sm py-2 px-4 border border-red-500 rounded-xl mt-6 hidden"></p>
     </form>
   </div>
 </template>
@@ -72,11 +74,16 @@ export default {
             .catch((error) => {
               // An error occurred
               // ...
+              document.querySelector('.error').innerHTML = error.message
+              document.getElementById('error').style.display = 'block'
+              console.log(error.message)
             })
         })
         .catch((error) => {
           // An error occurred
           // ...
+          document.querySelector('.error').innerHTML = error.message
+          console.log(error.message)
         })
     },
 

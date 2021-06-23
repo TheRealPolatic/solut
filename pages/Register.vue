@@ -1,75 +1,116 @@
 <template>
   <div>
     <div class="px-6 header flex justify-between items-center">
-       <NuxtLink to="/login">
-          <div class="back w-10 h-10 border border-gray-200 rounded-xl flex items-center justify-center">
-		  <i class="icon icon-chevron-left"></i>
+      <NuxtLink to="/login">
+        <div class="back w-10 h-10 border border-gray-200 rounded-xl flex items-center justify-center">
+          <i class="icon icon-chevron-left"></i>
         </div>
       </NuxtLink>
       <h1 class="my-6 text-dark text-center font-bold text-xl">Register</h1>
       <div class="w-10 h-10"></div>
     </div>
-      <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-md">
-        <div class="py-8 px-6 sm:rounded-lg sm:px-10">
-          <form class="space-y-6">
-            <div>
-              <label for="email" class="block font-semibold text-dark">Username</label>
-              <div class="mt-1">
-                <input
+    <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-md">
+      <div class="py-8 px-6 sm:rounded-lg sm:px-10">
+        <form class="space-y-6">
+          <div>
+            <label for="email" class="block font-semibold text-dark">Username</label>
+            <div class="mt-1">
+              <input
                 id="username"
-                  v-model="user.username"
-                  name="username"
-                  type="username"
-                  placeholder="john.doe"
-                  required
-                  class="h-14 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-2xl placeholder-gray-400 focus:outline-none focus:ring-gray-400 focus:border-gray-400 sm:text-sm"
-                />
-              </div>
+                v-model="user.username"
+                name="username"
+                type="username"
+                placeholder="john.doe"
+                required
+                class="
+                  h-14
+                  appearance-none
+                  block
+                  w-full
+                  px-3
+                  py-2
+                  border border-gray-300
+                  rounded-2xl
+                  placeholder-gray-400
+                  focus:outline-none
+                  focus:ring-gray-400
+                  focus:border-gray-400
+                  sm:text-sm
+                "
+              />
             </div>
+          </div>
 
-            <div>
-              <label for="email" class="block font-semibold text-dark">Email</label>
-              <div class="mt-1">
-                <input
-                  id="email"
-                  v-model="user.email"
-                  name="email"
-                  type="email"
-                  placeholder="johndoe@gmail.com"
-                  required
-                  class="h-14 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-2xl placeholder-gray-400 focus:outline-none focus:ring-gray-400 focus:border-gray-400 sm:text-sm"
-                />
+          <div>
+            <label for="email" class="block font-semibold text-dark">Email</label>
+            <div class="mt-1">
+              <input
+                id="email"
+                v-model="user.email"
+                name="email"
+                type="email"
+                placeholder="johndoe@gmail.com"
+                required
+                class="
+                  h-14
+                  appearance-none
+                  block
+                  w-full
+                  px-3
+                  py-2
+                  border border-gray-300
+                  rounded-2xl
+                  placeholder-gray-400
+                  focus:outline-none
+                  focus:ring-gray-400
+                  focus:border-gray-400
+                  sm:text-sm
+                "
+              />
+            </div>
+          </div>
+          <div>
+            <label for="password" class="mb-0 block font-semibold text-dark">Password</label>
+            <div class="relative mt-1">
+              <input
+                id="password"
+                v-model="user.password"
+                name="password"
+                :type="[showPassword ? 'text' : 'password']"
+                placeholder=""
+                required
+                class="
+                  h-14
+                  appearance-none
+                  block
+                  w-full
+                  px-3
+                  py-2
+                  border border-gray-300
+                  rounded-2xl
+                  placeholder-gray-400
+                  focus:outline-none
+                  focus:ring-gray-400
+                  focus:border-gray-400
+                "
+              />
+              <div class="absolute inset-y-0 right-0 flex items-center px-4 border-l text-xl" @click="showPassword = !showPassword">
+                <i v-if="showPassword" class="icon icon-eye"></i>
+                <i v-else class="icon icon-eye-off"></i>
               </div>
             </div>
-            <div>
-              <label for="password" class="mb-0 block font-semibold text-dark">Password</label>
-              <div class="relative mt-1">
-                <input
-                  id="password"
-                  v-model="user.password"
-                  name="password"
-                  :type="[showPassword ? 'text' : 'password']"
-                  placeholder=""
-                  required
-                  class="h-14 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-2xl placeholder-gray-400 focus:outline-none focus:ring-gray-400 focus:border-gray-400"
-                />
-                <div class="absolute inset-y-0 right-0 flex items-center px-4 border-l text-xl" @click="showPassword = !showPassword">
-                  <i v-if="showPassword" class="icon icon-eye"></i>
-                  <i v-else class="icon icon-eye-off"></i>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="py-3 w-full flex justify-center rounded-2xl text-white bg-primary" @click="signUp">Register</div>
-            </div>
-          </form>
+          </div>
+          <div>
+            <div class="py-3 w-full flex justify-center rounded-2xl text-white bg-primary" @click="signUp">Register</div>
+          </div>
+        </form>
 
-          <div class="mt-6">
-            <div class="relative">
-              <div class="relative flex justify-center">
-                 <NuxtLink to="/login"
-                  ><a href="#" class="text-gray-500">Already have an account? <u>Login</u></a></NuxtLink>
-              </div>
+        <div class="mt-6">
+          <div class="relative">
+            <div class="relative flex justify-center">
+              <NuxtLink to="/login"
+                ><a href="#" class="text-gray-500">Already have an account? <u>Login</u></a></NuxtLink
+              >
             </div>
           </div>
         </div>
@@ -123,12 +164,12 @@ export default {
     async signUp() {
       await this.$store.dispatch('user/signUpUser', this.user)
       await this.$router.push('/timeline')
-    }
+    },
   },
 }
 </script>
 
-<style  scoped>
+<style scoped>
 .vue-avatar-cropper-demo {
   max-width: 18em;
   margin: 0 auto;
