@@ -1,4 +1,5 @@
 module.exports = {
+  mode: 'jit',
   theme: {
     extend: {
       colors: {
@@ -34,11 +35,11 @@ module.exports = {
         '7/10': '70%',
       },
       borderRadius: {
-        '4': '4px',
-        '8': '8px',
-        '12': '12px',
-        '16': '16px',
-        '32': '32px',
+        4: '4px',
+        8: '8px',
+        12: '12px',
+        16: '16px',
+        32: '32px',
       },
       dropShadow: {
         '3xl': '0 0px 0px rgba(0, 0, 0, 0.55)',
