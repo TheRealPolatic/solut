@@ -16,6 +16,15 @@ export default {
         return {}
       },
     },
+    active: {
+      type: Boolean,
+      default() {
+        return false
+      },
+    },
+  },
+  created() {
+    if (this.active) this.isActive = true
   },
   data() {
     return {
