@@ -1,5 +1,5 @@
 <template>
-  <div v-if="solutions" class="">
+  <div v-if="solutions.length" class="">
     <div class="flex justify-between mt-2">
       <h2 class="text-xl font-bold">{{ category.title }}</h2>
       <p class="text-sm font-semibold mt-1">View all</p>
