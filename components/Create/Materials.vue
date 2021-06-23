@@ -5,7 +5,8 @@
       <div class="back w-10 h-10 border border-gray-200 rounded-xl flex items-center justify-center" @click="$emit('back')">
         <i class="icon icon-chevron-left"></i>
       </div>
-      <h1 class="my-6 text-dark text-center font-bold text-xl">Add solution</h1>
+      <h1 v-if="!solution.userId" class="my-6 text-dark text-center font-bold text-xl">Add solution</h1>
+      <h1 v-else class="my-6 text-dark text-center font-bold text-xl">Update solution</h1>
       <div class="w-10 h-10"></div>
     </div>
 

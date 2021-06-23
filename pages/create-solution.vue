@@ -64,18 +64,32 @@ export default {
       // Not needed since the solution uploading is in uploadSolution()
       this.$store.dispatch('solution/createSolution', this.readySolution)
     },
+    getToolsAndMaterials() {
+      const materialArray = this.solution.materials.map((material) => {
+        return material['material']
+      })
+      const toolArray = this.solution.tools.map((tool) => {
+        return tool['tool']
+      })
+
+      return [toolArray, materialArray]
+    },
+
     uploadSolution() {
       return new Promise(async (resolve) => {
         console.log(this.solution)
 
         // add static key impactuser
         // add own userId to impactUsers
+
+        const [tools, materials] = this.getToolsAndMaterials()
+
         const postData = {
           title: this.solution.title,
           introduction: this.solution.introduction,
           categories: this.solution.categories,
-          materials: this.solution.materials,
-          tools: this.solution.tools,
+          materials: materials,
+          tools: tools,
           impactUsers: [],
           userId: this.$store.state.user.user.id,
           createdAt: Date.now(),
@@ -93,9 +107,9 @@ export default {
             return id
           })
           .then(async (id) => {
-            const filename = this.solution.image.name
+            const filename = this.solution.images[0].name
             ext = filename.slice(filename.lastIndexOf('.'))
-            r = await fetch(this.solution.image.blob)
+            r = await fetch(this.solution.images[0].blob)
             blob = await r.blob()
             return storage.ref(`solutions/${id}${ext}`).put(blob)
           })

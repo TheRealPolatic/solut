@@ -1,6 +1,7 @@
 <template>
   <div class="mx-6">
-    <h1 class="my-6 text-dark text-center font-bold text-xl">Add solution</h1>
+    <h1 v-if="!solution.userId" class="my-6 text-dark text-center font-bold text-xl">Add solution</h1>
+    <h1 v-else class="my-6 text-dark text-center font-bold text-xl">Update solution</h1>
 
     <!-- Progress indicator -->
     <div class="flex justify-between items-center">
@@ -64,10 +65,11 @@
         <div @click="resetImg" class="h-6 w-6 rounded-full absolute right-2 top-2 bg-white flex justify-center items-center">
           <i class="icon icon-close"></i>
         </div>
+
         <file-upload
           ref="upload"
           v-model="solution.images"
-          v-if="solution.images.length == 0"
+          v-if="solution.images.length == 0 && !solution.coverImage"
           @input-filter="inputFilter"
           accept="image/*"
           :size="1024 * 1024"
@@ -80,16 +82,23 @@
         </file-upload>
       </div>
 
-      <!--  Preview uploaded image -->
-      <div class="w-full" v-for="image in solution.images" :key="image.blob">
-        <div v-if="image.blob" class="preview h-40 rounded-xl overflow-hidden" :style="{ 'background-image': `url(${image.blob})` }"></div>
+      <div v-if="!solution.coverImage">
+        <!--  Preview uploaded image -->
+        <div class="w-full" v-for="image in solution.images" :key="image.blob">
+          <div v-if="image.blob" class="preview h-40 rounded-xl overflow-hidden" :style="{ 'background-image': `url(${image.blob})` }"></div>
+        </div>
       </div>
+      <div v-if="solution.coverImage" class="preview h-40 rounded-xl overflow-hidden" :style="{ 'background-image': `url(${solution.coverImage})` }"></div>
     </div>
 
     <!-- Next step button -->
     <div
-      @click="solution.introduction && solution.title && solution.images.length ? addBasicInfo() : {}"
-      :class="solution.introduction && solution.title && solution.images.length ? 'bg-primary text-white ' : 'bg-primary text-white opacity-40'"
+      @click=";(solution.introduction && solution.title && solution.images.length) || solution.coverImage ? addBasicInfo() : {}"
+      :class="
+        (solution.introduction && solution.title && solution.images.length) || solution.coverImage
+          ? 'bg-primary text-white '
+          : 'bg-primary text-white opacity-40'
+      "
       class="rounded-lg w-full h-14 flex items-center justify-center mb-8 cursor-pointer"
     >
       <p>Next step</p>
@@ -155,6 +164,7 @@ export default {
       }
     },
     resetImg() {
+      this.solution.coverImage = ''
       this.solution.images = []
     },
   },

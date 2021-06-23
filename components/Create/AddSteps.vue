@@ -5,7 +5,8 @@
       <div class="back w-10 h-10 border border-gray-200 rounded-xl flex items-center justify-center" @click="$emit('back')">
         <i class="icon icon-chevron-left"></i>
       </div>
-      <h1 class="my-6 text-dark text-center font-bold text-xl">Add solution</h1>
+      <h1 v-if="!solution.userId" class="my-6 text-dark text-center font-bold text-xl">Add solution</h1>
+      <h1 v-else class="my-6 text-dark text-center font-bold text-xl">Update solution</h1>
       <div class="w-10 h-10"></div>
     </div>
 
@@ -62,7 +63,8 @@
         :class="{ 'opacity-40': !solution.steps.length }"
         class="bg-primary text-white rounded-xl w-40 h-14 flex items-center justify-center mb-8 cursor-pointer"
       >
-        <p>Add solution</p>
+        <p v-if="!solution.userId">Add solution</p>
+        <p v-else>Update solution</p>
       </div>
     </div>
 
@@ -79,14 +81,14 @@
         <div class="mt-6">
           <div class="input-top flex justify-between">
             <label class="font-semibold text-sm">Description</label>
-            <p :class="solution.currentStep.description.length == maxLength ? 'text-red-500' : 'text-dark opacity-40'" class="text-sm">
-              {{ `${solution.currentStep.description.length} / ${maxLength}` }}
+            <p :class="currentStep.description.length == maxLength ? 'text-red-500' : 'text-dark opacity-40'" class="text-sm">
+              {{ `${currentStep.description.length} / ${maxLength}` }}
             </p>
           </div>
 
           <textarea
             class="mt-2 border rounded-2xl w-full py-2 px-3 text-gray-700 leading-loose h-40 focus:outline-none"
-            v-model="solution.currentStep.description"
+            v-model="currentStep.description"
             :maxlength="maxLength"
             type="text"
             placeholder="Type a quick introduction about the solution"
@@ -97,8 +99,8 @@
           <div class="flex justify-center items-center mt-2">
             <file-upload
               ref="upload"
-              v-model="solution.currentStep.stepImage"
-              v-if="solution.currentStep.stepImage.length == 0"
+              v-model="currentStep.stepImage"
+              v-if="currentStep.stepImage.length == 0"
               @input-filter="inputFilter"
               accept="image/*"
               :size="1024 * 1024"
@@ -111,16 +113,16 @@
             </file-upload>
           </div>
         </div>
-        <div class="w-full relative" v-for="image in solution.currentStep.stepImage" :key="image.blob">
+        <div class="w-full relative" v-for="image in currentStep.stepImage" :key="image.blob">
           <div v-if="image.blob" class="preview h-40 rounded-xl overflow-hidden" :style="{ 'background-image': `url(${image.blob})` }"></div>
           <div @click="resetImg" class="delete h-6 w-6 rounded-full absolute right-2 top-2 bg-white flex justify-center items-center cursor-pointer">
             <i class="icon icon-close text-dark"></i>
           </div>
         </div>
         <div
-          :class="solution.currentStep.description ? 'bg-primary text-white ' : 'bg-primary text-white opacity-40'"
+          :class="currentStep.description ? 'bg-primary text-white ' : 'bg-primary text-white opacity-40'"
           class="rounded-lg w-full h-14 flex items-center justify-center my-8 cursor-pointer"
-          @click="addStep(solution.currentStep, solution.steps)"
+          @click="addStep(currentStep, solution.steps)"
         >
           <p>Add step</p>
         </div>
@@ -141,9 +143,14 @@ export default {
   },
   data() {
     return {
+      currentStep: { description: '', stepImage: [], rank: this.solution.steps.length + 1 },
       maxLength: 250,
       index: 2,
     }
+  },
+
+  created() {
+    this.currentStep.rank = this.solution.steps.length + 1
   },
   methods: {
     open() {
@@ -177,8 +184,7 @@ export default {
     },
     addStep(value, fieldType) {
       fieldType.push(value)
-      this.solution.currentStep = { description: '', stepImage: [], rank: this.index }
-      this.index++
+      this.currentStep = { description: '', stepImage: [], rank: this.solution.steps.length + 1 }
       this.close()
     },
     addSteps() {
