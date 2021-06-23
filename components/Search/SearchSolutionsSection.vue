@@ -83,6 +83,7 @@ export default {
     this.$store.dispatch('category/fetchCategories')
     this.$store.dispatch('solution/fetchSolutions')
   },
+  mounted() {},
   methods: {
     toggleCategory(e) {
       if (this.selectedCategory) {
