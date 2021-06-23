@@ -8,16 +8,20 @@
     </div>
 
     <!-- Change user info -->
-    <form id="profile-form" @submit.prevent="updateProfileInfo(userinfo.id, 'Pim van den Hurk', 'pimvandenhurk@gmail.com')">
+    <form id="profile-form" @submit.prevent="updateProfileInfo(userinfo.id, fieldValueUser, fieldValueEmail)">
       <!-- Image component -->
       <UserProfileAvatarInput v-model="form.avatar" :default-src="userinfo.profileImage"></UserProfileAvatarInput>
 
       <!-- Username -->
-      <FormField :label="'Username'" :type="'text'" :placeholder="userinfo.username" class="mt-8"></FormField>
+      <div class="mt-8">
+        <label class="text-dark font-semibold">Username</label><br />
+        <input type="text" :placeholder="userinfo.username" v-model="fieldValueUser" class="border border-dark-grey rounded-xl h-12 w-full mt-2 pl-4 pr-4" />
+      </div>
       <!-- Email -->
-      <FormField :label="'Email'" :type="'text'" :placeholder="userinfo.email" class="mt-8"></FormField>
-
-      <p class="mt-8" @click="changePassword()">Change password</p>
+      <div class="mt-8">
+        <label class="text-dark font-semibold">Email</label><br />
+        <input type="text" :placeholder="userinfo.email" v-model="fieldValueEmail" class="border border-dark-grey rounded-xl h-12 w-full mt-2 pl-4 pr-4" />
+      </div>
 
       <Button :label="'Update profile'" class="mt-8"></Button>
 
@@ -40,10 +44,12 @@ export default {
     return {
       form: {
         avatar: null,
-        username: 'test',
-        email: '',
+        username: fieldValueUser,
+        email: fieldValueEmail,
       },
       userinfo: {},
+      fieldValueUser: this.form.username,
+      fieldValueEmail: this.form.email,
     }
   },
 
@@ -84,21 +90,6 @@ export default {
           // ...
           document.querySelector('.error').innerHTML = error.message
           console.log(error.message)
-        })
-    },
-
-    changePassword() {
-      auth
-        .sendPasswordResetEmail(this.userinfo.email)
-        .then(() => {
-          // Password reset email sent!
-          // ..
-          console.log('Email verstuurd')
-        })
-        .catch((error) => {
-          var errorCode = error.code
-          var errorMessage = error.message
-          // ..
         })
     },
   },
