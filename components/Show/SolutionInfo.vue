@@ -2,7 +2,7 @@
   <div class="w-full">
     <div class="p-6">
       <div class="text-dark-grey mb-2">{{ formatDate(solution.createdAt) }}</div>
-      <h1 class="text-dark font-bold text-xl">How to construct your own green roof</h1>
+      <h1 class="text-dark font-bold text-xl">{{ solution.title }}</h1>
       <ul class="list-none text-darker-grey my-2">
         <li v-for="category in solution.categories" :key="category.id">
           <i class="mr-2 icon inline-flex" :class="'icon-' + category.icon"></i>{{ category.title }}
