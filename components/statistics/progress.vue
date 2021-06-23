@@ -42,25 +42,18 @@ export default {
 
   methods: {
     calculateMilestone() {
-      // Milestone 100
-      if (this.currentImpact > 0 && this.currentImpact < 100) {
+      if (this.currentImpact < 100) {
         this.theNextMilestone = 100
-      }
-      // Milestone 250
-      else if (this.currentImpact > 99 && this.currentImpact < 250) {
-        this.theNextMilestone = 250
-      }
-      // Milestone 500
-      else if (this.currentImpact > 249 && this.currentImpact < 500) {
+      } else if (this.currentImpact < 500) {
         this.theNextMilestone = 500
-      }
-      // Milestone 1000
-      else if (this.currentImpact > 499 && this.currentImpact < 1000) {
+      } else if (this.currentImpact < 1000) {
         this.theNextMilestone = 1000
-      }
-      // Milestone 2500
-      else if (this.currentImpact > 999 && this.currentImpact < 2500) {
-        this.theNextMilestone = 2500
+      } else if (this.currentImpact < 10000) {
+        this.theNextMilestone = 10000
+      } else if (this.currentImpact < 50000) {
+        this.theNextMilestone = 50000
+      } else if (this.currentImpact < 100000) {
+        this.theNextMilestone = 100000
       }
     },
     calculateProgress() {
