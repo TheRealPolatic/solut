@@ -5,7 +5,7 @@ export default {
   ssr: false,
 
   head: {
-    title: 'solut',
+    title: 'Solut',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -33,7 +33,10 @@ export default {
 
   pwa: {
     manifest: {
+      name: 'Solut App',
+      short_name: 'Solut',
       lang: 'en',
+      description: 'Solut is an app that helps people become more resillient to extreme weatherconditions due to climate change.',
     },
     icon: {
       source: '~/static/solut_logo.png',
