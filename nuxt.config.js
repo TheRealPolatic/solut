@@ -33,7 +33,10 @@ export default {
 
   pwa: {
     manifest: {
+      name: 'Solut App',
+      short_name: 'Solut',
       lang: 'en',
+      description: 'Solut is an app that helps people become more resillient to extreme weatherconditions due to climate change.',
     },
     icon: {
       source: '~/static/solut_logo.png',
