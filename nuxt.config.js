@@ -35,6 +35,11 @@ export default {
     manifest: {
       lang: 'en',
     },
+    icon: {
+      source: '~/static/solut_logo.png',
+      fileName: 'solut_logo.png',
+      purpose: 'maskable',
+    },
   },
 
   build: {},
