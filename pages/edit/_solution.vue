@@ -166,6 +166,7 @@ export default {
 
           const updateData = { solutionId: this.solution.id, data: postData }
           this.$store.dispatch('solution/updateSolution', updateData)
+          this.$router.push(`/solutions/${this.solution.id}`)
         })
       })
     },
