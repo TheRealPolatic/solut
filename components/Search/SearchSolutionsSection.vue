@@ -82,7 +82,6 @@ export default {
   created() {
     this.$store.dispatch('category/fetchCategories')
     this.$store.dispatch('solution/fetchSolutions')
-    console.log(this.categories)
   },
   methods: {
     toggleCategory(e) {

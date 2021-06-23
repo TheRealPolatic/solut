@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="w-80 mr-4 relative" @click="goToSolution(solution.id)">
+    <div class="w-72 mr-4 relative" @click="goToSolution(solution.id)">
       <img class="w-full relative h-64 rounded-2xl my-4 mr-3" :src="solution.coverImage" />
       <div class="absolute bottom-0">
         <img class="rounded-2xl w-screen" src="@/assets/images/overlay.png" />
