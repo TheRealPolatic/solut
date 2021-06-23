@@ -55,7 +55,7 @@
 
     <!-- Category slider -->
     <div class="mt-6">
-      <CreateCategorySlider @toggle-category="toggleCategory" />
+      <CreateCategorySlider @toggle-category="toggleCategory" :solution="solution" />
     </div>
 
     <!-- Cover image uploadfield -->

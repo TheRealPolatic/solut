@@ -61,12 +61,6 @@ export default {
         return {}
       },
     },
-    redirectToId: {
-      type: String,
-      default() {
-        return {}
-      },
-    },
   },
   data() {
     return {
@@ -97,10 +91,6 @@ export default {
       const updateValues = { solutionId: currentSolution.id, data: solution }
       this.$store.dispatch('solution/updateSolution', updateValues)
       this.close()
-
-      if (this.redirectToId) {
-        this.$router.push(`/solutions/${this.redirectToId}`)
-      }
     },
   },
 }
