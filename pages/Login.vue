@@ -9,7 +9,7 @@
 
       <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-md">
         <div class="py-8 px-6 sm:rounded-lg sm:px-10">
-          <form class="space-y-6">
+          <form class="space-y-6" @submit.prevent="signIn">
             <div>
               <label for="email" class="block font-semibold text-dark">Email</label>
               <div class="mt-1">
