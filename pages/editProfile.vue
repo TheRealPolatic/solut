@@ -13,9 +13,9 @@
       <UserProfileAvatarInput v-model="form.avatar" :default-src="userinfo.profileImage"></UserProfileAvatarInput>
 
       <!-- Username -->
-      <FormField :label="'Username'" :type="'text'" :value="userinfo.username" class="mt-8"></FormField>
+      <FormField :label="'Username'" :type="'text'" :placeholder="userinfo.username" class="mt-8"></FormField>
       <!-- Email -->
-      <FormField :label="'Email'" :type="'text'" :value="userinfo.email" class="mt-8"></FormField>
+      <FormField :label="'Email'" :type="'text'" :placeholder="userinfo.email" class="mt-8"></FormField>
 
       <p class="mt-8" @click="changePassword()">Change password</p>
 
