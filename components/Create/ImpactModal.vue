@@ -61,6 +61,12 @@ export default {
         return {}
       },
     },
+    redirectToId: {
+      type: String,
+      default() {
+        return {}
+      },
+    },
   },
   data() {
     return {
@@ -84,13 +90,15 @@ export default {
       this.$refs.modal.close()
     },
     submitImpact(currentSolution) {
-      const user = this.$store.state.user.user
-      const solution = {}
-      solution.impactUsers = currentSolution.impactUsers
-      solution.impactUsers.push({ userId: user.id, impacted: Number(this.count), createdAt: Date.now() })
-      const updateValues = { solutionId: currentSolution.id, data: solution }
+      let solution = {}
+      solution.impactUsers = [{ userId: this.$store.state.user.user.id, impacted: Number(this.count), createdAt: Date.now() }]
+      //   solution.impactUsers.push({ userId: this.$store.state.user.user.id, impacted: this.count, createdAt: Date.now() })
+      const updateValues = { solutionId: this.redirectToId, data: solution }
       this.$store.dispatch('solution/updateSolution', updateValues)
       this.close()
+      if (this.redirectToId) {
+        this.$router.push(`/solutions/${this.redirectToId}`)
+      }
     },
   },
 }
