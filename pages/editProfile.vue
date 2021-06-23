@@ -8,7 +8,7 @@
     </div>
 
     <!-- Change user info -->
-    <form id="profile-form" @submit.prevent="updateProfileInfo(userinfo.id, 'piet', 'henk@gmail.com')">
+    <form id="profile-form" @submit.prevent="updateProfileInfo(userinfo.id, 'John', 'john@gmail.com')">
       <!-- Image component -->
       <UserProfileAvatarInput v-model="form.avatar" :default-src="userinfo.profileImage"></UserProfileAvatarInput>
 
@@ -79,6 +79,7 @@ export default {
           // ...
         })
     },
+
     changePassword() {
       auth
         .sendPasswordResetEmail(this.userinfo.email)
