@@ -91,7 +91,7 @@ export default {
     },
     submitImpact(currentSolution) {
       let solution = {}
-      solution.impactUsers = [{ userId: this.$store.state.user.user.id, impacted: this.count, createdAt: Date.now() }]
+      solution.impactUsers = [{ userId: this.$store.state.user.user.id, impacted: Number(this.count), createdAt: Date.now() }]
       //   solution.impactUsers.push({ userId: this.$store.state.user.user.id, impacted: this.count, createdAt: Date.now() })
       const updateValues = { solutionId: this.redirectToId, data: solution }
       this.$store.dispatch('solution/updateSolution', updateValues)
