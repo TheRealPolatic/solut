@@ -46,7 +46,7 @@
 
       <div @click="addField(input, solution.materials)" class="rounded-xl bg-light-grey h-14 w-full flex items-center justify-center cursor-pointer">
         <div class="opacity-50 flex">
-          <i class="icon icon-plus mr-3 text-dark"></i>
+          <i class="icon icon-plus flex items-center mr-3 text-dark"></i>
           <p>Add material</p>
         </div>
       </div>
@@ -68,7 +68,7 @@
 
       <div @click="addField(input, solution.tools)" class="rounded-xl bg-light-grey h-14 w-full flex items-center justify-center cursor-pointer">
         <div class="opacity-50 flex">
-          <i class="icon icon-plus mr-3 text-dark"></i>
+          <i class="icon icon-plus flex items-center mr-3 text-dark"></i>
           <p>Add tool</p>
         </div>
       </div>
