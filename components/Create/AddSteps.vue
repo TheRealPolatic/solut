@@ -32,7 +32,7 @@
         <img src="@/assets/imgs/no-instructions.svg" />
       </div>
       <h2 class="font-bold text-xl text-center text-dark mb-2">No instructions yet</h2>
-      <p class="text-center opacity-50">Add instructions steps for others to recreate your solution</p>
+      <p class="text-center opacity-50">Add instruction steps for others to recreate your solution</p>
     </div>
 
     <!-- If there are steps, list them below -->
@@ -48,7 +48,7 @@
     <!-- Add new step btn -->
     <div @click="open" class="rounded-xl mt-4 bg-light-grey h-14 w-full flex items-center justify-center cursor-pointer">
       <div class="content opacity-50 flex">
-        <i class="icon icon-plus text-dark mr-3"></i>
+        <i class="icon icon-plus flex items-center text-dark mr-3"></i>
         <p>Add step</p>
       </div>
     </div>
