@@ -142,8 +142,16 @@
             </div>
           </div>
           <div>
-            <div @click="submit" class="py-3 w-full flex justify-center rounded-2xl text-white bg-primary cursor-pointer active:bg-green-400">Register</div>
+            <div
+              @click=";[canRegister ? submit() : (showError = true)]"
+              :class="{ 'opacity-40': !canRegister }"
+              class="py-3 w-full flex justify-center rounded-2xl text-white bg-primary cursor-pointer active:bg-green-400"
+            >
+              Register
+            </div>
           </div>
+          <div v-if="error" class="text-red-500 text-center">{{ error }}</div>
+          <div v-else-if="showError && !isImageUploaded" class="text-red-500 text-center">Please upload a profile image to register.</div>
         </form>
 
         <div class="mt-6">
@@ -168,6 +176,8 @@ export default {
   data() {
     return {
       showPassword: false,
+      showError: false,
+      error: '',
       user: {
         uid: '',
         username: '',
@@ -185,8 +195,6 @@ export default {
           res.user
             .updateProfile({
               displayName: this.user.username,
-
-              // todo profile image toevoegen
             })
             .then(async () => {
               let id
@@ -235,6 +243,15 @@ export default {
       if (URL && URL.createObjectURL) {
         newFile.blob = URL.createObjectURL(newFile.file)
       }
+    },
+  },
+  computed: {
+    isImageUploaded() {
+      // returns true if profile image is uploaded
+      return this.user.profileImage.length
+    },
+    canRegister() {
+      return this.user.profileImage.length && this.user.username && this.user.email && this.user.password
     },
   },
 }
