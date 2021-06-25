@@ -1,16 +1,9 @@
 <template>
-  <div>
-    <!-- Todo: automatically send to timeline in a proper way -->
-    <h1>Redirecting to timeline..</h1>
-  </div>
+  <div></div>
 </template>
 
 <script>
 export default {
-  created() {
-    this.$router.push('/timeline')
-  },
+  middleware: 'private',
 }
 </script>
-
-<style scoped></style>
