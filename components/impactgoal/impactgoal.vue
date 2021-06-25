@@ -24,7 +24,7 @@
 export default {
   props: {
     impactData: {
-      type: Object,
+      type: Number,
       default() {
         return {}
       },
