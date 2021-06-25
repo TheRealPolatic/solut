@@ -19,6 +19,9 @@ export const getters = {
 
     return users
   },
+  getSolutionsByUserId: (state) => (id) => {
+    return state.solutions.filter((solution) => solution.userId === id)
+  },
   getSolutionsTotalImpact: (state, getters) => {
     return state.solutions.reduce((total, solution) => {
       return total + getters.getSolutionTotalImpactById(solution.id)

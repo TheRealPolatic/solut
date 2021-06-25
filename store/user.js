@@ -11,6 +11,11 @@ export const getters = {
   getUserById: (state) => (id) => {
     return state.users.find((user) => user.id === id)
   },
+  getUserTotalImpactById: (state, getters, rootState, rootGetters) => (id) => {
+    return rootGetters['solution/getSolutionsByUserId'](id).reduce((total, solution) => {
+      return total + rootGetters['solution/getSolutionTotalImpactById'](solution.id)
+    }, 0)
+  },
 }
 
 export const mutations = {
