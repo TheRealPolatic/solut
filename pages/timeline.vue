@@ -56,7 +56,7 @@ export default {
   middleware: 'private',
   async asyncData({ params, store }) {
     // Get total impact counter and set goals
-    const impact = await store.dispatch('impact/fetchImpact')
+    let impact = 0
 
     // Fetch all solutions
     await store.dispatch('solution/fetchSolutions')
@@ -89,6 +89,7 @@ export default {
       }
 
       const impactedUsersLength = allSolutions[i].impactUsers.length
+      impact = impact + impactedUsersLength
 
       // Collect the last 5 users that have been impacted
       const impactedUsers = await allSolutions[i].impactUsers.slice(impactedUsersStart, impactedUsersLength)
@@ -130,7 +131,7 @@ export default {
   data() {
     return {
       allSolutions: [],
-      impact: {},
+      impact: 0,
       pills: [
         {
           label: 'Trending',
