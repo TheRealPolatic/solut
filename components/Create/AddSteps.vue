@@ -61,7 +61,7 @@
       <div
         @click=";[solution.steps.length ? addSteps() : {}]"
         :class="{ 'opacity-40': !solution.steps.length }"
-        class="bg-primary text-white rounded-xl w-40 h-14 flex items-center justify-center mb-8 cursor-pointer"
+        class="bg-primary text-white rounded-xl w-40 h-14 flex items-center justify-center mb-8 cursor-pointer active:bg-green-400"
       >
         <p v-if="!solution.userId">Add solution</p>
         <p v-else>Update solution</p>

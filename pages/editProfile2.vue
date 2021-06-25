@@ -110,7 +110,7 @@
           </div>
 
           <div>
-            <div @click="submit" class="py-3 w-full flex justify-center rounded-2xl text-white bg-primary">Register</div>
+            <div @click="submit" class="py-3 w-full flex justify-center rounded-2xl text-white bg-primary active:bg-green-400">Register</div>
           </div>
         </form>
       </div>
