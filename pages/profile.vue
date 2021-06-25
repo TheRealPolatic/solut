@@ -29,46 +29,20 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
-// import { auth } from '~/plugins/firebase.js'
 
 export default {
   middleware: 'private',
-  // async asyncData({ params, store }) {
-  //   const userinfo = store.state.user.user
-
-  //   return { userinfo }
-  // },
-
-  // data() {
-  //   return {
-  //     userinfo: {},
-  //   }
-  // },
   computed: {
     userTotalImpact() {
       return this.getUserTotalImpactById(this.user.id)
     },
     ...mapState('user', ['user']),
-    ...mapGetters('solution', ['getUserTotalImpactById']),
+    ...mapGetters('user', ['getUserTotalImpactById']),
   },
   created() {
     this.$store.dispatch('solution/fetchSolutions')
   },
   methods: {
-    // getUserId() {
-    //   auth.onAuthStateChanged((user) => {
-    //     if (user) {
-    //       // User is signed in
-    //       const currentUid = user.uid
-    //       console.log(currentUid)
-    //       // ...
-    //     } else {
-    //       // User is signed out
-    //       // ...
-    //       console.log('niet ingelogd')
-    //     }
-    //   })
-    // },
     async signOut() {
       await this.$store.dispatch('user/signOutUser')
       await this.$router.push('/login')
