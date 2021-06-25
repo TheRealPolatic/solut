@@ -8,19 +8,20 @@ export const getters = {
   getSolutionById: (state) => (id) => {
     return state.solutions.find((solution) => solution.id === id)
   },
+  getSolutionTotalImpactById: (state, getters) => (id) => {
+    return getters.getSolutionById(id).impactUsers.reduce((total, user) => {
+      return total + user.impacted
+    }, 0)
+  },
   getImpactedUsersBySolutionId: (state, getters, rootState, rootGetters) => (id) => {
     const solution = getters.getSolutionById(id)
     const users = solution.impactUsers.map((user) => rootGetters['user/getUserById'](user.id))
 
     return users
   },
-  getSolutionsTotalImpact: (state) => {
+  getSolutionsTotalImpact: (state, getters) => {
     return state.solutions.reduce((total, solution) => {
-      const solutionTotal = solution.impactUsers.reduce((total, user) => {
-        return total + user.impacted
-      }, 0)
-
-      return total + solutionTotal
+      return total + getters.getSolutionTotalImpactById(solution.id)
     }, 0)
   },
 }
