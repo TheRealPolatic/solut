@@ -11,7 +11,7 @@
     </div>
 
     <!-- User your solutions -->
-    <StatisticsProgress :current-impact="currentImpact" :action="'have used your solutions'"></StatisticsProgress>
+    <StatisticsProgress :current-impact="userTotalImpact" :action="'have used your solutions'"></StatisticsProgress>
 
     <!-- Had impact on -->
     <StatisticsProgress :current-impact="currentImpact2" :action="'are impacted by your solutions'"></StatisticsProgress>
@@ -20,6 +20,12 @@
 
 <script>
 export default {
+  props: {
+    userTotalImpact: {
+      type: Number,
+      default: 0,
+    },
+  },
   data() {
     return {
       currentImpact: 483,
