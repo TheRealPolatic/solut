@@ -4,7 +4,7 @@ export default {
   getTotalImpact() {
     return firestore
       .collection('totalimpact')
-      .doc('kf3SofOFQsJn0Kbo4MFr')
+      .doc('1')
       .get()
       .then((doc) => {
         if (doc.exists) {

@@ -34,6 +34,9 @@ module.exports = {
         '9/16': '56.25%',
         '7/10': '70%',
       },
+      width: {
+        400: '400px',
+      },
       borderRadius: {
         4: '4px',
         8: '8px',

@@ -76,7 +76,7 @@
             </div>
 
             <div>
-              <button type="submit" class="py-3 w-full flex justify-center rounded-2xl text-white bg-primary">Sign in</button>
+              <button type="submit" class="py-3 w-full flex justify-center rounded-2xl text-white bg-primary active:bg-green-400">Sign in</button>
             </div>
           </form>
 

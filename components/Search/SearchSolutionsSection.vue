@@ -1,7 +1,7 @@
 <template>
-  <div class="mx-6">
-    <h1 class="text-dark font-bold text-2xl my-6">Search</h1>
-    <div class="relative rounded-2xl border border-gray my-6 py-3">
+  <div>
+    <GeneralHeader title="Search" :class="'px-0'"></GeneralHeader>
+    <div class="relative rounded-2xl border border-gray m-6 py-3">
       <div class="absolute inset-y-0 left-0 pl-3 flex items-center">
         <i class="icon icon-search text-gray-400"></i>
       </div>
@@ -83,6 +83,7 @@ export default {
     this.$store.dispatch('category/fetchCategories')
     this.$store.dispatch('solution/fetchSolutions')
   },
+  mounted() {},
   methods: {
     toggleCategory(e) {
       if (this.selectedCategory) {

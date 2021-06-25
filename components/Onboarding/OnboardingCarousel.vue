@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-col justify-evenly h-screen overflow-hidden">
-    <VueSlickCarousel :arrows="true" :dots="true" ref="carousel" class="flex flex-col justify-evenly">
+  <div class="flex flex-col justify-evenly h-screen overflow-hidden mx-6">
+    <VueSlickCarousel :dots="true" :arrows="true" ref="carousel" class="flex flex-col justify-evenly">
       <!-- slide 1 -->
       <div class="flex flex-col justify-evenly h-full">
         <h1 class="text-dark text-center font-bold text-3xl">
@@ -17,16 +17,20 @@
         <p class="text-center mt-24">Becoming more resilient to <br />climate change as a community <br />by sharing solutions.</p>
       </div>
       <!-- slide 3 -->
-      <div class="flex flex-col justify-evenly h-full">
+      <div class="flex flex-col justify-evenly h-full" ref="lastslide">
         <h1 class="text-dark text-center font-bold text-3xl">Track impact</h1>
-        <img class="w-7/8 mx-auto mb-14 mt-16" src="@/assets/illustrations/impact-illustration.svg" />
-        <p class="text-center mt-24">Track the impact of all solutions. <br />We strive to impact 100.000 people <br />all around the world.</p>
+        <img class="w-7/8 mx-auto mb-32 mt-16" src="@/assets/illustrations/impact-illustration.svg" />
+        <p class="text-center">Track the impact of all solutions. <br />We strive to impact 100.000 people <br />all around the world.</p>
       </div>
     </VueSlickCarousel>
 
-    <button class="mx-auto rounded-3xl bg-primary h-12 w-12 flex justify-center items-center" @click="showNext">
-      <i class="icon icon-next"></i>
+    <button v-if="index != 2" class="mx-auto rounded-full bg-primary h-12 w-12 flex justify-center items-center" @click="showNext">
+      <i class="icon icon-chevron-right text-white flex items-center"></i>
     </button>
+
+    <div @click="$router.push('/register')" v-else class="rounded-lg w-full h-14 flex items-center justify-center my-4 cursor-pointer bg-primary text-white">
+      Let's start!
+    </div>
   </div>
 </template>
 
@@ -40,14 +44,16 @@ export default {
   methods: {
     showNext() {
       this.$refs.carousel.next()
+      this.index++
     },
   },
   data() {
     return {
+      index: 0,
       settings: {
         arrows: true,
         dots: true,
-        dotsClass: 'slick-dots custom-dot-class',
+        // dotsClass: 'slick-dots custom-dot-class',
         edgeFriction: 0.35,
         infinite: false,
         speed: 500,

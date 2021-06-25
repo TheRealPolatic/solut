@@ -32,8 +32,8 @@ export default {
   },
   data() {
     return {
-      currentImpact: 483,
-      currentImpact2: 143,
+      currentImpact: 100,
+      currentImpact2: 200,
     }
   },
 }

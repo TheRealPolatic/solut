@@ -76,7 +76,7 @@
           class="rounded-xl bg-light-grey h-16 w-screen"
         >
           <div class="flex my-5 justify-center">
-            <i class="icon icon-upload mr-4 opacity-50 text-dark"></i>
+            <i class="icon icon-upload mr-4 opacity-50 text-dark flex items-center"></i>
             <p class="opacity-50">Upload image</p>
           </div>
         </file-upload>
