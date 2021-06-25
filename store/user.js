@@ -3,14 +3,32 @@ import { auth } from '~/plugins/firebase'
 
 export const state = () => ({
   user: {},
+  users: [],
   authenticated: false,
 })
 
-export const getters = {}
+export const getters = {
+  getUserById: (state) => (id) => {
+    return state.users.find((user) => user.id === id)
+  },
+  getUserSolutionsTotalUseById: (state, getters, rootState, rootGetters) => (id) => {
+    return rootGetters['solution/getSolutionsByUserId'](id).reduce((total, solution) => {
+      return total + rootGetters['solution/getSolutionTotalUsedById'](solution.id)
+    }, 0)
+  },
+  getUserSolutionsTotalImpactById: (state, getters, rootState, rootGetters) => (id) => {
+    return rootGetters['solution/getSolutionsByUserId'](id).reduce((total, solution) => {
+      return total + rootGetters['solution/getSolutionTotalImpactById'](solution.id)
+    }, 0)
+  },
+}
 
 export const mutations = {
   SET_USER(state, user) {
     state.user = user
+  },
+  SET_USERS(state, users) {
+    state.users = users
   },
   SET_AUTHENTICATED(state, status) {
     state.authenticated = status
@@ -35,6 +53,15 @@ export const actions = {
     return UserService.getUser(userId)
       .then((user) => {
         return user
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  },
+  fetchUsers({ commit }) {
+    return UserService.getUsers()
+      .then((users) => {
+        commit('SET_USERS', users)
       })
       .catch((error) => {
         console.error(error)
