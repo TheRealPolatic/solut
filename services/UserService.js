@@ -17,6 +17,16 @@ export default {
         console.error(error)
       })
   },
+  getUsers() {
+    return firestore
+      .collection('users')
+      .get()
+      .then((querySnapshot) => {
+        return querySnapshot.docs.map((doc) => {
+          return { ...{ id: doc.id }, ...doc.data() }
+        })
+      })
+  },
   createUser(user) {
     // return firestore.collection('users').add(user)
     return firestore.collection('users').doc(user.id).set({ bookmarks: [] })
