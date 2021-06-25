@@ -1,5 +1,5 @@
 <template>
-  <div class="flow-root my-6">
+  <div class="flow-root m-6" @click="goToSolution(solution.id)">
     <ul class="-my-5 divide-y divide-gray-200">
       <li class="py-4">
         <div class="flex items-center space-x-4">
@@ -33,6 +33,11 @@ export default {
       default() {
         return {}
       },
+    },
+  },
+  methods: {
+    goToSolution(id) {
+      this.$router.push('/solutions/' + id)
     },
   },
 }

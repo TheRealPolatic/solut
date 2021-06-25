@@ -15,6 +15,10 @@ export const mutations = {
   SET_AUTHENTICATED(state, status) {
     state.authenticated = status
   },
+  RESET_STATE(state) {
+    state.user = {}
+    state.authenticated = false
+  },
 }
 
 export const actions = {
@@ -55,8 +59,7 @@ export const actions = {
     return auth
       .signOut()
       .then(() => {
-        commit('SET_AUTHENTICATED', false)
-        commit('SET_USER', {})
+        commit('RESET_STATE')
       })
       .catch((error) => {
         console.error(error)

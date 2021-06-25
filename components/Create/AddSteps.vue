@@ -5,7 +5,8 @@
       <div class="back w-10 h-10 border border-gray-200 rounded-xl flex items-center justify-center" @click="$emit('back')">
         <i class="icon icon-chevron-left"></i>
       </div>
-      <h1 class="my-6 text-dark text-center font-bold text-xl">Add solution</h1>
+      <h1 v-if="!solution.userId" class="my-6 text-dark text-center font-bold text-xl">Add solution</h1>
+      <h1 v-else class="my-6 text-dark text-center font-bold text-xl">Update solution</h1>
       <div class="w-10 h-10"></div>
     </div>
 
@@ -26,28 +27,28 @@
     </div>
 
     <!-- No instructions notice -->
-    <div v-if="steps.length == 0">
+    <div v-if="solution.steps.length == 0">
       <div class="center flex justify-center mb-8 mt-12">
         <img src="@/assets/imgs/no-instructions.svg" />
       </div>
       <h2 class="font-bold text-xl text-center text-dark mb-2">No instructions yet</h2>
-      <p class="text-center opacity-50">Add instructions steps for others to recreate your solution</p>
+      <p class="text-center opacity-50">Add instruction steps for others to recreate your solution</p>
     </div>
 
     <!-- If there are steps, list them below -->
     <div v-else class="mt-10">
       <h3 class="font-semibold text-sm mb-2">Steps</h3>
-      <div v-for="(step, index) in steps" :key="`step-${index}`" class="my-2 border h-14 rounded-2xl py-2 px-3 flex items-center">
+      <div v-for="(step, index) in solution.steps" :key="`step-${index}`" class="my-2 border h-14 rounded-2xl py-2 px-3 flex items-center">
         <p class="font-semibold mr-4">{{ index + 1 }}</p>
         <p class="text-gray-700 w-60 truncate">{{ step.description }}</p>
-        <i class="icon icon-edit cursor-pointer ml-4"></i>
+        <i class="icon icon-close cursor-pointer ml-4" @click="removeField(index, solution.steps)"></i>
       </div>
     </div>
 
     <!-- Add new step btn -->
     <div @click="open" class="rounded-xl mt-4 bg-light-grey h-14 w-full flex items-center justify-center cursor-pointer">
       <div class="content opacity-50 flex">
-        <i class="icon icon-plus text-dark mr-3"></i>
+        <i class="icon icon-plus flex items-center text-dark mr-3"></i>
         <p>Add step</p>
       </div>
     </div>
@@ -58,11 +59,12 @@
         <p>Previous step</p>
       </div>
       <div
-        @click="addSteps"
-        :class="{ 'opacity-40': !steps.length }"
+        @click=";[solution.steps.length ? addSteps() : {}]"
+        :class="{ 'opacity-40': !solution.steps.length }"
         class="bg-primary text-white rounded-xl w-40 h-14 flex items-center justify-center mb-8 cursor-pointer"
       >
-        <p>Add solution</p>
+        <p v-if="!solution.userId">Add solution</p>
+        <p v-else>Update solution</p>
       </div>
     </div>
 
@@ -120,25 +122,35 @@
         <div
           :class="currentStep.description ? 'bg-primary text-white ' : 'bg-primary text-white opacity-40'"
           class="rounded-lg w-full h-14 flex items-center justify-center my-8 cursor-pointer"
-          @click="addStep(currentStep, steps)"
+          @click="addStep(currentStep, solution.steps)"
         >
           <p>Add step</p>
         </div>
       </div>
     </vue-bottom-sheet>
-    <CreateImpactModal />
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    solution: {
+      type: Object,
+      default() {
+        return {}
+      },
+    },
+  },
   data() {
     return {
-      currentStep: { 'description': '', 'stepImage': [] },
-      steps: [],
-      images: [],
+      currentStep: { description: '', stepImage: [], rank: this.solution.steps.length + 1 },
       maxLength: 250,
+      index: 2,
     }
+  },
+
+  created() {
+    this.currentStep.rank = this.solution.steps.length + 1
   },
   methods: {
     open() {
@@ -146,6 +158,10 @@ export default {
     },
     close() {
       this.$refs.addstep.close()
+    },
+
+    removeField(index, fieldType) {
+      fieldType.splice(index, 1)
     },
 
     inputFilter(newFile, oldFile, prevent) {
@@ -168,12 +184,12 @@ export default {
     },
     addStep(value, fieldType) {
       fieldType.push(value)
-      this.currentStep = { 'description': '', 'stepImage': [] }
+      this.currentStep = { description: '', stepImage: [], rank: this.solution.steps.length + 1 }
       this.close()
     },
     addSteps() {
       const solutionData = {
-        steps: this.steps,
+        steps: this.solution.steps,
       }
       this.$emit('addSteps', solutionData)
     },

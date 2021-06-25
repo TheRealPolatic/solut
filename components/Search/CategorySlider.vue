@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="category-scrollbar flex w-full overflow-x-scroll overflow-y-hidden">
+    <div class="category-scrollbar flex w-full overflow-x-scroll overflow-y-hidden mb-3 px-6">
       <SearchCategoryTile v-for="category in categories" :key="category.id" :category="category" v-on="$listeners" :selectedCategory="selectedCategory" />
     </div>
   </div>

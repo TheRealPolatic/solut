@@ -1,7 +1,7 @@
 <template>
-  <div class="mx-6">
-    <h1 class="text-dark font-bold text-2xl my-6">Search</h1>
-    <div class="relative rounded-2xl border border-gray my-6 py-3">
+  <div>
+    <GeneralHeader title="Search" :class="'px-0'"></GeneralHeader>
+    <div class="relative rounded-2xl border border-gray m-6 py-3">
       <div class="absolute inset-y-0 left-0 pl-3 flex items-center">
         <i class="icon icon-search text-gray-400"></i>
       </div>
@@ -15,16 +15,16 @@
       />
     </div>
 
-    <div class="category-scrollbar flex w-full overflow-x-scroll overflow-y-hidden">
-      <SearchCategorySlider @toggle-category="toggleCategory" :selectedCategory="selectedCategory" />
-    </div>
+    <SearchCategorySlider @toggle-category="toggleCategory" :selectedCategory="selectedCategory" />
 
     <div v-if="selectedCategory !== ''">
       <SearchSolutionCard v-for="solution in filteredCategory" :key="solution.title" :solution="solution" />
     </div>
 
     <div v-else-if="searchValue == ''">
-      <SearchWeatherExtremeSlider v-for="solution in solutions" :key="solution.title" :solution="solution" />
+      <div class="">
+        <SearchWeatherExtremeSlider v-for="category in categories" :key="category.id" :solutions="selectCategory(category.id)" :category="category" />
+      </div>
     </div>
 
     <div v-else-if="searchValue !== ''">
@@ -39,21 +39,27 @@ import { mapState } from 'vuex'
 export default {
   data() {
     return {
-      categories: [],
-      // solutions: [
-      //   {
-      //     title: 'Sustainable beach',
-      //     categories: ["fsfdf", "fff"],
-      //     coverImage: 'sustainable.jpg',
-      //     category: 'Extreme Heat',
-      //   },
-      // ],
       searchValue: '',
       selectedCategory: '',
     }
   },
+  props: {
+    solution: {
+      type: Object,
+      default() {
+        return {}
+      },
+    },
+    category: {
+      type: Object,
+      default() {
+        return {}
+      },
+    },
+  },
   computed: {
     ...mapState('solution', ['solutions']),
+    ...mapState('category', ['categories']),
     filteredName() {
       let tempSolutions = this.solutions
 
@@ -77,6 +83,7 @@ export default {
     this.$store.dispatch('category/fetchCategories')
     this.$store.dispatch('solution/fetchSolutions')
   },
+  mounted() {},
   methods: {
     toggleCategory(e) {
       if (this.selectedCategory) {
@@ -84,6 +91,16 @@ export default {
       } else {
         this.selectedCategory = e.id
       }
+    },
+    selectCategory(categoryId) {
+      const allSolutions = this.solutions
+      const selectedSolutions = []
+      for (let index = 0; index < allSolutions.length; index++) {
+        if (allSolutions[index].categories.includes(categoryId)) {
+          selectedSolutions.push(allSolutions[index])
+        }
+      }
+      return selectedSolutions
     },
   },
 }

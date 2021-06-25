@@ -106,7 +106,7 @@ export default {
       // Calculate timestamp
       const timestamp = allSolutions[i].createdAt
       const date = moment(timestamp).format()
-      const now = moment(date, 'YYYYMMDD').fromNow()
+      const now = moment(date, 'YYYYMMDD HHmmss').fromNow()
 
       allSolutions[i].timeSince = now
 
