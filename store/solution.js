@@ -14,10 +14,7 @@ export const getters = {
     }, 0)
   },
   getImpactedUsersBySolutionId: (state, getters, rootState, rootGetters) => (id) => {
-    const solution = getters.getSolutionById(id)
-    const users = solution.impactUsers.map((user) => rootGetters['user/getUserById'](user.id))
-
-    return users
+    return getters.getSolutionById(id).impactUsers.map((user) => rootGetters['user/getUserById'](user.id))
   },
   getSolutionsByUserId: (state) => (id) => {
     return state.solutions.filter((solution) => solution.userId === id)
