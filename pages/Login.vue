@@ -9,13 +9,13 @@
 
       <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-md">
         <div class="py-8 px-6 sm:rounded-lg sm:px-10">
-          <form class="space-y-6">
+          <form class="space-y-6" @submit.prevent="signIn">
             <div>
               <label for="email" class="block font-semibold text-dark">Email</label>
               <div class="mt-1">
                 <input
-                  v-model="user.email"
                   id="email"
+                  v-model="user.email"
                   name="email"
                   type="email"
                   placeholder="johndoe@gmail.com"
@@ -43,10 +43,10 @@
               <label for="password" class="mb-0 block font-semibold text-dark">Password</label>
               <div class="relative mt-1">
                 <input
-                  v-model="user.password"
                   id="password"
+                  v-model="user.password"
                   name="password"
-                  v-bind:type="[showPassword ? 'text' : 'password']"
+                  :type="[showPassword ? 'text' : 'password']"
                   placeholder=""
                   required
                   class="
@@ -64,8 +64,8 @@
                     focus:border-gray-400
                   "
                 />
-                <div @click="showPassword = !showPassword" class="absolute inset-y-0 right-0 flex items-center px-4 border-l text-xl">
-                  <i class="icon icon-eye" v-if="showPassword"></i>
+                <div class="absolute inset-y-0 right-0 flex items-center px-4 border-l text-xl" @click="showPassword = !showPassword">
+                  <i v-if="showPassword" class="icon icon-eye"></i>
                   <i v-else class="icon icon-eye-off"></i>
                 </div>
               </div>
@@ -109,13 +109,10 @@ export default {
     }
   },
   methods: {
-    submit() {
-      auth.signInWithEmailAndPassword(this.user.email, this.user.password).catch((err) => {
-        this.error = err.message
-      })
+    async signIn() {
+      await this.$store.dispatch('user/signInUser', this.user)
+      await this.$router.push('/timeline')
     },
   },
 }
 </script>
-
-<style lang="scss" scoped></style>
