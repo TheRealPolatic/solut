@@ -2,7 +2,8 @@
   <div>
     <label class="text-dark font-semibold">{{ label }}</label
     ><br />
-    <input :type="type" :placeholder="placeholder" :value="value" class="border border-dark-grey rounded-xl h-12 w-full mt-2 pl-4 pr-4" />
+    <input :type="type" :placeholder="placeholder" v-model="fieldValue" class="border border-dark-grey rounded-xl h-12 w-full mt-2 pl-4 pr-4" />
+    <p>{{ fieldValue }}</p>
   </div>
 </template>
 
@@ -27,7 +28,9 @@ export default {
     },
   },
   data() {
-    return {}
+    return {
+      fieldValue: '',
+    }
   },
 }
 </script>

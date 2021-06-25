@@ -6,7 +6,7 @@
           <i class="icon icon-chevron-left"></i>
         </div>
       </NuxtLink>
-      <h1 class="my-6 text-dark text-center font-bold text-xl">Register</h1>
+      <h1 class="my-6 text-dark text-center font-bold text-xl">Change profile</h1>
       <div class="w-10 h-10"></div>
     </div>
     <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-md">
@@ -15,7 +15,7 @@
           <!-- Profile Image -->
 
           <div class="flex justify-center">
-            <div class="flex justify-center items-center relative mt-2">
+            <div class="flex justify-center items-center relative">
               <div class="relative" v-if="!user.profileImage.length">
                 <file-upload
                   ref="upload"
@@ -109,52 +109,10 @@
             </div>
           </div>
 
-          <!-- password -->
-          <div>
-            <label for="password" class="mb-0 block font-semibold text-dark">Password</label>
-            <div class="relative mt-1">
-              <input
-                v-model="user.password"
-                id="password"
-                name="password"
-                v-bind:type="[showPassword ? 'text' : 'password']"
-                placeholder=""
-                required
-                class="
-                  h-14
-                  appearance-none
-                  block
-                  w-full
-                  px-3
-                  py-2
-                  border border-gray-300
-                  rounded-2xl
-                  placeholder-gray-400
-                  focus:outline-none
-                  focus:ring-gray-400
-                  focus:border-gray-400
-                "
-              />
-              <div @click="showPassword = !showPassword" class="absolute inset-y-0 right-0 flex items-center px-4 border-l text-xl">
-                <i class="icon icon-eye" v-if="showPassword"></i>
-                <i v-else class="icon icon-eye-off"></i>
-              </div>
-            </div>
-          </div>
           <div>
             <div @click="submit" class="py-3 w-full flex justify-center rounded-2xl text-white bg-primary">Register</div>
           </div>
         </form>
-
-        <div class="mt-6">
-          <div class="relative">
-            <div class="relative flex justify-center">
-              <NuxtLink to="/login"
-                ><a href="#" class="text-gray-500">Already have an account? <u>Login</u></a></NuxtLink
-              >
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
