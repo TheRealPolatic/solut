@@ -91,6 +91,13 @@ export default {
       const impactedUsersLength = allSolutions[i].impactUsers.length
       impact = impact + impactedUsersLength
 
+      // Loop through all impactUsers and catch impacted
+      const allImpactedUsers = await allSolutions[i].impactUsers
+
+      for (let x = 0; x < allImpactedUsers.length; x += 1) {
+        impact = impact + allImpactedUsers[x].impacted
+      }
+
       // Collect the last 5 users that have been impacted
       const impactedUsers = await allSolutions[i].impactUsers.slice(impactedUsersStart, impactedUsersLength)
       const lastFiveUsers = []
