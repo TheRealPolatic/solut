@@ -1,13 +1,9 @@
 <template>
-  <div>
-    <h1>Solut</h1>
-  </div>
+  <div></div>
 </template>
 
 <script>
 export default {
-  created() {},
+  middleware: 'private',
 }
 </script>
-
-<style scoped></style>

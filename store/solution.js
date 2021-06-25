@@ -4,7 +4,30 @@ export const state = () => ({
   solutions: [],
 })
 
-export const getters = {}
+export const getters = {
+  getSolutionById: (state) => (id) => {
+    return state.solutions.find((solution) => solution.id === id)
+  },
+  getSolutionTotalUsedById: (state, getters) => (id) => {
+    return getters.getSolutionById(id).impactUsers.length
+  },
+  getSolutionTotalImpactById: (state, getters) => (id) => {
+    return getters.getSolutionById(id).impactUsers.reduce((total, user) => {
+      return total + user.impacted
+    }, 0)
+  },
+  getImpactedUsersBySolutionId: (state, getters, rootState, rootGetters) => (id) => {
+    return getters.getSolutionById(id).impactUsers.map((user) => rootGetters['user/getUserById'](user.id))
+  },
+  getSolutionsByUserId: (state) => (id) => {
+    return state.solutions.filter((solution) => solution.userId === id)
+  },
+  getSolutionsTotalImpact: (state, getters) => {
+    return state.solutions.reduce((total, solution) => {
+      return total + getters.getSolutionTotalImpactById(solution.id)
+    }, 0)
+  },
+}
 
 export const mutations = {
   SET_SOLUTIONS(state, solutions) {

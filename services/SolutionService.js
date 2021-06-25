@@ -33,7 +33,7 @@ export default {
   createSolution(solution) {
     return firestore.collection('solutions').add(solution)
   },
-  updateSolution(solutionId, data) {
-    return firestore.collection('solution').doc(solutionId).update(data)
+  updateSolution(solutionId, updatedSolution) {
+    return firestore.collection('solutions').doc(solutionId).update(updatedSolution)
   },
 }

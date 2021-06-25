@@ -4,7 +4,7 @@ export default async function ({ store, redirect }) {
   const { authenticated, user } = store.state.user
 
   if (!authenticated) {
-    return redirect('/')
+    return redirect('/login')
   }
 
   if (authenticated && !user.id) {

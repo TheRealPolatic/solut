@@ -1,7 +1,7 @@
 @font-face {
     font-family: "icons";
-    src: url("./icons.ttf?4131f680109a5a2e74930661deb1451f") format("truetype"),
-url("./icons.woff?4131f680109a5a2e74930661deb1451f") format("woff");
+    src: url("./icons.ttf?2fffba8ece27d2a0ee4360ec4cb688eb") format("truetype"),
+url("./icons.woff?2fffba8ece27d2a0ee4360ec4cb688eb") format("woff");
 }
 
 i[class^="icon-"]:before, i[class*=" icon-"]:before {
@@ -21,60 +21,90 @@ i[class^="icon-"]:before, i[class*=" icon-"]:before {
 .icon-blizzard:before {
     content: "\f102";
 }
-.icon-bookmark:before {
+.icon-bookmark-filled:before {
     content: "\f103";
 }
-.icon-chevron-left:before {
+.icon-bookmark:before {
     content: "\f104";
 }
-.icon-chevron-right:before {
+.icon-chevron-left:before {
     content: "\f105";
 }
-.icon-close:before {
+.icon-chevron-right:before {
     content: "\f106";
 }
-.icon-drought:before {
+.icon-close:before {
     content: "\f107";
 }
-.icon-dust:before {
+.icon-dotted-line:before {
     content: "\f108";
 }
-.icon-flood:before {
+.icon-drought:before {
     content: "\f109";
 }
-.icon-hail:before {
+.icon-dust:before {
     content: "\f10a";
 }
-.icon-heat:before {
+.icon-edit:before {
     content: "\f10b";
 }
-.icon-home:before {
+.icon-envelope:before {
     content: "\f10c";
 }
-.icon-info:before {
+.icon-eye-off:before {
     content: "\f10d";
 }
-.icon-plus:before {
+.icon-eye:before {
     content: "\f10e";
 }
-.icon-rainfall:before {
+.icon-flood:before {
     content: "\f10f";
 }
-.icon-search:before {
+.icon-hail:before {
     content: "\f110";
 }
-.icon-smog:before {
+.icon-heat:before {
     content: "\f111";
 }
-.icon-tornado:before {
+.icon-home:before {
     content: "\f112";
 }
-.icon-upload:before {
+.icon-info:before {
     content: "\f113";
 }
-.icon-user:before {
+.icon-location:before {
     content: "\f114";
 }
-.icon-wildfire:before {
+.icon-new:before {
     content: "\f115";
+}
+.icon-plus:before {
+    content: "\f116";
+}
+.icon-rainfall:before {
+    content: "\f117";
+}
+.icon-search:before {
+    content: "\f118";
+}
+.icon-smog:before {
+    content: "\f119";
+}
+.icon-top:before {
+    content: "\f11a";
+}
+.icon-tornado:before {
+    content: "\f11b";
+}
+.icon-trending:before {
+    content: "\f11c";
+}
+.icon-upload:before {
+    content: "\f11d";
+}
+.icon-user:before {
+    content: "\f11e";
+}
+.icon-wildfire:before {
+    content: "\f11f";
 }
