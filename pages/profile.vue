@@ -22,7 +22,7 @@
       <ListItem :content="user.email" :icon="'icon-envelope'"></ListItem>
     </ul>
 
-    <Statistics class="mt-8" :user-total-impact="userTotalImpact"></Statistics>
+    <Statistics class="mt-8" :user-total-use="userTotalUse" :user-total-impact="userTotalImpact"></Statistics>
     <button class="text-sm mt-8" @click="signOut()">Log out</button> <br />
   </div>
 </template>
@@ -33,11 +33,14 @@ import { mapState, mapGetters } from 'vuex'
 export default {
   middleware: 'private',
   computed: {
+    userTotalUse() {
+      return this.getUserSolutionsTotalUseById(this.user.id)
+    },
     userTotalImpact() {
-      return this.getUserTotalImpactById(this.user.id)
+      return this.getUserSolutionsTotalImpactById(this.user.id)
     },
     ...mapState('user', ['user']),
-    ...mapGetters('user', ['getUserTotalImpactById']),
+    ...mapGetters('user', ['getUserSolutionsTotalUseById', 'getUserSolutionsTotalImpactById']),
   },
   created() {
     this.$store.dispatch('solution/fetchSolutions')

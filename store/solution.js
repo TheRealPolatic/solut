@@ -8,6 +8,9 @@ export const getters = {
   getSolutionById: (state) => (id) => {
     return state.solutions.find((solution) => solution.id === id)
   },
+  getSolutionTotalUsedById: (state, getters) => (id) => {
+    return getters.getSolutionById(id).impactUsers.length
+  },
   getSolutionTotalImpactById: (state, getters) => (id) => {
     return getters.getSolutionById(id).impactUsers.reduce((total, user) => {
       return total + user.impacted
